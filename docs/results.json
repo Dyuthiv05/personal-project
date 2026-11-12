@@ -21,7 +21,8 @@
     "patients": 69987,
     "readmit_rate": 0.0898,
     "a1c_tested_rate": 0.1835,
-    "raw_patients": 71518
+    "raw_patients": 71518,
+    "readmit_rate_all_stays": 0.1139
   },
   "sources": [
     {
@@ -57,6 +58,16 @@
     {
       "name": "CMS Part D Prescribers by Geography & Drug, national, 2013\u20132024",
       "rows": 1404,
+      "kind": "API"
+    },
+    {
+      "name": "CMS Medicare Inpatient Hospitals by Geography & Service (2024)",
+      "rows": 767,
+      "kind": "API"
+    },
+    {
+      "name": "BLS CPI, inpatient hospital services (2017\u20132026)",
+      "rows": 115,
       "kind": "API"
     },
     {
@@ -936,6 +947,56 @@
     "national_advanced_pct": 34.7,
     "states": [
       {
+        "stateabbr": "AR",
+        "statedesc": "Arkansas",
+        "adults_with_diabetes": 313534.40600000013,
+        "diabetes_prev_pct": 13.3,
+        "obesity_prev_pct": 39.3,
+        "diabetes_claims": 1350358.0,
+        "advanced_pct": 34.0,
+        "quadrant": "High burden, high adoption"
+      },
+      {
+        "stateabbr": "CA",
+        "statedesc": "California",
+        "adults_with_diabetes": 3571061.071,
+        "diabetes_prev_pct": 11.7,
+        "obesity_prev_pct": 27.8,
+        "diabetes_claims": 12210639.0,
+        "advanced_pct": 31.2,
+        "quadrant": "Low burden, low adoption"
+      },
+      {
+        "stateabbr": "NH",
+        "statedesc": "New Hampshire",
+        "adults_with_diabetes": 108121.46799999998,
+        "diabetes_prev_pct": 9.4,
+        "obesity_prev_pct": 31.8,
+        "diabetes_claims": 419547.0,
+        "advanced_pct": 31.6,
+        "quadrant": "Low burden, low adoption"
+      },
+      {
+        "stateabbr": "SD",
+        "statedesc": "South Dakota",
+        "adults_with_diabetes": 81379.02100000002,
+        "diabetes_prev_pct": 11.7,
+        "obesity_prev_pct": 35.9,
+        "diabetes_claims": 310004.0,
+        "advanced_pct": 32.6,
+        "quadrant": "Low burden, low adoption"
+      },
+      {
+        "stateabbr": "UT",
+        "statedesc": "Utah",
+        "adults_with_diabetes": 211619.11800000002,
+        "diabetes_prev_pct": 8.5,
+        "obesity_prev_pct": 31.0,
+        "diabetes_claims": 715686.0,
+        "advanced_pct": 32.9,
+        "quadrant": "Low burden, low adoption"
+      },
+      {
         "stateabbr": "FL",
         "statedesc": "Florida",
         "adults_with_diabetes": 2460085.911,
@@ -1006,84 +1067,64 @@
         "quadrant": "Low burden, low adoption"
       },
       {
-        "stateabbr": "CT",
-        "statedesc": "Connecticut",
-        "adults_with_diabetes": 294017.802,
-        "diabetes_prev_pct": 10.2,
-        "obesity_prev_pct": 30.5,
-        "diabetes_claims": 1335085.0,
-        "advanced_pct": 36.6,
-        "quadrant": "Low burden, high adoption"
-      },
-      {
-        "stateabbr": "ID",
-        "statedesc": "Idaho",
-        "adults_with_diabetes": 151905.36899999998,
-        "diabetes_prev_pct": 10.1,
-        "obesity_prev_pct": 32.1,
-        "diabetes_claims": 564315.0,
-        "advanced_pct": 35.4,
-        "quadrant": "Low burden, high adoption"
-      },
-      {
-        "stateabbr": "ME",
-        "statedesc": "Maine",
-        "adults_with_diabetes": 128855.837,
+        "stateabbr": "IA",
+        "statedesc": "Iowa",
+        "adults_with_diabetes": 278124.95900000015,
         "diabetes_prev_pct": 11.2,
-        "obesity_prev_pct": 32.7,
-        "diabetes_claims": 510051.0,
-        "advanced_pct": 34.5,
-        "quadrant": "Low burden, high adoption"
-      },
-      {
-        "stateabbr": "NC",
-        "statedesc": "North Carolina",
-        "adults_with_diabetes": 1022497.4280000003,
-        "diabetes_prev_pct": 12.0,
-        "obesity_prev_pct": 35.1,
-        "diabetes_claims": 4135752.0,
-        "advanced_pct": 36.6,
-        "quadrant": "High burden, high adoption"
-      },
-      {
-        "stateabbr": "NJ",
-        "statedesc": "New Jersey",
-        "adults_with_diabetes": 794658.5329999998,
-        "diabetes_prev_pct": 10.9,
-        "obesity_prev_pct": 28.9,
-        "diabetes_claims": 3152870.0,
-        "advanced_pct": 31.4,
+        "obesity_prev_pct": 37.7,
+        "diabetes_claims": 1270047.0,
+        "advanced_pct": 32.0,
         "quadrant": "Low burden, low adoption"
       },
       {
-        "stateabbr": "NY",
-        "statedesc": "New York",
-        "adults_with_diabetes": 1790169.987,
-        "diabetes_prev_pct": 11.5,
-        "obesity_prev_pct": 28.8,
-        "diabetes_claims": 8477022.0,
-        "advanced_pct": 33.9,
-        "quadrant": "Low burden, high adoption"
-      },
-      {
-        "stateabbr": "OH",
-        "statedesc": "Ohio",
-        "adults_with_diabetes": 1220001.8530000004,
-        "diabetes_prev_pct": 13.2,
-        "obesity_prev_pct": 37.1,
-        "diabetes_claims": 4926459.0,
-        "advanced_pct": 31.9,
+        "stateabbr": "MD",
+        "statedesc": "Maryland",
+        "adults_with_diabetes": 600502.985,
+        "diabetes_prev_pct": 12.5,
+        "obesity_prev_pct": 35.1,
+        "diabetes_claims": 1591475.0,
+        "advanced_pct": 33.2,
         "quadrant": "High burden, low adoption"
       },
       {
-        "stateabbr": "SC",
-        "statedesc": "South Carolina",
-        "adults_with_diabetes": 588600.2579999999,
-        "diabetes_prev_pct": 13.9,
-        "obesity_prev_pct": 35.8,
-        "diabetes_claims": 2076003.0,
-        "advanced_pct": 37.4,
+        "stateabbr": "MS",
+        "statedesc": "Mississippi",
+        "adults_with_diabetes": 350433.9379999999,
+        "diabetes_prev_pct": 15.5,
+        "obesity_prev_pct": 40.4,
+        "diabetes_claims": 1396295.0,
+        "advanced_pct": 36.0,
         "quadrant": "High burden, high adoption"
+      },
+      {
+        "stateabbr": "NV",
+        "statedesc": "Nevada",
+        "adults_with_diabetes": 302231.55900000007,
+        "diabetes_prev_pct": 12.0,
+        "obesity_prev_pct": 31.3,
+        "diabetes_claims": 838573.0,
+        "advanced_pct": 33.7,
+        "quadrant": "High burden, low adoption"
+      },
+      {
+        "stateabbr": "WV",
+        "statedesc": "West Virginia",
+        "adults_with_diabetes": 225175.04499999998,
+        "diabetes_prev_pct": 15.9,
+        "obesity_prev_pct": 40.6,
+        "diabetes_claims": 936152.0,
+        "advanced_pct": 34.5,
+        "quadrant": "High burden, high adoption"
+      },
+      {
+        "stateabbr": "WY",
+        "statedesc": "Wyoming",
+        "adults_with_diabetes": 49627.701000000015,
+        "diabetes_prev_pct": 10.9,
+        "obesity_prev_pct": 33.7,
+        "diabetes_claims": 137769.0,
+        "advanced_pct": 32.0,
+        "quadrant": "Low burden, low adoption"
       },
       {
         "stateabbr": "AL",
@@ -1186,114 +1227,84 @@
         "quadrant": "High burden, low adoption"
       },
       {
-        "stateabbr": "UT",
-        "statedesc": "Utah",
-        "adults_with_diabetes": 211619.11800000002,
-        "diabetes_prev_pct": 8.5,
-        "obesity_prev_pct": 31.0,
-        "diabetes_claims": 715686.0,
-        "advanced_pct": 32.9,
-        "quadrant": "Low burden, low adoption"
+        "stateabbr": "CT",
+        "statedesc": "Connecticut",
+        "adults_with_diabetes": 294017.802,
+        "diabetes_prev_pct": 10.2,
+        "obesity_prev_pct": 30.5,
+        "diabetes_claims": 1335085.0,
+        "advanced_pct": 36.6,
+        "quadrant": "Low burden, high adoption"
       },
       {
-        "stateabbr": "AR",
-        "statedesc": "Arkansas",
-        "adults_with_diabetes": 313534.40600000013,
-        "diabetes_prev_pct": 13.3,
-        "obesity_prev_pct": 39.3,
-        "diabetes_claims": 1350358.0,
-        "advanced_pct": 34.0,
-        "quadrant": "High burden, high adoption"
-      },
-      {
-        "stateabbr": "CA",
-        "statedesc": "California",
-        "adults_with_diabetes": 3571061.071,
-        "diabetes_prev_pct": 11.7,
-        "obesity_prev_pct": 27.8,
-        "diabetes_claims": 12210639.0,
-        "advanced_pct": 31.2,
-        "quadrant": "Low burden, low adoption"
-      },
-      {
-        "stateabbr": "NH",
-        "statedesc": "New Hampshire",
-        "adults_with_diabetes": 108121.46799999998,
-        "diabetes_prev_pct": 9.4,
-        "obesity_prev_pct": 31.8,
-        "diabetes_claims": 419547.0,
-        "advanced_pct": 31.6,
-        "quadrant": "Low burden, low adoption"
-      },
-      {
-        "stateabbr": "SD",
-        "statedesc": "South Dakota",
-        "adults_with_diabetes": 81379.02100000002,
-        "diabetes_prev_pct": 11.7,
-        "obesity_prev_pct": 35.9,
-        "diabetes_claims": 310004.0,
-        "advanced_pct": 32.6,
-        "quadrant": "Low burden, low adoption"
-      },
-      {
-        "stateabbr": "HI",
-        "statedesc": "Hawaii",
-        "adults_with_diabetes": 141227.731,
-        "diabetes_prev_pct": 12.4,
-        "obesity_prev_pct": 25.6,
-        "diabetes_claims": 389426.0,
-        "advanced_pct": 35.6,
-        "quadrant": "High burden, high adoption"
-      },
-      {
-        "stateabbr": "IL",
-        "statedesc": "Illinois",
-        "adults_with_diabetes": 1146933.8730000001,
-        "diabetes_prev_pct": 11.7,
-        "obesity_prev_pct": 34.0,
-        "diabetes_claims": 4323048.0,
-        "advanced_pct": 31.2,
-        "quadrant": "Low burden, low adoption"
-      },
-      {
-        "stateabbr": "MO",
-        "statedesc": "Missouri",
-        "adults_with_diabetes": 582795.4400000001,
-        "diabetes_prev_pct": 12.1,
-        "obesity_prev_pct": 36.6,
-        "diabetes_claims": 2599130.0,
-        "advanced_pct": 34.4,
-        "quadrant": "High burden, high adoption"
-      },
-      {
-        "stateabbr": "TN",
-        "statedesc": "Tennessee",
-        "adults_with_diabetes": 756520.8249999998,
-        "diabetes_prev_pct": 13.6,
-        "obesity_prev_pct": 37.6,
-        "diabetes_claims": 2887263.0,
-        "advanced_pct": 35.4,
-        "quadrant": "High burden, high adoption"
-      },
-      {
-        "stateabbr": "VT",
-        "statedesc": "Vermont",
-        "adults_with_diabetes": 46906.11699999999,
-        "diabetes_prev_pct": 8.8,
-        "obesity_prev_pct": 28.6,
-        "diabetes_claims": 186521.0,
+        "stateabbr": "ID",
+        "statedesc": "Idaho",
+        "adults_with_diabetes": 151905.36899999998,
+        "diabetes_prev_pct": 10.1,
+        "obesity_prev_pct": 32.1,
+        "diabetes_claims": 564315.0,
         "advanced_pct": 35.4,
         "quadrant": "Low burden, high adoption"
       },
       {
-        "stateabbr": "WI",
-        "statedesc": "Wisconsin",
-        "adults_with_diabetes": 532386.093,
-        "diabetes_prev_pct": 11.4,
-        "obesity_prev_pct": 37.7,
-        "diabetes_claims": 2096453.0,
-        "advanced_pct": 31.1,
+        "stateabbr": "ME",
+        "statedesc": "Maine",
+        "adults_with_diabetes": 128855.837,
+        "diabetes_prev_pct": 11.2,
+        "obesity_prev_pct": 32.7,
+        "diabetes_claims": 510051.0,
+        "advanced_pct": 34.5,
+        "quadrant": "Low burden, high adoption"
+      },
+      {
+        "stateabbr": "NC",
+        "statedesc": "North Carolina",
+        "adults_with_diabetes": 1022497.4280000003,
+        "diabetes_prev_pct": 12.0,
+        "obesity_prev_pct": 35.1,
+        "diabetes_claims": 4135752.0,
+        "advanced_pct": 36.6,
+        "quadrant": "High burden, high adoption"
+      },
+      {
+        "stateabbr": "NJ",
+        "statedesc": "New Jersey",
+        "adults_with_diabetes": 794658.5329999998,
+        "diabetes_prev_pct": 10.9,
+        "obesity_prev_pct": 28.9,
+        "diabetes_claims": 3152870.0,
+        "advanced_pct": 31.4,
         "quadrant": "Low burden, low adoption"
+      },
+      {
+        "stateabbr": "NY",
+        "statedesc": "New York",
+        "adults_with_diabetes": 1790169.987,
+        "diabetes_prev_pct": 11.5,
+        "obesity_prev_pct": 28.8,
+        "diabetes_claims": 8477022.0,
+        "advanced_pct": 33.9,
+        "quadrant": "Low burden, high adoption"
+      },
+      {
+        "stateabbr": "OH",
+        "statedesc": "Ohio",
+        "adults_with_diabetes": 1220001.8530000004,
+        "diabetes_prev_pct": 13.2,
+        "obesity_prev_pct": 37.1,
+        "diabetes_claims": 4926459.0,
+        "advanced_pct": 31.9,
+        "quadrant": "High burden, low adoption"
+      },
+      {
+        "stateabbr": "SC",
+        "statedesc": "South Carolina",
+        "adults_with_diabetes": 588600.2579999999,
+        "diabetes_prev_pct": 13.9,
+        "obesity_prev_pct": 35.8,
+        "diabetes_claims": 2076003.0,
+        "advanced_pct": 37.4,
+        "quadrant": "High burden, high adoption"
       },
       {
         "stateabbr": "AK",
@@ -1366,63 +1377,63 @@
         "quadrant": "Low burden, low adoption"
       },
       {
-        "stateabbr": "IA",
-        "statedesc": "Iowa",
-        "adults_with_diabetes": 278124.95900000015,
-        "diabetes_prev_pct": 11.2,
-        "obesity_prev_pct": 37.7,
-        "diabetes_claims": 1270047.0,
-        "advanced_pct": 32.0,
+        "stateabbr": "HI",
+        "statedesc": "Hawaii",
+        "adults_with_diabetes": 141227.731,
+        "diabetes_prev_pct": 12.4,
+        "obesity_prev_pct": 25.6,
+        "diabetes_claims": 389426.0,
+        "advanced_pct": 35.6,
+        "quadrant": "High burden, high adoption"
+      },
+      {
+        "stateabbr": "IL",
+        "statedesc": "Illinois",
+        "adults_with_diabetes": 1146933.8730000001,
+        "diabetes_prev_pct": 11.7,
+        "obesity_prev_pct": 34.0,
+        "diabetes_claims": 4323048.0,
+        "advanced_pct": 31.2,
         "quadrant": "Low burden, low adoption"
       },
       {
-        "stateabbr": "MD",
-        "statedesc": "Maryland",
-        "adults_with_diabetes": 600502.985,
-        "diabetes_prev_pct": 12.5,
-        "obesity_prev_pct": 35.1,
-        "diabetes_claims": 1591475.0,
-        "advanced_pct": 33.2,
-        "quadrant": "High burden, low adoption"
-      },
-      {
-        "stateabbr": "MS",
-        "statedesc": "Mississippi",
-        "adults_with_diabetes": 350433.9379999999,
-        "diabetes_prev_pct": 15.5,
-        "obesity_prev_pct": 40.4,
-        "diabetes_claims": 1396295.0,
-        "advanced_pct": 36.0,
+        "stateabbr": "MO",
+        "statedesc": "Missouri",
+        "adults_with_diabetes": 582795.4400000001,
+        "diabetes_prev_pct": 12.1,
+        "obesity_prev_pct": 36.6,
+        "diabetes_claims": 2599130.0,
+        "advanced_pct": 34.4,
         "quadrant": "High burden, high adoption"
       },
       {
-        "stateabbr": "NV",
-        "statedesc": "Nevada",
-        "adults_with_diabetes": 302231.55900000007,
-        "diabetes_prev_pct": 12.0,
-        "obesity_prev_pct": 31.3,
-        "diabetes_claims": 838573.0,
-        "advanced_pct": 33.7,
-        "quadrant": "High burden, low adoption"
-      },
-      {
-        "stateabbr": "WV",
-        "statedesc": "West Virginia",
-        "adults_with_diabetes": 225175.04499999998,
-        "diabetes_prev_pct": 15.9,
-        "obesity_prev_pct": 40.6,
-        "diabetes_claims": 936152.0,
-        "advanced_pct": 34.5,
+        "stateabbr": "TN",
+        "statedesc": "Tennessee",
+        "adults_with_diabetes": 756520.8249999998,
+        "diabetes_prev_pct": 13.6,
+        "obesity_prev_pct": 37.6,
+        "diabetes_claims": 2887263.0,
+        "advanced_pct": 35.4,
         "quadrant": "High burden, high adoption"
       },
       {
-        "stateabbr": "WY",
-        "statedesc": "Wyoming",
-        "adults_with_diabetes": 49627.701000000015,
-        "diabetes_prev_pct": 10.9,
-        "obesity_prev_pct": 33.7,
-        "diabetes_claims": 137769.0,
-        "advanced_pct": 32.0,
+        "stateabbr": "VT",
+        "statedesc": "Vermont",
+        "adults_with_diabetes": 46906.11699999999,
+        "diabetes_prev_pct": 8.8,
+        "obesity_prev_pct": 28.6,
+        "diabetes_claims": 186521.0,
+        "advanced_pct": 35.4,
+        "quadrant": "Low burden, high adoption"
+      },
+      {
+        "stateabbr": "WI",
+        "statedesc": "Wisconsin",
+        "adults_with_diabetes": 532386.093,
+        "diabetes_prev_pct": 11.4,
+        "obesity_prev_pct": 37.7,
+        "diabetes_claims": 2096453.0,
+        "advanced_pct": 31.1,
         "quadrant": "Low burden, low adoption"
       }
     ],
@@ -2340,6 +2351,64 @@
       "total": 48
     },
     {
+      "name": "CMS Medicare Inpatient Hospitals by Geography & Service (2024)",
+      "host": "data.cms.gov",
+      "request": "GET /data-api/v1/dataset/2941ab09\u2026/data?filter[Rndrng_Prvdr_Geo_Lvl]=National&size=5000",
+      "loop": "One request: all 767 DRGs at the national level",
+      "one_row": "One DRG (type of hospital stay): Medicare discharges and average payment, 2024",
+      "rows": [
+        {
+          "DRG_Cd": "291",
+          "DRG_Desc": "HEART FAILURE AND SHOCK WITH MCC",
+          "Tot_Clms_dschrg": "306135",
+          "Avg_Tot_Pymt_Amt": "12053.174655"
+        },
+        {
+          "DRG_Cd": "638",
+          "DRG_Desc": "DIABETES WITH CC",
+          "Tot_Clms_dschrg": "33758",
+          "Avg_Tot_Pymt_Amt": "9138.3459328"
+        },
+        {
+          "DRG_Cd": "637",
+          "DRG_Desc": "DIABETES WITH MCC",
+          "Tot_Clms_dschrg": "27980",
+          "Avg_Tot_Pymt_Amt": "13856.62198"
+        }
+      ],
+      "total": 767
+    },
+    {
+      "name": "BLS CPI \u00b7 inpatient hospital services",
+      "host": "api.bls.gov",
+      "request": "POST /publicAPI/v2/timeseries/data/  {\"seriesid\": [\"CUUR0000SEMD01\"], \"startyear\": \"2017\", \"endyear\": \"2026\"}",
+      "loop": "One request, 10 years of monthly index values",
+      "one_row": "One month: price level of inpatient hospital services (1982\u201384 = 100)",
+      "rows": [
+        {
+          "year": "2026",
+          "month": "10",
+          "value": "466.615"
+        },
+        {
+          "year": "2026",
+          "month": "09",
+          "value": "462.98"
+        },
+        {
+          "year": "2026",
+          "month": "08",
+          "value": "459.659"
+        },
+        {
+          "year": "2026",
+          "month": "07",
+          "value": "459.82"
+        }
+      ],
+      "total": 115
+    },
+    {
       "name": "openFDA Drugs@FDA",
       "host": "api.fda.gov",
       "request": "GET /drug/drugsfda.json?search=openfda.generic_name:\"empagliflozin\"&limit=100",
@@ -3087,12 +3156,12 @@
         "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4872285"
       },
       {
-        "parameter": "cost_per_admission",
-        "low": 10900.0,
+        "parameter": "cost_per_admission_hcup_2018",
+        "low": "",
         "base": 15200.0,
-        "high": 24200.0,
-        "unit": "USD per hospital readmission",
-        "source": "AHRQ HCUP Statistical Brief #278: average 30-day readmission cost $15,200 in 2018 (range by payer $10,900-$16,400; $24,200 highest Medicare condition)",
+        "high": "",
+        "unit": "USD per readmission in 2018 dollars (all payers)",
+        "source": "AHRQ HCUP Statistical Brief #278: average 30-day readmission cost $15,200 in 2018. Used only as a cross-check; the model uses Medicare's own 2024 payments (notebook 06)",
         "url": "https://hcup-us.ahrq.gov/reports/statbriefs/sb278-Conditions-Frequent-Readmissions-By-Payer-2018.jsp"
       },
       {
@@ -3109,7 +3178,7 @@
         "low": "",
         "base": 197.0,
         "high": "",
-        "unit": "USD per 30-day supply",
+        "unit": "USD per 30-day supply (2026)",
         "source": "Jardiance Medicare negotiated price effective Jan 1 2026, CMS fact sheet",
         "url": "https://cms.gov/files/document/fact-sheet-negotiated-prices-initial-price-applicability-year-2026.pdf"
       },
@@ -3118,7 +3187,7 @@
         "low": "",
         "base": 178.5,
         "high": "",
-        "unit": "USD per 30-day supply",
+        "unit": "USD per 30-day supply (2026)",
         "source": "Farxiga Medicare negotiated price effective Jan 1 2026 (list $556), CMS fact sheet",
         "url": "https://cms.gov/files/document/fact-sheet-negotiated-prices-initial-price-applicability-year-2026.pdf"
       },
@@ -3136,7 +3205,7 @@
         "low": "",
         "base": 274.0,
         "high": "",
-        "unit": "USD per 30-day supply",
+        "unit": "USD per 30-day supply (2027)",
         "source": "Semaglutide Medicare negotiated price effective Jan 1 2027 (71% below list)",
         "url": "https://www.healthcaredive.com/news/medicare-price-negotiation-wegovy-ozempic-trelegy-2027/806578/"
       },
@@ -3146,10 +3215,102 @@
         "base": 1.0,
         "high": 1.0,
         "unit": "next-year admissions as a share of past-year admissions",
-        "source": "Assumption: next year's admissions match the past 12 months (this stay + prior stays); 0.5 tests regression to the mean",
+        "source": "Assumption: next year's admissions match the past 12 months (this stay + prior stays); 0.5 tests regression to the mean and lower hospital use today than in 1999-2008",
         "url": ""
+      },
+      {
+        "parameter": "benchmark_readmission_diabetes",
+        "low": 0.16,
+        "base": 0.182,
+        "high": 0.204,
+        "unit": "30-day readmission rate of hospitalized diabetic patients (recent US studies)",
+        "source": "Rubin & Shah, Current Diabetes Reports 2021: most-inclusive rates 16.0-20.4%",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8418292"
       }
     ],
+    "cost": {
+      "low": 12942,
+      "base": 20654,
+      "high": 20930
+    },
+    "reconcile": [
+      {
+        "measure": "Medicare payment per admission, all stays",
+        "source": "CMS inpatient 2024",
+        "original_year": 2024,
+        "original_$": 18728.28,
+        "factor_to_2026": 1.1,
+        "in_2026_$": 20654.42
+      },
+      {
+        "measure": "Medicare payment per admission, diabetes + heart-failure stays",
+        "source": "CMS inpatient 2024",
+        "original_year": 2024,
+        "original_$": 11734.7,
+        "factor_to_2026": 1.1,
+        "in_2026_$": 12941.57
+      },
+      {
+        "measure": "Average readmission cost, all payers (cross-check)",
+        "source": "AHRQ HCUP 2018",
+        "original_year": 2018,
+        "original_$": 15200.0,
+        "factor_to_2026": 1.38,
+        "in_2026_$": 20929.66
+      }
+    ],
+    "time_table": [
+      {
+        "input": "Hospital stays per patient",
+        "data_year": "1999\u20132008",
+        "how_aligned": "Kept as a pattern; checked against recent readmission rates; 50% scenario",
+        "effect_on_result": "Likely understates value: readmissions in this data run below recent rates"
+      },
+      {
+        "input": "Drug effect (11%)",
+        "data_year": "2015 trial",
+        "how_aligned": "Biological effect, not a price; range 4\u201318%",
+        "effect_on_result": "Neutral; real-world adherence could lower it"
+      },
+      {
+        "input": "Cost of an admission",
+        "data_year": "2024 (CMS), 2018 (HCUP)",
+        "how_aligned": "Converted to 2026 $ with the BLS inpatient-hospital price index",
+        "effect_on_result": "Fixed: was understated by mixing 2018 costs with 2026 prices"
+      },
+      {
+        "input": "Negotiated drug prices",
+        "data_year": "2026 / 2027",
+        "how_aligned": "Already the decision year",
+        "effect_on_result": "Neutral (GLP-1 price is one year later)"
+      },
+      {
+        "input": "Gross drug cost",
+        "data_year": "2024",
+        "how_aligned": "Left in 2024 $, used only as a comparison scenario",
+        "effect_on_result": "Slightly understates gross cost if list prices rose"
+      },
+      {
+        "input": "Use trend",
+        "data_year": "2013\u20132024",
+        "how_aligned": "One consistent CMS file every year",
+        "effect_on_result": "Context only"
+      }
+    ],
+    "cpi_2018_2026": 0.377,
+    "cpi_2024_2026": 0.103,
+    "benchmark": {
+      "all_stays": 11.4,
+      "first_stay": 9.0,
+      "recent_low": 16.0,
+      "recent_high": 20.4
+    },
+    "first_time_net": {
+      "SGLT2 \u00b7 negotiated (2026)": -92,
+      "GLP-1 \u00b7 negotiated (2027)": -1016,
+      "SGLT2 \u00b7 gross 2024": -4209,
+      "GLP-1 \u00b7 gross 2024": -9041
+    },
     "annual_cost": {
       "SGLT2 \u00b7 negotiated (2026)": 2364,
       "GLP-1 \u00b7 negotiated (2027)": 3288,
@@ -3157,10 +3318,10 @@
       "GLP-1 \u00b7 gross 2024": 11313
     },
     "breakeven": {
-      "SGLT2 \u00b7 negotiated (2026)": 1.41,
-      "GLP-1 \u00b7 negotiated (2027)": 1.97,
-      "SGLT2 \u00b7 gross 2024": 3.88,
-      "GLP-1 \u00b7 gross 2024": 6.77
+      "SGLT2 \u00b7 negotiated (2026)": 1.04,
+      "GLP-1 \u00b7 negotiated (2027)": 1.45,
+      "SGLT2 \u00b7 gross 2024": 2.85,
+      "GLP-1 \u00b7 gross 2024": 4.98
     },
     "groups": [
       {
@@ -3170,10 +3331,10 @@
         "readmit_30_pct": 8.1,
         "heart_pct": 57.9,
         "share_pct": 88.3,
-        "SGLT2 \u00b7 negotiated (2026)": -692.0,
-        "GLP-1 \u00b7 negotiated (2027)": -1616.0,
-        "SGLT2 \u00b7 gross 2024": -4809.0,
-        "GLP-1 \u00b7 gross 2024": -9641.0
+        "SGLT2 \u00b7 negotiated (2026)": -92.0,
+        "GLP-1 \u00b7 negotiated (2027)": -1016.0,
+        "SGLT2 \u00b7 gross 2024": -4209.0,
+        "GLP-1 \u00b7 gross 2024": -9041.0
       },
       {
         "stays_group": "1 prior stay",
@@ -3182,10 +3343,10 @@
         "readmit_30_pct": 12.9,
         "heart_pct": 60.6,
         "share_pct": 8.3,
-        "SGLT2 \u00b7 negotiated (2026)": 980.0,
-        "GLP-1 \u00b7 negotiated (2027)": 56.0,
-        "SGLT2 \u00b7 gross 2024": -3137.0,
-        "GLP-1 \u00b7 gross 2024": -7969.0
+        "SGLT2 \u00b7 negotiated (2026)": 2180.0,
+        "GLP-1 \u00b7 negotiated (2027)": 1256.0,
+        "SGLT2 \u00b7 gross 2024": -1937.0,
+        "GLP-1 \u00b7 gross 2024": -6769.0
       },
       {
         "stays_group": "2 prior stays",
@@ -3194,10 +3355,10 @@
         "readmit_30_pct": 18.5,
         "heart_pct": 62.0,
         "share_pct": 2.1,
-        "SGLT2 \u00b7 negotiated (2026)": 2652.0,
-        "GLP-1 \u00b7 negotiated (2027)": 1728.0,
-        "SGLT2 \u00b7 gross 2024": -1465.0,
-        "GLP-1 \u00b7 gross 2024": -6297.0
+        "SGLT2 \u00b7 negotiated (2026)": 4452.0,
+        "GLP-1 \u00b7 negotiated (2027)": 3528.0,
+        "SGLT2 \u00b7 gross 2024": 335.0,
+        "GLP-1 \u00b7 gross 2024": -4497.0
       },
       {
         "stays_group": "3+ prior stays",
@@ -3206,10 +3367,10 @@
         "readmit_30_pct": 26.5,
         "heart_pct": 57.9,
         "share_pct": 1.3,
-        "SGLT2 \u00b7 negotiated (2026)": 5908.3,
-        "GLP-1 \u00b7 negotiated (2027)": 4984.3,
-        "SGLT2 \u00b7 gross 2024": 1791.3,
-        "GLP-1 \u00b7 gross 2024": -3040.7
+        "SGLT2 \u00b7 negotiated (2026)": 8876.8,
+        "GLP-1 \u00b7 negotiated (2027)": 7952.8,
+        "SGLT2 \u00b7 gross 2024": 4759.8,
+        "GLP-1 \u00b7 gross 2024": -72.2
       }
     ],
     "rule": [
@@ -3218,8 +3379,8 @@
         "qualifying per 1,000 discharges": 117.0,
         "admissions avoided / yr": 32.0,
         "drug cost / yr ($)": 276808.0,
-        "hospital savings / yr ($)": 490513.0,
-        "net / yr ($)": 213704.0,
+        "hospital savings / yr ($)": 666530.0,
+        "net / yr ($)": 389721.0,
         "cost per admission avoided ($)": 8578.0
       },
       {
@@ -3227,8 +3388,8 @@
         "qualifying per 1,000 discharges": 117.0,
         "admissions avoided / yr": 32.0,
         "drug cost / yr ($)": 385002.0,
-        "hospital savings / yr ($)": 490513.0,
-        "net / yr ($)": 105510.0,
+        "hospital savings / yr ($)": 666530.0,
+        "net / yr ($)": 281527.0,
         "cost per admission avoided ($)": 11930.0
       },
       {
@@ -3236,8 +3397,8 @@
         "qualifying per 1,000 discharges": 117.0,
         "admissions avoided / yr": 32.0,
         "drug cost / yr ($)": 758881.0,
-        "hospital savings / yr ($)": 490513.0,
-        "net / yr ($)": -268368.0,
+        "hospital savings / yr ($)": 666530.0,
+        "net / yr ($)": -92351.0,
         "cost per admission avoided ($)": 23516.0
       },
       {
@@ -3245,8 +3406,8 @@
         "qualifying per 1,000 discharges": 117.0,
         "admissions avoided / yr": 32.0,
         "drug cost / yr ($)": 1324675.0,
-        "hospital savings / yr ($)": 490513.0,
-        "net / yr ($)": -834163.0,
+        "hospital savings / yr ($)": 666530.0,
+        "net / yr ($)": -658145.0,
         "cost per admission avoided ($)": 41049.0
       }
     ],
@@ -3256,8 +3417,8 @@
         "qualifying per 1,000 discharges": 117.0,
         "admissions avoided / yr": 16.0,
         "drug cost / yr ($)": 276808.0,
-        "hospital savings / yr ($)": 245256.0,
-        "net / yr ($)": -31552.0,
+        "hospital savings / yr ($)": 333265.0,
+        "net / yr ($)": 56457.0,
         "cost per admission avoided ($)": 17155.0
       },
       {
@@ -3265,8 +3426,8 @@
         "qualifying per 1,000 discharges": 117.0,
         "admissions avoided / yr": 16.0,
         "drug cost / yr ($)": 385002.0,
-        "hospital savings / yr ($)": 245256.0,
-        "net / yr ($)": -139746.0,
+        "hospital savings / yr ($)": 333265.0,
+        "net / yr ($)": -51738.0,
         "cost per admission avoided ($)": 23861.0
       },
       {
@@ -3274,8 +3435,8 @@
         "qualifying per 1,000 discharges": 117.0,
         "admissions avoided / yr": 16.0,
         "drug cost / yr ($)": 758881.0,
-        "hospital savings / yr ($)": 245256.0,
-        "net / yr ($)": -513625.0,
+        "hospital savings / yr ($)": 333265.0,
+        "net / yr ($)": -425616.0,
         "cost per admission avoided ($)": 47032.0
       },
       {
@@ -3283,8 +3444,8 @@
         "qualifying per 1,000 discharges": 117.0,
         "admissions avoided / yr": 16.0,
         "drug cost / yr ($)": 1324675.0,
-        "hospital savings / yr ($)": 245256.0,
-        "net / yr ($)": -1079419.0,
+        "hospital savings / yr ($)": 333265.0,
+        "net / yr ($)": -991410.0,
         "cost per admission avoided ($)": 82098.0
       }
     ],
@@ -3299,47 +3460,47 @@
       "mean_admits": 2.51,
       "two_plus_pct": 3.4
     },
-    "base_net": 1825,
+    "base_net": 3328,
     "tornado": [
       {
         "assumption": "Hospitalization reduction (4% \u2013 18%)",
-        "low": -841.0,
-        "high": 4491.0,
-        "swing": 5332.0
+        "low": -294.0,
+        "high": 6951.0,
+        "swing": 7245.0
       },
       {
         "assumption": "Price (negotiated \u2013 gross 2024)",
-        "low": -2292.0,
-        "high": 1825.0,
+        "low": -789.0,
+        "high": 3328.0,
         "swing": 4117.0
       },
       {
-        "assumption": "Cost per admission ($10,900 \u2013 $24,200)",
-        "low": 640.0,
-        "high": 4305.0,
-        "swing": 3665.0
+        "assumption": "Future admissions (50% \u2013 100% of past year)",
+        "low": 482.0,
+        "high": 3328.0,
+        "swing": 2846.0
       },
       {
-        "assumption": "Future admissions (50% \u2013 100% of past year)",
-        "low": -269.0,
-        "high": 1825.0,
-        "swing": 2095.0
+        "assumption": "Cost per admission ($12,942 \u2013 $20,930)",
+        "low": 1203.0,
+        "high": 3404.0,
+        "swing": 2201.0
       }
     ],
     "stress": {
       "1+ prior stays": {
-        "base": 1825.0,
-        "effect 4%": -841.0,
-        "admission cost $10,900": 640.0,
-        "future = 50% of past": -269.0,
-        "gross 2024 price": -2292.0
+        "base": 3328.0,
+        "effect 4%": -294.0,
+        "admission cost (diabetes/HF stays)": 1203.0,
+        "future = 50% of past": 482.0,
+        "gross 2024 price": -789.0
       },
       "2+ prior stays": {
-        "base": 3869.0,
-        "effect 4%": -97.0,
-        "admission cost $10,900": 2106.0,
-        "future = 50% of past": 753.0,
-        "gross 2024 price": -248.0
+        "base": 6106.0,
+        "effect 4%": 716.0,
+        "admission cost (diabetes/HF stays)": 2943.0,
+        "future = 50% of past": 1871.0,
+        "gross 2024 price": 1989.0
       }
     },
     "grid": {
@@ -3351,14 +3512,14 @@
         0.18
       ],
       "cost": [
-        10900,
-        15200,
-        20000,
-        24200
+        12900,
+        16000,
+        20700,
+        25000
       ],
       "values": [
         [
-          0.3,
+          0.6,
           1.3,
           3.4,
           3.4

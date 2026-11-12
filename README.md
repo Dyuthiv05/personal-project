@@ -2,7 +2,9 @@
 
 **Problem statement.** For which diabetic patients does adding a GLP-1 or SGLT2 drug pay for itself by preventing hospital stays, and what is that worth to a payer? The case is framed as a consulting engagement for a diabetes-drug manufacturer building its value case for Medicare plans and health systems.
 
-**Answer.** At Medicare's negotiated prices, adding an SGLT2 drug pays for itself through avoided hospital stays for diabetic patients with **at least one other hospital stay in the past year**: 11.7% of diabetic inpatients, who account for 20% of 30-day readmissions. About +$1,800 net per patient-year, or about $214K per 1,000 diabetic discharges. The robust core is the 3.4% with **2+** prior stays, who stay at or near break-even in every stress test. At gross 2024 prices, the case fails for almost everyone.
+**Answer.** With every dollar in 2026 terms, adding an SGLT2 drug at Medicare's negotiated price pays for itself through avoided hospital stays for diabetic patients with **at least one other hospital stay in the past year**: 11.7% of diabetic inpatients, who account for 20% of 30-day readmissions. About +$3,300 net per patient-year, or about $390,000 per 1,000 diabetic discharges. First-time patients are roughly break-even (−$92 a year). The 3.4% with **2+** prior stays are positive in every stress test. At gross 2024 prices, the case works only for that 2+ group.
+
+**Reconciling the years.** The hospital data is 1999–2008, drug data 2013–2024, the trial 2015, and the prices 2026/27. All costs are converted to 2026 dollars with the BLS inpatient-hospital price index, and the cost of a stay is Medicare's own 2024 average payment (CMS inpatient data), cross-checked against AHRQ HCUP 2018 (both about $21,000 in 2026 dollars). The 1999–2008 readmission rates run below recent studies, so the patient side likely understates value. Notebook 06, section 0, has the full time-alignment table.
 
 ## The storyline: three parts, each feeding the next
 
@@ -24,7 +26,9 @@
 | CDC PLACES county data, 2025 release | data.cdc.gov API | Appendix: disease burden by state |
 | NLM RxClass (ATC) | rxnav.nlm.nih.gov API | One drug-class mapping for all data (`src/classes.py`) |
 | openFDA Drugs@FDA | api.fda.gov | When each class arrived |
-| `reference/assumptions.csv` | Sourced outside inputs | C: trial effect (EMPA-REG, 11%), cost per admission (AHRQ HCUP, $15,200), negotiated prices (CMS) |
+| CMS Medicare Inpatient Hospitals by Geography & Service, 2024 | data.cms.gov API | C: what a hospital stay costs Medicare |
+| BLS CPI, inpatient hospital services, 2017–2026 | api.bls.gov API | C: converts every dollar to 2026 |
+| `reference/assumptions.csv` | Sourced outside inputs | C: trial effect (EMPA-REG, 11%), negotiated prices (CMS), HCUP cross-check, recent readmission benchmark |
 
 API clients: `src/apis.py`; raw pulls are cached in `data/raw/` (not committed). No patient-identifying information anywhere: the hospital data is de-identified, and the CMS files are totals by prescriber, state or drug. Notebooks 01–02 run the privacy checks.
 
@@ -52,4 +56,4 @@ About 4–5 minutes with cached data; the first run adds about 10 minutes of API
 
 ## Limitations
 
-The hospital data is 1999–2008 and observational. The 11% effect comes from a trial in patients with heart disease. Next year's admissions are assumed to match the past year (tested at 50%). Only hospital savings are counted. Gross Medicare cost is before confidential rebates.
+The hospital data is 1999–2008 and observational (costs are aligned to 2026; patient patterns are checked against recent readmission rates). The 11% effect comes from a trial in patients with heart disease. Next year's admissions are assumed to match the past year (tested at 50%). Only hospital savings are counted. Gross Medicare cost is before confidential rebates.

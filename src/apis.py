@@ -190,3 +190,33 @@ def cms_national_by_year(years: list[int]):
     for c in ["Tot_Prscrbrs", "Tot_Clms", "Tot_30day_Fills", "Tot_Drug_Cst", "Tot_Benes"]:
         df[c] = pd.to_numeric(df[c], errors="coerce")
     return df
+
+
+# ---------- Medicare inpatient payments (data.cms.gov) ----------
+CMS_INPATIENT_GEO_2024 = "2941ab09-8cee-49d8-9703-f3c5b854e388"   # Medicare Inpatient Hospitals by Geography and Service, 2024
+
+
+@cached("cms_inpatient_national_2024")
+def cms_inpatient_national():
+    """National Medicare inpatient discharges and average payments for every DRG (2024)."""
+    df = pd.DataFrame(cms_pages(CMS_INPATIENT_GEO_2024, {"Rndrng_Prvdr_Geo_Lvl": "National"}))
+    for c in ["Tot_Dschrgs", "Avg_Submtd_Cvrd_Chrg", "Avg_Tot_Pymt_Amt", "Avg_Mdcr_Pymt_Amt"]:
+        df[c] = pd.to_numeric(df[c], errors="coerce")
+    return df
+
+
+# ---------- BLS consumer price index (api.bls.gov, v2, no key needed) ----------
+BLS = "https://api.bls.gov/publicAPI/v2/timeseries/data/"
+CPI_INPATIENT = "CUUR0000SEMD01"   # CPI-U, inpatient hospital services, US city average, not seasonally adjusted
+
+
+@cached("bls_cpi")
+def bls_series(series_id: str, start: int, end: int):
+    """Monthly values of one BLS series (missing months, e.g. Oct 2025, are dropped)."""
+    r = SESSION.post(BLS, json={"seriesid": [series_id], "startyear": str(start), "endyear": str(end)}, timeout=60)
+    r.raise_for_status()
+    rows = [{"year": int(x["year"]), "period": x["period"], "value": x["value"]}
+            for x in r.json()["Results"]["series"][0]["data"] if x["period"].startswith("M") and x["period"] != "M13"]
+    df = pd.DataFrame(rows)
+    df = df[df.value != "-"].astype({"value": float})
+    return df.sort_values(["year", "period"]).reset_index(drop=True)
