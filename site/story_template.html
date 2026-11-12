@@ -148,7 +148,7 @@ const $ = s => document.querySelector(s);
 const NS = "http://www.w3.org/2000/svg";
 const fmt = (v, d = 0) => Number(v).toLocaleString("en-US", { maximumFractionDigits: d, minimumFractionDigits: d });
 /* Number format spec from the notebook: {d, prefix, suffix, div} */
-const F = (v, s = {}) => (v < 0 ? "−" : "") + (s.prefix ?? "") + fmt(Math.abs(v) / (s.div ?? 1), s.d ?? 0) + (s.suffix ?? "");
+const F = (v, s = {}) => s.plain ? String(v) : (v < 0 ? "−" : "") + (s.prefix ?? "") + fmt(Math.abs(v) / (s.div ?? 1), s.d ?? 0) + (s.suffix ?? "");   // plain: years, no separators
 const col = c => c && c.startsWith("s") && c.length === 2 ? `var(--${c})` : c;
 
 const tip = $("#tip");
