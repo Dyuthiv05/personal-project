@@ -1,4 +1,4 @@
-# Where does a GLP-1 or SGLT2 drug pay for itself?
+# For which patients does a GLP-1 or SGLT2 drug pay for itself?
 
 **Problem statement.** For which diabetic patients does adding a GLP-1 or SGLT2 drug pay for itself by preventing hospital stays, and what is that worth to a payer? The case is framed as a consulting engagement for a diabetes-drug manufacturer building its value case for Medicare plans and health systems.
 
