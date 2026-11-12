@@ -99,26 +99,7 @@ footer { padding-top: 28px; font-size: 13px; color: var(--muted); display: grid;
 .refs ol { margin: 0; padding-left: 20px; display: grid; gap: 3px; }
 
 
-.tabs { display: flex; flex-wrap: wrap; gap: 6px; }
-.tabs button { font: 600 13px var(--sans); color: var(--ink2); background: var(--panel); border: 1px solid var(--line); border-radius: 999px; padding: 7px 12px; cursor: pointer; }
-.tabs button[aria-selected="true"] { background: var(--accent); border-color: var(--accent); color: #fff; }
-.tabs button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
-.viewer { display: grid; gap: 12px; min-width: 0; }
-.kv { display: grid; grid-template-columns: max-content minmax(0, 1fr); gap: 6px 14px; font-size: 14px; }
-.kv dt { font: 500 11.5px/1.6 var(--mono); color: var(--muted); text-transform: uppercase; letter-spacing: .04em; }
-.kv dd { margin: 0; min-width: 0; }
-pre.code { margin: 0; background: var(--bg); border: 1px solid var(--line); border-radius: 8px; padding: 10px 12px; font: 500 12.5px/1.55 var(--mono); overflow-x: auto; white-space: pre; color: var(--ink); }
-table.data td, table.data th { font-size: 12.5px; padding: 7px 10px; white-space: nowrap; }
-table.data td { font-family: var(--mono); font-weight: 500; }
-td.sup { color: var(--muted); font-style: italic; font-family: var(--sans) !important; }
-.groups { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 8px; font-size: 13px; }
-.groups div { background: var(--bg); border: 1px solid var(--line); border-radius: 8px; padding: 8px 10px; }
-.groups b { display: block; font-size: 12.5px; }
-.groups span { color: var(--ink2); font-family: var(--mono); font-size: 11.5px; word-break: break-word; }
 
-.privacy { border: 1px solid var(--line); border-left: 4px solid var(--good); background: var(--panel); border-radius: 10px; padding: 16px 18px; display: grid; gap: 12px; }
-.privacy h3 { color: var(--good); }
-.ok { color: var(--good); font-weight: 700; }
 
 .callout { border-radius: 12px; padding: 18px 20px; display: grid; gap: 8px; background: var(--accent-soft); border: 1px solid var(--line); }
 .callout .t { font: 500 11.5px/1 var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--accent); }
@@ -256,7 +237,7 @@ function tableHTML(b) {
   return `<div class="tbl-wrap"><table class="${b.dense ? "data" : ""}"><thead><tr>${b.columns.map(c => `<th class="${c.num ? "n" : ""}">${c.label}</th>`).join("")}</tr></thead><tbody>${
     b.rows.map((r, i) => `<tr class="${b.highlight === i ? "best" : ""}">${r.map((v, j) => `<td class="${b.columns[j].num ? "n" : ""}${String(v).startsWith("hidden by CMS") ? " sup" : ""}${b.columns[j].ok ? " ok" : ""}">${v}</td>`).join("")}</tr>`).join("")}</tbody></table></div>`;
 }
-let chartQueue = [], viewers = [];
+let chartQueue = [];
 function block(b) {
   switch (b.type) {
     case "p": return `<p class="${b.cls ?? ""}">${b.html}</p>`;
@@ -272,23 +253,11 @@ function block(b) {
       return `<div class="chart"><h3>${b.title}</h3>${b.sub ? `<span class="sub">${b.sub}</span>` : ""}${legend(b.legend)}<svg id="${id}"></svg></div>`; }
     case "issues": return `<div class="issue">${b.items.map(q => `<div class="issue-q"><span class="k">${q.k}</span><b>${q.q}</b><span class="m">${q.how}</span><span class="m">${q.where}${q.verdict ? ` <span class="verdict ${q.ok === false ? "no" : ""}">${q.verdict}</span>` : ""}</span></div>`).join("")}</div>`;
     case "refs": return `<div class="refs"><span>Sources</span><ol>${b.items.map(r => `<li>${r}</li>`).join("")}</ol></div>`;
-    case "viewer": { const id = "v" + viewers.length; viewers.push([id, b]);
-      return `<div class="tabs" role="tablist" id="${id}-tabs"></div><div class="viewer" id="${id}" role="tabpanel"></div>`; }
-    case "privacy": return `<div class="privacy"><h3>${b.title}</h3><p>${b.html}</p>${tableHTML(b.table)}<div class="how"><ul>${b.bullets.map(x => `<li>${x}</li>`).join("")}</ul></div></div>`;
     case "reco": return `<div class="reco">${b.items.map((r, i) => `<div class="reco-item"><span class="k">${i + 1}</span><div><h3>${r.k}</h3><p>${r.html}</p></div></div>`).join("")}</div>`;
     case "limits": return `<div class="limits">${b.cols.map(c => `<div><h3>${c.title}</h3><ul>${c.items.map(i => `<li>${i}</li>`).join("")}</ul></div>`).join("")}</div>`;
     default: return `<p>Unknown block type: ${b.type}</p>`;
   }
 }
-function renderViewer(id, b, t) {
-  for (const btn of $(`#${id}-tabs`).children) btn.setAttribute("aria-selected", +btn.dataset.i === t);
-  const tab = b.tabs[t];
-  $("#" + id).innerHTML = `<dl class="kv">${tab.kv.map(([k, v]) => `<dt>${k}</dt><dd>${v}</dd>`).join("")}</dl>
-    ${tab.groups ? `<div class="groups">${tab.groups.map(g => `<div><b>${g.name}</b><span>${g.cols}</span></div>`).join("")}</div>` : ""}
-    ${tableHTML({ ...tab.table, dense: true })}
-    ${(tab.after ?? []).map(a => a.code ? `<pre class="code">${a.code}</pre>` : `<p class="stat-src">${a.html}</p>`).join("")}`;
-}
-
 /* ---------- page ---------- */
 const P = PAGE;
 $("#page").innerHTML = `
@@ -300,9 +269,4 @@ $("#page").innerHTML = `
   ${P.sections.map(s => `<section class="slide" id="${s.id}"><div class="slide-head"><h2>${s.title}</h2><span class="time">${s.time}</span></div>${s.blocks.map(block).join("")}</section>`).join("")}
   <footer>${P.footer.map(f => `<span>${f}</span>`).join("")}</footer>`;
 chartQueue.forEach(([id, b]) => CHARTS[b.kind]($("#" + id), b.data, b.opts));
-viewers.forEach(([id, b]) => {
-  $(`#${id}-tabs`).innerHTML = b.tabs.map((t, i) => `<button type="button" role="tab" data-i="${i}" aria-selected="false">${t.label}</button>`).join("");
-  for (const btn of $(`#${id}-tabs`).children) btn.addEventListener("click", () => renderViewer(id, b, +btn.dataset.i));
-  renderViewer(id, b, 0);
-});
 </script>
