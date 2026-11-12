@@ -1,0 +1,415 @@
+<meta charset="utf-8">
+<title>Diabetes Care, Then and Now</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,600;8..60,700&family=Public+Sans:ital,wght@0,400;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@500&display=swap">
+<style>
+/* Layout: a single reading column of numbered "slides", each with its time budget; charts sit full-width in the column */
+:root {
+  --bg: #fbfcfd; --panel: #ffffff; --ink: #0f1720; --ink2: #4a5563; --muted: #7d8794; --line: #e3e7ec; --axis: #c6ccd4;
+  --accent: #2a78d6; --accent-soft: #e8f1fc;
+  --s1: #2a78d6; --s2: #eb6834; --s3: #1baf7a; --s4: #c3c2b7;
+  --good: #0e7a43; --warn: #b4560f;
+  --serif: "Source Serif 4", Georgia, "Times New Roman", serif;
+  --sans: "Public Sans", "Segoe UI", system-ui, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #0f1318; --panel: #161b22; --ink: #eef1f4; --ink2: #b8c0ca; --muted: #8a94a1; --line: #262d36; --axis: #3a434e;
+  --accent: #5598e7; --accent-soft: #17263a; --s1: #3987e5; --s2: #d95926; --s3: #199e70; --s4: #5b5f66;
+  --good: #3fbf7a; --warn: #f0965a; color-scheme: dark } }
+:root[data-theme="dark"] {
+  --bg: #0f1318; --panel: #161b22; --ink: #eef1f4; --ink2: #b8c0ca; --muted: #8a94a1; --line: #262d36; --axis: #3a434e;
+  --accent: #5598e7; --accent-soft: #17263a; --s1: #3987e5; --s2: #d95926; --s3: #199e70; --s4: #5b5f66;
+  --good: #3fbf7a; --warn: #f0965a; color-scheme: dark }
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--ink); font: 400 16.5px/1.6 var(--sans); }
+.wrap { max-width: 920px; margin: 0 auto; padding-block: 48px 80px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+h1, h2, h3 { font-family: var(--serif); text-wrap: balance; margin: 0; line-height: 1.15; }
+h1 { font-size: clamp(34px, 6vw, 52px); font-weight: 700; letter-spacing: -0.01em; }
+h2 { font-size: clamp(24px, 3.6vw, 31px); font-weight: 700; }
+h3 { font-size: 18px; font-weight: 600; }
+p { margin: 0; max-width: 66ch; }
+.mono { font-family: var(--mono); }
+.eyebrow { font: 500 12px/1 var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--accent); }
+.lede { font-size: 19px; color: var(--ink2); }
+.num { font-variant-numeric: tabular-nums; }
+
+header.hero { display: grid; gap: 18px; padding-bottom: 36px; border-bottom: 1px solid var(--line); }
+.opener { border-left: 3px solid var(--accent); padding: 4px 0 4px 18px; font-family: var(--serif); font-size: 21px; line-height: 1.45; max-width: 60ch; }
+.opener small { display: block; font: 400 13px var(--sans); color: var(--muted); margin-top: 6px; }
+.agenda { display: flex; flex-wrap: wrap; gap: 6px 14px; font-size: 13.5px; color: var(--ink2); }
+.agenda a { color: inherit; text-decoration: none; border-bottom: 1px dotted var(--axis); }
+.agenda a:hover { color: var(--accent); }
+
+section.slide { display: grid; gap: 18px; padding-block: 44px; border-bottom: 1px solid var(--line); min-width: 0; }
+.slide-head { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; flex-wrap: wrap; }
+.time { font: 500 12px/1 var(--mono); color: var(--muted); border: 1px solid var(--line); border-radius: 999px; padding: 5px 9px; white-space: nowrap; }
+.say { background: var(--accent-soft); border-radius: 10px; padding: 14px 18px; font-size: 15.5px; }
+.say b { color: var(--accent); }
+.how { font-size: 14.5px; color: var(--ink2); display: grid; gap: 6px; }
+.how ul { margin: 0; padding-left: 18px; display: grid; gap: 4px; }
+
+.tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 12px; }
+.tile { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 14px 16px; display: grid; gap: 2px; align-content: start; }
+.tile .v { font: 700 30px/1.1 var(--serif); }
+.tile .l { font-size: 13.5px; color: var(--ink2); }
+
+.chart { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 16px 16px 10px; display: grid; gap: 8px; min-width: 0; }
+.chart h3 { font-size: 16px; }
+.chart .sub { font-size: 13px; color: var(--muted); }
+.chart svg { width: 100%; height: auto; display: block; overflow: visible; }
+.grid2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 14px; }
+.legend { display: flex; flex-wrap: wrap; gap: 6px 16px; font-size: 13px; color: var(--ink2); }
+.legend i { display: inline-block; width: 10px; height: 10px; border-radius: 2px; margin-right: 6px; vertical-align: -1px; }
+
+svg text { font-family: var(--sans); }
+.ax { fill: var(--muted); font-size: 11px; }
+.lbl { fill: var(--ink2); font-size: 12px; }
+.val { fill: var(--ink); font-size: 12px; font-variant-numeric: tabular-nums; }
+.gridl { stroke: var(--line); stroke-width: 1; }
+.base { stroke: var(--axis); stroke-width: 1; }
+.ref { stroke: var(--muted); stroke-width: 1; stroke-dasharray: 4 3; }
+.hit { fill: transparent; cursor: default; }
+
+.tbl-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 10px; background: var(--panel); }
+table { border-collapse: collapse; width: 100%; font-size: 14px; }
+th, td { padding: 9px 12px; text-align: left; border-top: 1px solid var(--line); vertical-align: top; }
+thead th { border-top: 0; font: 500 11px/1.2 var(--mono); letter-spacing: .05em; text-transform: uppercase; color: var(--muted); }
+td.n, th.n { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+tr.best td { font-weight: 600; }
+.chip { font: 500 11px/1 var(--mono); padding: 4px 7px; border-radius: 999px; background: var(--accent-soft); color: var(--accent); white-space: nowrap; }
+
+.reco { display: grid; gap: 12px; }
+.reco-item { display: grid; grid-template-columns: 34px minmax(0, 1fr); gap: 12px; align-items: start; }
+.reco-item .k { font: 700 22px/1.1 var(--serif); color: var(--accent); }
+.reco-item div { display: grid; gap: 4px; }
+.limits { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; }
+.limits > div { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 14px 16px; display: grid; gap: 6px; align-content: start; font-size: 14.5px; }
+.limits ul { margin: 0; padding-left: 18px; display: grid; gap: 4px; }
+footer { padding-top: 28px; font-size: 13px; color: var(--muted); display: grid; gap: 6px; }
+
+#tip { position: fixed; pointer-events: none; z-index: 20; background: var(--ink); color: var(--bg); font-size: 12.5px; line-height: 1.4;
+  padding: 7px 10px; border-radius: 6px; max-width: 260px; opacity: 0; transition: opacity .1s; }
+#tip b { font-weight: 700; }
+a { color: var(--accent); }
+@media (prefers-reduced-motion: reduce) { #tip { transition: none; } }
+</style>
+
+<div class="wrap">
+  <header class="hero">
+    <span class="eyebrow">15-minute case study · Adhvaith Vijay</span>
+    <h1>Diabetes care, then and now</h1>
+    <p class="lede">Which diabetic patients did the old standard of care fail, has today's market caught up for them, and which prescribers should a newer-drug brand call on first?</p>
+    <p class="opener">"My dad has type 2 diabetes. When he was diagnosed, the options were mostly metformin, sulfonylureas and insulin. I wanted to know who that era of care was failing, and whether today's drugs are reaching those patients."<small>Opening, in my own words. About 30 seconds.</small></p>
+    <nav class="agenda" aria-label="Sections">
+      <a href="#data">1 · Data</a><a href="#who">2 · Who comes back</a><a href="#models">3 · Models</a>
+      <a href="#now">4 · Then vs. now</a><a href="#behind">5 · Who's behind</a><a href="#targets">6 · Targets</a><a href="#reco">7 · Recommendation</a>
+    </nav>
+  </header>
+
+  <section class="slide" id="data">
+    <div class="slide-head"><h2>1 · Seven sources, one downloaded and six pulled by API</h2><span class="time">0:30 – 2:00</span></div>
+    <p>The hospital data shows diabetes care in 1999–2008. To see what changed, I wrote my own API pulls for today's Medicare prescribing, disease burden, drug classes and FDA approvals.</p>
+    <div class="tbl-wrap"><table id="sources"><thead><tr><th>Source</th><th>How I got it</th><th class="n">Rows</th><th>What it answers</th></tr></thead><tbody></tbody></table></div>
+    <div class="chart"><h3>Cleaning the hospital file</h3><span class="sub">Each step and why it matters for the readmission rate</span><svg id="c-clean"></svg></div>
+    <div class="how"><ul>
+      <li><b>Removed deaths and hospice discharges.</b> Those patients can't be readmitted, so leaving them in understates the rate.</li>
+      <li><b>Kept one stay per patient.</b> Frequent flyers would otherwise count many times and leak between training and test data.</li>
+      <li><b>Grouped ~700 diagnosis codes into 9 categories,</b> and mapped 21 drug columns to classes using the NLM RxClass API.</li>
+    </ul></div>
+  </section>
+
+  <section class="slide" id="who">
+    <div class="slide-head"><h2>2 · Who comes back within 30 days</h2><span class="time">2:00 – 4:30</span></div>
+    <div class="tiles" id="who-tiles"></div>
+    <div class="grid2">
+      <div class="chart"><h3>Prior hospital stays drive readmission</h3><span class="sub">% readmitted within 30 days · dashed line = all patients</span><svg id="c-prior"></svg></div>
+      <div class="chart"><h3>So does where patients go next</h3><span class="sub">% readmitted within 30 days, by discharge destination</span><svg id="c-disch"></svg></div>
+    </div>
+    <div class="say" id="who-say"></div>
+  </section>
+
+  <section class="slide" id="models">
+    <div class="slide-head"><h2>3 · Predicting it, and turning risk into segments</h2><span class="time">4:30 – 7:00</span></div>
+    <p>Three model families on the same 75/25 split, judged on ranking (ROC-AUC), precision on the rare class (PR-AUC) and <b>top-decile lift</b>: how much more often the 10% flagged as highest risk come back.</p>
+    <div class="tbl-wrap"><table id="model-tbl"><thead><tr><th>Model</th><th class="n">ROC-AUC</th><th class="n">PR-AUC</th><th class="n">Top-decile lift</th></tr></thead><tbody></tbody></table></div>
+    <div class="grid2">
+      <div class="chart"><h3>Readmission rate by predicted-risk decile</h3><span class="sub">Random forest, held-out test patients</span><svg id="c-dec"></svg></div>
+      <div class="chart"><h3>What the model relies on</h3><span class="sub">Drop in test ROC-AUC when each input is shuffled</span><svg id="c-imp"></svg></div>
+    </div>
+    <h3>Patient segments (depth-3 decision tree)</h3>
+    <div class="tbl-wrap"><table id="seg-tbl"><thead><tr><th>Segment rule</th><th class="n">Patients</th><th class="n">Readmitted</th><th class="n">vs. average</th><th class="n">Heart dx</th></tr></thead><tbody></tbody></table></div>
+    <div class="say" id="model-say"></div>
+  </section>
+
+  <section class="slide" id="now">
+    <div class="slide-head"><h2>4 · Then vs. now: the treatment mix flipped</h2><span class="time">7:00 – 9:30</span></div>
+    <div class="chart"><h3>Share of drug-class use, 1999–2008 hospital patients vs. 2024 Medicare claims</h3>
+      <div class="legend"><span><i style="background:var(--s4)"></i>1999–2008 hospital patients</span><span><i style="background:var(--s1)"></i>2024 Medicare Part D claims</span></div>
+      <svg id="c-mix"></svg></div>
+    <div class="chart"><h3>GLP-1 + SGLT2 share of Medicare diabetes drugs, 2020–2024</h3>
+      <div class="legend"><span><i style="background:var(--s2)"></i>Share of spending</span><span><i style="background:var(--s1)"></i>Share of claims</span></div>
+      <svg id="c-share"></svg></div>
+    <div class="say" id="now-say"></div>
+  </section>
+
+  <section class="slide" id="behind">
+    <div class="slide-head"><h2>5 · Who's behind: specialties and states</h2><span class="time">9:30 – 11:30</span></div>
+    <div class="chart"><h3>Claim volume vs. newer-drug share, by specialty</h3><span class="sub">Bubble size = prescribers · x is log scale · dashed line = all prescribers</span><svg id="c-spec"></svg></div>
+    <div class="chart"><h3>Disease burden vs. newer-drug share, by state</h3><span class="sub">CDC adult diabetes rate vs. GLP-1 + SGLT2 share of Medicare diabetes claims · lines at the medians · bubble = adults with diabetes · KY and PA missing from the CDC release</span>
+      <div class="legend"><span><i style="background:var(--s2)"></i>High burden, low adoption</span><span><i style="background:var(--s1)"></i>High burden, high adoption</span><span><i style="background:var(--s4)"></i>Lower burden</span></div>
+      <svg id="c-state"></svg></div>
+    <div class="say" id="behind-say"></div>
+  </section>
+
+  <section class="slide" id="targets">
+    <div class="slide-head"><h2>6 · Finding target prescribers</h2><span class="time">11:30 – 13:30</span></div>
+    <div class="how"><ul>
+      <li><b>Segment</b> 184K prescribers (100+ diabetes claims) by their prescription mix with k-means.</li>
+      <li><b>Model expected adoption</b> from things a brand can't change (specialty, state, volume, insulin use): ridge vs. random forest, out-of-fold predictions.</li>
+      <li><b>Headroom</b> = (expected share − actual share) × the prescriber's diabetes claims, for prescribers below their peers.</li>
+    </ul></div>
+    <div class="tbl-wrap"><table id="pseg-tbl"><thead><tr><th>Prescriber segment</th><th class="n">Prescribers</th><th class="n">Share of claims</th><th class="n">GLP-1 + SGLT2</th><th class="n">Share of headroom</th></tr></thead><tbody></tbody></table></div>
+    <div class="grid2">
+      <div class="chart"><h3>Headroom is concentrated</h3><span class="sub">Cumulative share of headroom, prescribers ranked high to low</span><svg id="c-curve"></svg></div>
+      <div class="chart"><h3>Where the headroom sits</h3><span class="sub">Share of total headroom by specialty</span><svg id="c-hspec"></svg></div>
+    </div>
+    <div class="say" id="targets-say"></div>
+  </section>
+
+  <section class="slide" id="reco">
+    <div class="slide-head"><h2>7 · Recommendation</h2><span class="time">13:30 – 15:00</span></div>
+    <div class="reco" id="reco-list"></div>
+    <div class="limits">
+      <div><h3>Limitations</h3><ul>
+        <li>Medicare Part D is mostly patients 65+; commercial patients may look different.</li>
+        <li>CMS hides rows under 11 claims, so new, low-volume adopters are undercounted.</li>
+        <li>The hospital data is 1999–2008 and observational: patterns, not causes.</li>
+        <li>Headroom compares prescribers with look-alikes; a low share can be the right call for a doctor's patients.</li>
+      </ul></div>
+      <div><h3>Next steps</h3><ul>
+        <li>Add commercial claims (IQVIA, Symphony) to cover under-65 patients.</li>
+        <li>Build a physician referral network from shared patients to find influencers.</li>
+        <li>Survival analysis of time-to-adoption after a launch.</li>
+        <li>Pilot in Florida and Ohio with matched control prescribers.</li>
+      </ul></div>
+    </div>
+  </section>
+
+  <footer>
+    <span>Built from six Jupyter notebooks in <span class="mono">avaitt/personal-project</span>. Every number on this page is read from the notebooks' saved results.</span>
+    <span>Data: Kaggle Diabetes 130-US Hospitals (Strack et al., 2014) · CMS Medicare Part D (2020–2024) · CDC PLACES 2025 · NLM RxClass · openFDA.</span>
+  </footer>
+</div>
+<div id="tip" role="tooltip"></div>
+
+<script>
+const D = {"cleaning":{"steps":[{"step":"Raw hospital stays","rows":101766},{"step":"Remove death / hospice discharges","rows":99343},{"step":"Keep first stay per patient","rows":69990},{"step":"Drop unknown gender","rows":69987}],"patients":69987,"readmit_rate":0.0898,"a1c_tested_rate":0.1835,"raw_patients":71518},"sources":[{"name":"Kaggle \u00b7 Diabetes 130-US Hospitals (1999\u20132008)","rows":101766,"kind":"Downloaded dataset"},{"name":"CMS Part D Prescribers by Provider & Drug (2024)","rows":2231207,"kind":"API"},{"name":"CMS Part D Spending by Drug (2020\u20132024)","rows":142,"kind":"API"},{"name":"CMS Part D Prescribers by Geography & Drug (2024)","rows":6615,"kind":"API"},{"name":"CDC PLACES county data (2025 release)","rows":2956,"kind":"API"},{"name":"NLM RxClass (ATC classes)","rows":48,"kind":"API"},{"name":"openFDA Drugs@FDA (approval dates)","rows":19,"kind":"API"}],"profile":{"overall_readmit":9.0,"a1c_tested_pct":18.4,"high_a1c_changed_pct":60.1,"heart_dx_pct":58.2,"heart_dx_readmit":9.4,"kidney_dx_pct":10.4,"journey":[{"a1c_step":"Not tested","med_step":"Meds changed","patients":24414,"readmit_pct":9.7,"pct_of_all":34.9},{"a1c_step":"Not tested","med_step":"No change","patients":32727,"readmit_pct":8.7,"pct_of_all":46.8},{"a1c_step":"Tested: high (>7%)","med_step":"Meds changed","patients":5473,"readmit_pct":8.6,"pct_of_all":7.8},{"a1c_step":"Tested: high (>7%)","med_step":"No change","patients":3632,"readmit_pct":7.8,"pct_of_all":5.2},{"a1c_step":"Tested: normal","med_step":"Meds changed","patients":1608,"readmit_pct":8.6,"pct_of_all":2.3},{"a1c_step":"Tested: normal","med_step":"No change","patients":2133,"readmit_pct":8.6,"pct_of_all":3.0}],"profile":[{"metric":"patients","Readmitted <30d":6285.0,"Not readmitted":63702.0},{"metric":"avg_age","Readmitted <30d":67.8,"Not readmitted":65.2},{"metric":"avg_days","Readmitted <30d":4.8,"Not readmitted":4.2},{"metric":"avg_medications","Readmitted <30d":16.6,"Not readmitted":15.6},{"metric":"avg_diagnoses","Readmitted <30d":7.5,"Not readmitted":7.2},{"metric":"pct_prior_stay","Readmitted <30d":20.1,"Not readmitted":10.9},{"metric":"pct_heart_dx","Readmitted <30d":61.1,"Not readmitted":57.9},{"metric":"pct_kidney_dx","Readmitted <30d":13.4,"Not readmitted":10.1},{"metric":"pct_insulin","Readmitted <30d":54.8,"Not readmitted":50.7},{"metric":"pct_not_home","Readmitted <30d":51.0,"Not readmitted":35.3}],"prior":[{"level":"0","patients":61792,"pct_of_patients":88.3,"readmit_pct":8.1},{"level":"1","patients":5798,"pct_of_patients":8.3,"readmit_pct":12.9},{"level":"2","patients":1501,"pct_of_patients":2.1,"readmit_pct":18.5},{"level":"3+","patients":896,"pct_of_patients":1.3,"readmit_pct":26.5}],"discharge":[{"level":"Skilled nursing / care facility","patients":11940,"pct_of_patients":17.1,"readmit_pct":15.1},{"level":"Transferred to another hospital","patients":1541,"pct_of_patients":2.2,"readmit_pct":13.8},{"level":"Other / unknown","patients":3413,"pct_of_patients":4.9,"readmit_pct":10.3},{"level":"Home with home health","patients":8364,"pct_of_patients":12.0,"readmit_pct":9.5},{"level":"Left against medical advice","patients":409,"pct_of_patients":0.6,"readmit_pct":9.5},{"level":"Home","patients":44320,"pct_of_patients":63.3,"readmit_pct":6.9}],"diagnosis":[{"level":"Injury","patients":4694,"pct_of_patients":6.7,"readmit_pct":10.8},{"level":"Circulatory","patients":21389,"pct_of_patients":30.6,"readmit_pct":9.7},{"level":"Neoplasms","patients":2538,"pct_of_patients":3.6,"readmit_pct":9.1},{"level":"Diabetes","patients":5748,"pct_of_patients":8.2,"readmit_pct":9.1},{"level":"Genitourinary","patients":3441,"pct_of_patients":4.9,"readmit_pct":9.0},{"level":"Other","patients":12134,"pct_of_patients":17.3,"readmit_pct":9.0},{"level":"Musculoskeletal","patients":4064,"pct_of_patients":5.8,"readmit_pct":8.4},{"level":"Digestive","patients":6488,"pct_of_patients":9.3,"readmit_pct":8.0},{"level":"Respiratory","patients":9491,"pct_of_patients":13.6,"readmit_pct":7.3}]},"models":{"comparison":[{"model":"Penalized logistic (L1)","ROC-AUC":0.643,"PR-AUC":0.156,"Top-decile lift":2.011},{"model":"Random forest","ROC-AUC":0.656,"PR-AUC":0.163,"Top-decile lift":2.317},{"model":"Neural network (MLP)","ROC-AUC":0.635,"PR-AUC":0.15,"Top-decile lift":2.005}],"cv_auc_rf":[0.656,0.008],"base_rate":9.0,"lasso_kept":61,"lasso_total":85,"importance":[{"feature":"Discharged to","auc_drop":0.074},{"feature":"Prior hospital stays","auc_drop":0.0226},{"feature":"Insurance","auc_drop":0.0073},{"feature":"Primary diagnosis","auc_drop":0.0066},{"feature":"Age","auc_drop":0.0051},{"feature":"Number of diagnoses","auc_drop":0.0035},{"feature":"Lab tests","auc_drop":0.0033},{"feature":"Number of medications","auc_drop":0.003},{"feature":"on_diabetes_meds","auc_drop":0.0026},{"feature":"Kidney diagnosis","auc_drop":0.0019}],"deciles":[{"decile":1,"readmit_pct":3.1},{"decile":2,"readmit_pct":5.7},{"decile":3,"readmit_pct":5.6},{"decile":4,"readmit_pct":6.2},{"decile":5,"readmit_pct":6.9},{"decile":6,"readmit_pct":7.7},{"decile":7,"readmit_pct":9.2},{"decile":8,"readmit_pct":11.3},{"decile":9,"readmit_pct":13.3},{"decile":10,"readmit_pct":20.8}],"segments":[{"rule":"discharged to skilled nursing / care facility, prior stays \u2265 1","patients":1604,"share_pct":2.3,"readmit_pct":21.2,"x_overall":2.36,"heart_pct":58.7,"avg_age":75.0},{"rule":"not discharged to skilled nursing / care facility, prior stays \u2265 2","patients":1902,"share_pct":2.7,"readmit_pct":20.0,"x_overall":2.23,"heart_pct":61.1,"avg_age":64.0},{"rule":"discharged to skilled nursing / care facility, prior stays \u2264 0, age \u2264 80","patients":5950,"share_pct":8.5,"readmit_pct":16.2,"x_overall":1.8,"heart_pct":52.0,"avg_age":68.0},{"rule":"discharged to skilled nursing / care facility, prior stays \u2264 0, age \u2265 81","patients":4386,"share_pct":6.3,"readmit_pct":11.4,"x_overall":1.27,"heart_pct":57.9,"avg_age":87.0},{"rule":"not discharged to skilled nursing / care facility, prior stays \u2264 1, not discharged to home","patients":13199,"share_pct":18.9,"readmit_pct":9.6,"x_overall":1.07,"heart_pct":61.0,"avg_age":67.0},{"rule":"not discharged to skilled nursing / care facility, prior stays \u2264 1, discharged to home","patients":42946,"share_pct":61.4,"readmit_pct":6.6,"x_overall":0.73,"heart_pct":58.1,"avg_age":62.0}],"best_model":"Random forest"},"market":{"by_year":[{"year":2020,"advanced_share_spend":33.0,"advanced_share_claims":11.5,"total_spend_$B":34.0},{"year":2021,"advanced_share_spend":41.2,"advanced_share_claims":15.0,"total_spend_$B":39.4},{"year":2022,"advanced_share_spend":50.6,"advanced_share_claims":19.8,"total_spend_$B":46.6},{"year":2023,"advanced_share_spend":60.9,"advanced_share_claims":27.4,"total_spend_$B":60.4},{"year":2024,"advanced_share_spend":76.0,"advanced_share_claims":33.3,"total_spend_$B":59.9}],"spend_by_class":[{"year":2020,"drug_class":"Alpha-glucosidase inhibitor","spend":10722866.7,"claims":185085.0},{"year":2020,"drug_class":"Amylin analog","spend":7885366.459999999,"claims":3877.0},{"year":2020,"drug_class":"Biguanide (metformin)","spend":644453318.01,"claims":31893746.0},{"year":2020,"drug_class":"DPP-4 inhibitor","spend":6626005596.14,"claims":8421986.0},{"year":2020,"drug_class":"GLP-1 / GIP-GLP-1 agonist","spend":7216574629.23,"claims":6018487.0},{"year":2020,"drug_class":"Insulin","spend":15167240616.74,"claims":23597538.0},{"year":2020,"drug_class":"Meglitinide","spend":43742060.22,"claims":521095.0},{"year":2020,"drug_class":"SGLT2 inhibitor","spend":3989944227.2999997,"claims":4530866.0},{"year":2020,"drug_class":"Sulfonylurea","spend":197169888.27,"claims":14026461.0},{"year":2020,"drug_class":"Thiazolidinedione","spend":72985559.72,"claims":2858790.0},{"year":2021,"drug_class":"Alpha-glucosidase inhibitor","spend":11096098.350000001,"claims":181292.0},{"year":2021,"drug_class":"Amylin analog","spend":6163899.1,"claims":3114.0},{"year":2021,"drug_class":"Biguanide (metformin)","spend":625120629.61,"claims":32052114.0},{"year":2021,"drug_class":"DPP-4 inhibitor","spend":6877932478.67,"claims":8001419.0},{"year":2021,"drug_class":"GLP-1 / GIP-GLP-1 agonist","spend":10194232321.660002,"claims":7885425.0},{"year":2021,"drug_class":"Insulin","spend":15335920697.55,"claims":22589761.0},{"year":2021,"drug_class":"Meglitinide","spend":35851230.650000006,"claims":505029.0},{"year":2021,"drug_class":"SGLT2 inhibitor","spend":6008398194.01,"claims":6277297.0},{"year":2021,"drug_class":"Sulfonylurea","spend":193696129.83,"claims":13834856.0},{"year":2021,"drug_class":"Thiazolidinedione","spend":68547347.58,"claims":2949843.0},{"year":2022,"drug_class":"Alpha-glucosidase inhibitor","spend":10670328.44,"claims":175847.0},{"year":2022,"drug_class":"Amylin analog","spend":4746984.8,"claims":2351.0},{"year":2022,"drug_class":"Biguanide (metformin)","spend":706393600.98,"claims":32861107.0},{"year":2022,"drug_class":"DPP-4 inhibitor","spend":6898568911.49,"claims":7501633.0},{"year":2022,"drug_class":"GLP-1 / GIP-GLP-1 agonist","spend":14206699695.33,"claims":10406887.0},{"year":2022,"drug_class":"Insulin","spend":15130415653.36,"claims":21894707.0},{"year":2022,"drug_class":"Meglitinide","spend":33262092.56,"claims":493180.0},{"year":2022,"drug_class":"SGLT2 inhibitor","spend":9376953502.8,"claims":9243919.0},{"year":2022,"drug_class":"Sulfonylurea","spend":190826984.27,"claims":13424542.0},{"year":2022,"drug_class":"Thiazolidinedione","spend":66079565.239999995,"claims":3052157.0},{"year":2023,"drug_class":"Alpha-glucosidase inhibitor","spend":10360963.58,"claims":171467.0},{"year":2023,"drug_class":"Amylin analog","spend":4050755.63,"claims":1978.0},{"year":2023,"drug_class":"Biguanide (metformin)","spend":903259892.9200001,"claims":33397893.0},{"year":2023,"drug_class":"DPP-4 inhibitor","spend":6799506314.36,"claims":7007956.0},{"year":2023,"drug_class":"GLP-1 / GIP-GLP-1 agonist","spend":22606161459.34,"claims":16553166.0},{"year":2023,"drug_class":"Insulin","spend":15558777626.17,"claims":22156725.0},{"year":2023,"drug_class":"Meglitinide","spend":33349954.35,"claims":489443.0},{"year":2023,"drug_class":"SGLT2 inhibitor","spend":14176734594.439999,"claims":13367836.0},{"year":2023,"drug_class":"Sulfonylurea","spend":211357438.66,"claims":12955908.0},{"year":2023,"drug_class":"Thiazolidinedione","spend":75052174.5,"claims":3125446.0},{"year":2024,"drug_class":"Alpha-glucosidase inhibitor","spend":6968771.75,"claims":176478.0},{"year":2024,"drug_class":"Amylin analog","spend":3369157.77,"claims":1579.0},{"year":2024,"drug_class":"Biguanide (metformin)","spend":717442090.56,"claims":34715043.0},{"year":2024,"drug_class":"DPP-4 inhibitor","spend":6162370045.610001,"claims":6905291.0},{"year":2024,"drug_class":"GLP-1 / GIP-GLP-1 agonist","spend":27603120671.09,"claims":21952543.0},{"year":2024,"drug_class":"Insulin","spend":7275535339.8,"claims":22183900.0},{"year":2024,"drug_class":"Meglitinide","spend":20179396.78,"claims":509876.0},{"year":2024,"drug_class":"SGLT2 inhibitor","spend":17895219534.35,"claims":18362501.0},{"year":2024,"drug_class":"Sulfonylurea","spend":148208905.35999998,"claims":12889333.0},{"year":2024,"drug_class":"Thiazolidinedione","spend":48436815.82,"claims":3270863.0}],"mix":[{"drug_class":"Biguanide (metformin)","1999\u20132008 hospital patients (%)":18.4,"2024 Medicare claims (%)":31.9},{"drug_class":"Sulfonylurea","1999\u20132008 hospital patients (%)":24.9,"2024 Medicare claims (%)":10.6},{"drug_class":"Thiazolidinedione","1999\u20132008 hospital patients (%)":11.9,"2024 Medicare claims (%)":2.7},{"drug_class":"Meglitinide","1999\u20132008 hospital patients (%)":1.7,"2024 Medicare claims (%)":0.3},{"drug_class":"Insulin","1999\u20132008 hospital patients (%)":42.9,"2024 Medicare claims (%)":14.5},{"drug_class":"DPP-4 inhibitor","1999\u20132008 hospital patients (%)":0.0,"2024 Medicare claims (%)":5.2},{"drug_class":"SGLT2 inhibitor","1999\u20132008 hospital patients (%)":0.0,"2024 Medicare claims (%)":15.8},{"drug_class":"GLP-1 / GIP-GLP-1 agonist","1999\u20132008 hospital patients (%)":0.0,"2024 Medicare claims (%)":18.9}],"specialties":[{"specialty":"Family Practice","prescribers":82336,"diabetes_claims":32009158.0,"advanced_pct":31.0,"glp1_pct":18.2,"sglt2_pct":12.8,"metformin_su_pct":48.6,"share_of_all_claims_pct":30.7},{"specialty":"Internal Medicine","prescribers":62990,"diabetes_claims":28941734.0,"advanced_pct":31.1,"glp1_pct":17.0,"sglt2_pct":14.1,"metformin_su_pct":45.6,"share_of_all_claims_pct":27.8},{"specialty":"Nurse Practitioner","prescribers":86027,"diabetes_claims":18997657.0,"advanced_pct":36.9,"glp1_pct":21.4,"sglt2_pct":15.5,"metformin_su_pct":41.0,"share_of_all_claims_pct":18.2},{"specialty":"Endocrinology","prescribers":6076,"diabetes_claims":9379129.0,"advanced_pct":40.0,"glp1_pct":27.1,"sglt2_pct":12.8,"metformin_su_pct":23.4,"share_of_all_claims_pct":9.0},{"specialty":"Physician Assistant","prescribers":26841,"diabetes_claims":6146304.0,"advanced_pct":38.0,"glp1_pct":22.5,"sglt2_pct":15.5,"metformin_su_pct":41.5,"share_of_all_claims_pct":5.9},{"specialty":"General Practice","prescribers":4723,"diabetes_claims":2387470.0,"advanced_pct":19.5,"glp1_pct":8.1,"sglt2_pct":11.4,"metformin_su_pct":53.7,"share_of_all_claims_pct":2.3},{"specialty":"Cardiology","prescribers":13515,"diabetes_claims":1637844.0,"advanced_pct":82.6,"glp1_pct":9.6,"sglt2_pct":73.1,"metformin_su_pct":13.4,"share_of_all_claims_pct":1.6},{"specialty":"Nephrology","prescribers":6784,"diabetes_claims":1052798.0,"advanced_pct":79.7,"glp1_pct":8.0,"sglt2_pct":71.8,"metformin_su_pct":11.0,"share_of_all_claims_pct":1.0},{"specialty":"Geriatric Medicine","prescribers":1402,"diabetes_claims":543790.0,"advanced_pct":23.3,"glp1_pct":10.1,"sglt2_pct":13.2,"metformin_su_pct":42.7,"share_of_all_claims_pct":0.5},{"specialty":"Pharmacist","prescribers":1344,"diabetes_claims":496923.0,"advanced_pct":37.6,"glp1_pct":23.6,"sglt2_pct":14.0,"metformin_su_pct":36.6,"share_of_all_claims_pct":0.5},{"specialty":"Hospitalist","prescribers":2790,"diabetes_claims":398273.0,"advanced_pct":31.0,"glp1_pct":12.7,"sglt2_pct":18.3,"metformin_su_pct":39.2,"share_of_all_claims_pct":0.4},{"specialty":"Emergency Medicine","prescribers":1182,"diabetes_claims":338264.0,"advanced_pct":28.8,"glp1_pct":15.5,"sglt2_pct":13.3,"metformin_su_pct":44.6,"share_of_all_claims_pct":0.3}],"national_advanced_pct":34.7,"states":[{"stateabbr":"UT","statedesc":"Utah","adults_with_diabetes":211619.11800000002,"diabetes_prev_pct":8.5,"obesity_prev_pct":31.0,"diabetes_claims":715686.0,"advanced_pct":32.9,"quadrant":"Low burden, low adoption"},{"stateabbr":"FL","statedesc":"Florida","adults_with_diabetes":2460085.911,"diabetes_prev_pct":13.5,"obesity_prev_pct":31.9,"diabetes_claims":8673705.0,"advanced_pct":30.6,"quadrant":"High burden, low adoption"},{"stateabbr":"GA","statedesc":"Georgia","adults_with_diabetes":1128497.7200000004,"diabetes_prev_pct":13.3,"obesity_prev_pct":35.2,"diabetes_claims":3766750.0,"advanced_pct":36.3,"quadrant":"High burden, high adoption"},{"stateabbr":"KS","statedesc":"Kansas","adults_with_diabetes":255210.886,"diabetes_prev_pct":11.4,"obesity_prev_pct":36.5,"diabetes_claims":1090805.0,"advanced_pct":33.3,"quadrant":"Low burden, low adoption"},{"stateabbr":"LA","statedesc":"Louisiana","adults_with_diabetes":533884.3929999999,"diabetes_prev_pct":15.2,"obesity_prev_pct":40.0,"diabetes_claims":2131574.0,"advanced_pct":39.8,"quadrant":"High burden, high adoption"},{"stateabbr":"MI","statedesc":"Michigan","adults_with_diabetes":946933.205,"diabetes_prev_pct":11.9,"obesity_prev_pct":36.2,"diabetes_claims":3995158.0,"advanced_pct":35.0,"quadrant":"High burden, high adoption"},{"stateabbr":"ND","statedesc":"North Dakota","adults_with_diabetes":58714.34400000003,"diabetes_prev_pct":9.8,"obesity_prev_pct":36.5,"diabetes_claims":301848.0,"advanced_pct":31.6,"quadrant":"Low burden, low adoption"},{"stateabbr":"OR","statedesc":"Oregon","adults_with_diabetes":380329.64799999987,"diabetes_prev_pct":11.2,"obesity_prev_pct":33.6,"diabetes_claims":1214646.0,"advanced_pct":30.8,"quadrant":"Low burden, low adoption"},{"stateabbr":"CT","statedesc":"Connecticut","adults_with_diabetes":294017.802,"diabetes_prev_pct":10.2,"obesity_prev_pct":30.5,"diabetes_claims":1335085.0,"advanced_pct":36.6,"quadrant":"Low burden, high adoption"},{"stateabbr":"ID","statedesc":"Idaho","adults_with_diabetes":151905.36899999998,"diabetes_prev_pct":10.1,"obesity_prev_pct":32.1,"diabetes_claims":564315.0,"advanced_pct":35.4,"quadrant":"Low burden, high adoption"},{"stateabbr":"ME","statedesc":"Maine","adults_with_diabetes":128855.837,"diabetes_prev_pct":11.2,"obesity_prev_pct":32.7,"diabetes_claims":510051.0,"advanced_pct":34.5,"quadrant":"Low burden, high adoption"},{"stateabbr":"NC","statedesc":"North Carolina","adults_with_diabetes":1022497.4280000003,"diabetes_prev_pct":12.0,"obesity_prev_pct":35.1,"diabetes_claims":4135752.0,"advanced_pct":36.6,"quadrant":"High burden, high adoption"},{"stateabbr":"NJ","statedesc":"New Jersey","adults_with_diabetes":794658.5329999998,"diabetes_prev_pct":10.9,"obesity_prev_pct":28.9,"diabetes_claims":3152870.0,"advanced_pct":31.4,"quadrant":"Low burden, low adoption"},{"stateabbr":"NY","statedesc":"New York","adults_with_diabetes":1790169.987,"diabetes_prev_pct":11.5,"obesity_prev_pct":28.8,"diabetes_claims":8477022.0,"advanced_pct":33.9,"quadrant":"Low burden, high adoption"},{"stateabbr":"OH","statedesc":"Ohio","adults_with_diabetes":1220001.8530000004,"diabetes_prev_pct":13.2,"obesity_prev_pct":37.1,"diabetes_claims":4926459.0,"advanced_pct":31.9,"quadrant":"High burden, low adoption"},{"stateabbr":"SC","statedesc":"South Carolina","adults_with_diabetes":588600.2579999999,"diabetes_prev_pct":13.9,"obesity_prev_pct":35.8,"diabetes_claims":2076003.0,"advanced_pct":37.4,"quadrant":"High burden, high adoption"},{"stateabbr":"AL","statedesc":"Alabama","adults_with_diabetes":586945.3599999999,"diabetes_prev_pct":14.8,"obesity_prev_pct":39.4,"diabetes_claims":2226446.0,"advanced_pct":39.8,"quadrant":"High burden, high adoption"},{"stateabbr":"DE","statedesc":"Delaware","adults_with_diabetes":107453.344,"diabetes_prev_pct":13.1,"obesity_prev_pct":35.3,"diabetes_claims":354387.0,"advanced_pct":36.0,"quadrant":"High burden, high adoption"},{"stateabbr":"IN","statedesc":"Indiana","adults_with_diabetes":684062.808,"diabetes_prev_pct":13.0,"obesity_prev_pct":38.4,"diabetes_claims":2788675.0,"advanced_pct":35.0,"quadrant":"High burden, high adoption"},{"stateabbr":"MA","statedesc":"Massachusetts","adults_with_diabetes":553587.8599999999,"diabetes_prev_pct":9.8,"obesity_prev_pct":27.7,"diabetes_claims":2471306.0,"advanced_pct":35.8,"quadrant":"Low burden, high adoption"},{"stateabbr":"NE","statedesc":"Nebraska","adults_with_diabetes":159915.10700000008,"diabetes_prev_pct":10.7,"obesity_prev_pct":37.7,"diabetes_claims":707399.0,"advanced_pct":34.5,"quadrant":"Low burden, high adoption"},{"stateabbr":"NM","statedesc":"New Mexico","adults_with_diabetes":219121.70699999997,"diabetes_prev_pct":13.2,"obesity_prev_pct":34.1,"diabetes_claims":634649.0,"advanced_pct":30.9,"quadrant":"High burden, low adoption"},{"stateabbr":"OK","statedesc":"Oklahoma","adults_with_diabetes":394874.5720000001,"diabetes_prev_pct":12.8,"obesity_prev_pct":38.9,"diabetes_claims":1476579.0,"advanced_pct":39.1,"quadrant":"High burden, high adoption"},{"stateabbr":"RI","statedesc":"Rhode Island","adults_with_diabetes":99228.695,"diabetes_prev_pct":11.1,"obesity_prev_pct":31.7,"diabetes_claims":404731.0,"advanced_pct":32.7,"quadrant":"Low burden, low adoption"},{"stateabbr":"TX","statedesc":"Texas","adults_with_diabetes":2922262.3979999977,"diabetes_prev_pct":12.7,"obesity_prev_pct":35.6,"diabetes_claims":8911759.0,"advanced_pct":35.3,"quadrant":"High burden, high adoption"},{"stateabbr":"VA","statedesc":"Virginia","adults_with_diabetes":851712.106,"diabetes_prev_pct":12.5,"obesity_prev_pct":34.5,"diabetes_claims":2624436.0,"advanced_pct":31.1,"quadrant":"High burden, low adoption"},{"stateabbr":"AK","statedesc":"Alaska","adults_with_diabetes":52679.365,"diabetes_prev_pct":9.4,"obesity_prev_pct":35.5,"diabetes_claims":132654.0,"advanced_pct":42.2,"quadrant":"Low burden, high adoption"},{"stateabbr":"AZ","statedesc":"Arizona","adults_with_diabetes":661849.919,"diabetes_prev_pct":11.3,"obesity_prev_pct":31.3,"diabetes_claims":2029095.0,"advanced_pct":31.9,"quadrant":"Low burden, low adoption"},{"stateabbr":"CO","statedesc":"Colorado","adults_with_diabetes":401622.72800000006,"diabetes_prev_pct":8.6,"obesity_prev_pct":26.1,"diabetes_claims":1221722.0,"advanced_pct":33.3,"quadrant":"Low burden, low adoption"},{"stateabbr":"DC","statedesc":"District of Columbia","adults_with_diabetes":43085.64,"diabetes_prev_pct":7.8,"obesity_prev_pct":24.7,"diabetes_claims":176369.0,"advanced_pct":36.9,"quadrant":"Low burden, high adoption"},{"stateabbr":"MN","statedesc":"Minnesota","adults_with_diabetes":448228.18299999996,"diabetes_prev_pct":10.1,"obesity_prev_pct":33.5,"diabetes_claims":1734132.0,"advanced_pct":29.9,"quadrant":"Low burden, low adoption"},{"stateabbr":"MT","statedesc":"Montana","adults_with_diabetes":89258.23799999998,"diabetes_prev_pct":9.9,"obesity_prev_pct":31.4,"diabetes_claims":302199.0,"advanced_pct":33.3,"quadrant":"Low burden, low adoption"},{"stateabbr":"WA","statedesc":"Washington","adults_with_diabetes":585192.722,"diabetes_prev_pct":9.5,"obesity_prev_pct":30.6,"diabetes_claims":1976779.0,"advanced_pct":32.1,"quadrant":"Low burden, low adoption"},{"stateabbr":"HI","statedesc":"Hawaii","adults_with_diabetes":141227.731,"diabetes_prev_pct":12.4,"obesity_prev_pct":25.6,"diabetes_claims":389426.0,"advanced_pct":35.6,"quadrant":"High burden, high adoption"},{"stateabbr":"IL","statedesc":"Illinois","adults_with_diabetes":1146933.8730000001,"diabetes_prev_pct":11.7,"obesity_prev_pct":34.0,"diabetes_claims":4323048.0,"advanced_pct":31.2,"quadrant":"Low burden, low adoption"},{"stateabbr":"MO","statedesc":"Missouri","adults_with_diabetes":582795.4400000001,"diabetes_prev_pct":12.1,"obesity_prev_pct":36.6,"diabetes_claims":2599130.0,"advanced_pct":34.4,"quadrant":"High burden, high adoption"},{"stateabbr":"TN","statedesc":"Tennessee","adults_with_diabetes":756520.8249999998,"diabetes_prev_pct":13.6,"obesity_prev_pct":37.6,"diabetes_claims":2887263.0,"advanced_pct":35.4,"quadrant":"High burden, high adoption"},{"stateabbr":"VT","statedesc":"Vermont","adults_with_diabetes":46906.11699999999,"diabetes_prev_pct":8.8,"obesity_prev_pct":28.6,"diabetes_claims":186521.0,"advanced_pct":35.4,"quadrant":"Low burden, high adoption"},{"stateabbr":"WI","statedesc":"Wisconsin","adults_with_diabetes":532386.093,"diabetes_prev_pct":11.4,"obesity_prev_pct":37.7,"diabetes_claims":2096453.0,"advanced_pct":31.1,"quadrant":"Low burden, low adoption"},{"stateabbr":"AR","statedesc":"Arkansas","adults_with_diabetes":313534.40600000013,"diabetes_prev_pct":13.3,"obesity_prev_pct":39.3,"diabetes_claims":1350358.0,"advanced_pct":34.0,"quadrant":"High burden, high adoption"},{"stateabbr":"CA","statedesc":"California","adults_with_diabetes":3571061.071,"diabetes_prev_pct":11.7,"obesity_prev_pct":27.8,"diabetes_claims":12210639.0,"advanced_pct":31.2,"quadrant":"Low burden, low adoption"},{"stateabbr":"NH","statedesc":"New Hampshire","adults_with_diabetes":108121.46799999998,"diabetes_prev_pct":9.4,"obesity_prev_pct":31.8,"diabetes_claims":419547.0,"advanced_pct":31.6,"quadrant":"Low burden, low adoption"},{"stateabbr":"SD","statedesc":"South Dakota","adults_with_diabetes":81379.02100000002,"diabetes_prev_pct":11.7,"obesity_prev_pct":35.9,"diabetes_claims":310004.0,"advanced_pct":32.6,"quadrant":"Low burden, low adoption"},{"stateabbr":"IA","statedesc":"Iowa","adults_with_diabetes":278124.95900000015,"diabetes_prev_pct":11.2,"obesity_prev_pct":37.7,"diabetes_claims":1270047.0,"advanced_pct":32.0,"quadrant":"Low burden, low adoption"},{"stateabbr":"MD","statedesc":"Maryland","adults_with_diabetes":600502.985,"diabetes_prev_pct":12.5,"obesity_prev_pct":35.1,"diabetes_claims":1591475.0,"advanced_pct":33.2,"quadrant":"High burden, low adoption"},{"stateabbr":"MS","statedesc":"Mississippi","adults_with_diabetes":350433.9379999999,"diabetes_prev_pct":15.5,"obesity_prev_pct":40.4,"diabetes_claims":1396295.0,"advanced_pct":36.0,"quadrant":"High burden, high adoption"},{"stateabbr":"NV","statedesc":"Nevada","adults_with_diabetes":302231.55900000007,"diabetes_prev_pct":12.0,"obesity_prev_pct":31.3,"diabetes_claims":838573.0,"advanced_pct":33.7,"quadrant":"High burden, low adoption"},{"stateabbr":"WV","statedesc":"West Virginia","adults_with_diabetes":225175.04499999998,"diabetes_prev_pct":15.9,"obesity_prev_pct":40.6,"diabetes_claims":936152.0,"advanced_pct":34.5,"quadrant":"High burden, high adoption"},{"stateabbr":"WY","statedesc":"Wyoming","adults_with_diabetes":49627.701000000015,"diabetes_prev_pct":10.9,"obesity_prev_pct":33.7,"diabetes_claims":137769.0,"advanced_pct":32.0,"quadrant":"Low burden, low adoption"}],"state_medians":{"prev":11.7,"adopt":33.9,"corr":0.21},"total_prescribers":316488,"total_claims":104161483.0},"targeting":{"prescribers_kept":184034,"claims_covered_pct":92.6,"segments":[{"segment":"Traditional orals","prescribers":81198,"claims":41111201.0,"advanced_pct":23.1,"metformin_pct":43.4,"insulin_pct":8.1,"claims_share_pct":42.6},{"segment":"Insulin-heavy","prescribers":28637,"claims":26773807.0,"advanced_pct":29.4,"metformin_pct":24.4,"insulin_pct":30.6,"claims_share_pct":27.8},{"segment":"Newer-drug adopters","prescribers":64438,"claims":26301390.0,"advanced_pct":47.0,"metformin_pct":36.3,"insulin_pct":7.3,"claims_share_pct":27.3},{"segment":"SGLT2-only (heart / kidney)","prescribers":9761,"claims":2268318.0,"advanced_pct":96.1,"metformin_pct":2.2,"insulin_pct":0.3,"claims_share_pct":2.4}],"segment_headroom":[{"segment":"Traditional orals","prescribers":81198,"headroom":3741876.6411631834,"headroom_share_pct":77.5},{"segment":"Insulin-heavy","prescribers":28637,"headroom":880944.9642446969,"headroom_share_pct":18.2},{"segment":"Newer-drug adopters","prescribers":64438,"headroom":180796.59333694313,"headroom_share_pct":3.7},{"segment":"SGLT2-only (heart / kidney)","prescribers":9761,"headroom":26335.617026604505,"headroom_share_pct":0.5}],"model_perf":[{"model":"Ridge regression","R2":0.388,"MAE (share points)":12.516},{"model":"Random forest","R2":0.418,"MAE (share points)":12.205}],"best_model":"Random forest","total_headroom":4829954,"top20_share":76.3,"top10k_share":38.8,"below_expected_pct":51.2,"by_specialty":[{"specialty":"Family Practice","prescribers":59317,"claims":30785470.0,"actual":31.504,"expected":31.567,"headroom":1479868.918,"headroom_share_pct":30.639,"headroom_per_prescriber":24.948},{"specialty":"Internal Medicine","prescribers":44232,"claims":27508056.0,"actual":31.917,"expected":31.945,"headroom":1404090.92,"headroom_share_pct":29.07,"headroom_per_prescriber":31.744},{"specialty":"Nurse Practitioner","prescribers":44596,"claims":17292007.0,"actual":36.916,"expected":36.892,"headroom":984104.831,"headroom_share_pct":20.375,"headroom_per_prescriber":22.067},{"specialty":"Physician Assistant","prescribers":14498,"claims":5625106.0,"actual":37.934,"expected":37.749,"headroom":302338.854,"headroom_share_pct":6.26,"headroom_per_prescriber":20.854},{"specialty":"Endocrinology","prescribers":5457,"claims":8983221.0,"actual":42.174,"expected":41.92,"headroom":289833.829,"headroom_share_pct":6.001,"headroom_per_prescriber":53.112},{"specialty":"General Practice","prescribers":2078,"claims":1318485.0,"actual":25.133,"expected":26.841,"headroom":78363.787,"headroom_share_pct":1.622,"headroom_per_prescriber":37.711},{"specialty":"Cardiology","prescribers":4308,"claims":1176841.0,"actual":87.547,"expected":87.462,"headroom":70533.756,"headroom_share_pct":1.46,"headroom_per_prescriber":16.373},{"specialty":"Nephrology","prescribers":2792,"claims":828508.0,"actual":84.473,"expected":84.059,"headroom":48776.492,"headroom_share_pct":1.01,"headroom_per_prescriber":17.47},{"specialty":"Geriatric Medicine","prescribers":917,"claims":513406.0,"actual":24.878,"expected":28.577,"headroom":35010.701,"headroom_share_pct":0.725,"headroom_per_prescriber":38.18},{"specialty":"Emergency Medicine","prescribers":521,"claims":312872.0,"actual":30.707,"expected":34.082,"headroom":21017.641,"headroom_share_pct":0.435,"headroom_per_prescriber":40.341}],"by_state":[{"prescribers":19437,"headroom":534512.715,"actual":32.428,"headroom_share_pct":11.067,"stateabbr":"CA","statedesc":"California","diabetes_prev_pct":11.7,"quadrant":"Low burden, low adoption","adults_with_diabetes":3571061.071},{"prescribers":11906,"headroom":400285.111,"actual":35.929,"headroom_share_pct":8.288,"stateabbr":"NY","statedesc":"New York","diabetes_prev_pct":11.5,"quadrant":"Low burden, high adoption","adults_with_diabetes":1790169.987},{"prescribers":12961,"headroom":399457.54,"actual":33.664,"headroom_share_pct":8.27,"stateabbr":"FL","statedesc":"Florida","diabetes_prev_pct":13.5,"quadrant":"High burden, low adoption","adults_with_diabetes":2460085.911},{"prescribers":12998,"headroom":356425.284,"actual":39.065,"headroom_share_pct":7.379,"stateabbr":"TX","statedesc":"Texas","diabetes_prev_pct":12.7,"quadrant":"High burden, high adoption","adults_with_diabetes":2922262.398},{"prescribers":7290,"headroom":202879.086,"actual":35.069,"headroom_share_pct":4.2,"stateabbr":"OH","statedesc":"Ohio","diabetes_prev_pct":13.2,"quadrant":"High burden, low adoption","adults_with_diabetes":1220001.853},{"prescribers":6568,"headroom":192714.675,"actual":33.819,"headroom_share_pct":3.99,"stateabbr":"IL","statedesc":"Illinois","diabetes_prev_pct":11.7,"quadrant":"Low burden, low adoption","adults_with_diabetes":1146933.873},{"prescribers":6496,"headroom":152994.909,"actual":40.293,"headroom_share_pct":3.168,"stateabbr":"NC","statedesc":"North Carolina","diabetes_prev_pct":12.0,"quadrant":"High burden, high adoption","adults_with_diabetes":1022497.428},{"prescribers":5085,"headroom":149522.932,"actual":41.017,"headroom_share_pct":3.096,"stateabbr":"GA","statedesc":"Georgia","diabetes_prev_pct":13.3,"quadrant":"High burden, high adoption","adults_with_diabetes":1128497.72},{"prescribers":4506,"headroom":147684.978,"actual":32.139,"headroom_share_pct":3.058,"stateabbr":"NJ","statedesc":"New Jersey","diabetes_prev_pct":10.9,"quadrant":"Low burden, low adoption","adults_with_diabetes":794658.533},{"prescribers":6656,"headroom":146284.518,"actual":37.58,"headroom_share_pct":3.029,"stateabbr":"MI","statedesc":"Michigan","diabetes_prev_pct":11.9,"quadrant":"High burden, high adoption","adults_with_diabetes":946933.205},{"prescribers":4200,"headroom":109473.984,"actual":33.165,"headroom_share_pct":2.267,"stateabbr":"VA","statedesc":"Virginia","diabetes_prev_pct":12.5,"quadrant":"High burden, low adoption","adults_with_diabetes":851712.106},{"prescribers":4315,"headroom":106709.447,"actual":39.291,"headroom_share_pct":2.209,"stateabbr":"TN","statedesc":"Tennessee","diabetes_prev_pct":13.6,"quadrant":"High burden, high adoption","adults_with_diabetes":756520.825}],"curve":[{"pct_prescribers":0.0,"pct_headroom":0.0},{"pct_prescribers":2.0,"pct_headroom":21.30075508248214},{"pct_prescribers":4.0,"pct_headroom":32.46420412422931},{"pct_prescribers":6.0,"pct_headroom":41.115591181429465},{"pct_prescribers":8.0,"pct_headroom":48.274118809617484},{"pct_prescribers":10.0,"pct_headroom":54.4283453347411},{"pct_prescribers":12.0,"pct_headroom":59.82336842502168},{"pct_prescribers":14.0,"pct_headroom":64.62613447847698},{"pct_prescribers":16.0,"pct_headroom":68.93047624449319},{"pct_prescribers":18.0,"pct_headroom":72.80879548656648},{"pct_prescribers":20.0,"pct_headroom":76.3196846909207},{"pct_prescribers":22.0,"pct_headroom":79.5056828529541},{"pct_prescribers":24.0,"pct_headroom":82.40340383198229},{"pct_prescribers":26.0,"pct_headroom":85.03531382367972},{"pct_prescribers":28.0,"pct_headroom":87.42113212708082},{"pct_prescribers":30.0,"pct_headroom":89.57142898168091},{"pct_prescribers":32.0,"pct_headroom":91.4942099215815},{"pct_prescribers":34.0,"pct_headroom":93.20447934590354},{"pct_prescribers":36.0,"pct_headroom":94.71297198939872},{"pct_prescribers":38.0,"pct_headroom":96.02567158958959},{"pct_prescribers":40.0,"pct_headroom":97.14610348175437},{"pct_prescribers":42.0,"pct_headroom":98.07992930730057},{"pct_prescribers":44.0,"pct_headroom":98.82823830919271},{"pct_prescribers":46.0,"pct_headroom":99.39134037269841},{"pct_prescribers":48.0,"pct_headroom":99.77053707319484},{"pct_prescribers":50.0,"pct_headroom":99.96993860101739},{"pct_prescribers":52.0,"pct_headroom":100.0},{"pct_prescribers":54.0,"pct_headroom":100.0},{"pct_prescribers":56.0,"pct_headroom":100.0},{"pct_prescribers":58.0,"pct_headroom":100.0},{"pct_prescribers":60.0,"pct_headroom":100.0},{"pct_prescribers":62.0,"pct_headroom":100.0},{"pct_prescribers":64.0,"pct_headroom":100.0},{"pct_prescribers":66.0,"pct_headroom":100.0},{"pct_prescribers":68.0,"pct_headroom":100.0},{"pct_prescribers":70.0,"pct_headroom":100.0},{"pct_prescribers":72.0,"pct_headroom":100.0},{"pct_prescribers":74.0,"pct_headroom":100.0},{"pct_prescribers":76.0,"pct_headroom":100.0},{"pct_prescribers":78.0,"pct_headroom":100.0},{"pct_prescribers":80.0,"pct_headroom":100.0},{"pct_prescribers":82.0,"pct_headroom":100.0},{"pct_prescribers":84.0,"pct_headroom":100.0},{"pct_prescribers":86.0,"pct_headroom":100.0},{"pct_prescribers":88.0,"pct_headroom":100.0},{"pct_prescribers":90.0,"pct_headroom":100.0},{"pct_prescribers":92.0,"pct_headroom":100.0},{"pct_prescribers":94.0,"pct_headroom":100.0},{"pct_prescribers":96.0,"pct_headroom":100.0},{"pct_prescribers":98.0,"pct_headroom":100.0},{"pct_prescribers":100.0,"pct_headroom":100.0}]}};
+const $ = s => document.querySelector(s);
+const fmt = (v, d = 0) => Number(v).toLocaleString("en-US", { maximumFractionDigits: d, minimumFractionDigits: d });
+const pct = (v, d = 1) => fmt(v, d) + "%";
+const NS = "http://www.w3.org/2000/svg";
+const tip = $("#tip");
+function showTip(e, html) { tip.innerHTML = html; tip.style.opacity = 1; moveTip(e); }
+function moveTip(e) { const x = Math.min(e.clientX + 14, innerWidth - 270); tip.style.left = x + "px"; tip.style.top = (e.clientY + 14) + "px"; }
+function hideTip() { tip.style.opacity = 0; }
+function el(tag, attrs = {}, parent) { const n = document.createElementNS(NS, tag); for (const k in attrs) n.setAttribute(k, attrs[k]); if (parent) parent.appendChild(n); return n; }
+function txt(parent, x, y, s, cls, extra = {}) { const t = el("text", { x, y, class: cls, ...extra }, parent); t.textContent = s; return t; }
+function hover(node, html) { node.addEventListener("pointermove", e => showTip(e, html)); node.addEventListener("pointerleave", hideTip); }
+
+/* Horizontal bars. rows: {label, value, tip, color} */
+function hbars(svg, rows, o = {}) {
+  const W = 620, lw = o.labelW ?? 190, rh = o.rowH ?? 30, top = 6, H = top + rows.length * rh + 22;
+  svg.setAttribute("viewBox", `0 0 ${W} ${H}`);
+  const max = o.max ?? Math.max(...rows.map(r => r.value)) * 1.12, x = v => lw + (W - lw - 60) * v / max;
+  const ticks = o.ticks ?? [0, max / 2];
+  ticks.forEach(t => { el("line", { x1: x(t), x2: x(t), y1: top, y2: H - 20, class: "gridl" }, svg); txt(svg, x(t), H - 6, (o.tickFmt ?? (v => fmt(v)))(t), "ax", { "text-anchor": "middle" }); });
+  rows.forEach((r, i) => {
+    const y = top + i * rh, bh = Math.min(16, rh - 10);
+    txt(svg, lw - 10, y + rh / 2 + 4, r.label, "lbl", { "text-anchor": "end" });
+    const w = Math.max(2, x(r.value) - lw);
+    el("path", { d: `M${lw},${y + (rh - bh) / 2} h${w - 3} a3,3 0 0 1 3,3 v${bh - 6} a3,3 0 0 1 -3,3 h${-(w - 3)} z`, fill: r.color ?? "var(--s1)" }, svg);
+    txt(svg, lw + w + 6, y + rh / 2 + 4, (o.valFmt ?? (v => fmt(v, 1)))(r.value), "val");
+    hover(el("rect", { x: 0, y, width: W, height: rh, class: "hit" }, svg), r.tip ?? `<b>${r.label}</b><br>${(o.valFmt ?? (v => fmt(v, 1)))(r.value)}`);
+  });
+  if (o.ref != null) { el("line", { x1: x(o.ref), x2: x(o.ref), y1: top - 2, y2: H - 20, class: "ref" }, svg); }
+  el("line", { x1: lw, x2: lw, y1: top, y2: H - 20, class: "base" }, svg);
+}
+
+/* Paired horizontal bars (then vs now) */
+function pairbars(svg, rows, keys, colors, names) {
+  const W = 620, lw = 190, rh = 40, top = 4, H = top + rows.length * rh + 22, max = 50;
+  svg.setAttribute("viewBox", `0 0 ${W} ${H}`);
+  const x = v => lw + (W - lw - 60) * v / max;
+  [0, 25, 50].forEach(t => { el("line", { x1: x(t), x2: x(t), y1: top, y2: H - 20, class: "gridl" }, svg); txt(svg, x(t), H - 6, t + "%", "ax", { "text-anchor": "middle" }); });
+  rows.forEach((r, i) => {
+    const y = top + i * rh;
+    txt(svg, lw - 10, y + rh / 2 + 4, r.label, "lbl", { "text-anchor": "end" });
+    keys.forEach((k, j) => {
+      const v = r[k], yy = y + 6 + j * 14, w = Math.max(1.5, x(v) - lw);
+      el("rect", { x: lw, y: yy, width: w, height: 12, rx: 2, fill: colors[j] }, svg);
+      if (v > 0) txt(svg, lw + w + 5, yy + 10, pct(v), "ax");
+    });
+    hover(el("rect", { x: 0, y, width: W, height: rh, class: "hit" }, svg),
+      `<b>${r.label}</b><br>${names[0]}: ${pct(r[keys[0]])}<br>${names[1]}: ${pct(r[keys[1]])}`);
+  });
+  el("line", { x1: lw, x2: lw, y1: top, y2: H - 20, class: "base" }, svg);
+}
+
+/* Line chart with crosshair. series: {name, color, pts:[{x,y}]} */
+function lines(svg, series, o = {}) {
+  const W = 620, H = o.H ?? 260, L = 44, R = 70, T = 12, B = 28;
+  svg.setAttribute("viewBox", `0 0 ${W} ${H}`);
+  const xs = series[0].pts.map(p => p.x), xmin = Math.min(...xs), xmax = Math.max(...xs), ymax = o.ymax ?? 100;
+  const X = v => L + (W - L - R) * (v - xmin) / (xmax - xmin), Y = v => T + (H - T - B) * (1 - v / ymax);
+  (o.yticks ?? [0, 25, 50, 75, 100]).forEach(t => { el("line", { x1: L, x2: W - R, y1: Y(t), y2: Y(t), class: "gridl" }, svg); txt(svg, L - 8, Y(t) + 4, (o.yfmt ?? (v => v + "%"))(t), "ax", { "text-anchor": "end" }); });
+  (o.xticks ?? xs).forEach(t => txt(svg, X(t), H - 8, (o.xfmt ?? String)(t), "ax", { "text-anchor": "middle" }));
+  el("line", { x1: L, x2: W - R, y1: Y(0), y2: Y(0), class: "base" }, svg);
+  if (o.diag) el("line", { x1: X(xmin), y1: Y(0), x2: X(xmax), y2: Y(ymax), class: "ref" }, svg);
+  series.forEach(s => {
+    el("path", { d: s.pts.map((p, i) => (i ? "L" : "M") + X(p.x) + "," + Y(p.y)).join(""), fill: "none", stroke: s.color, "stroke-width": 2.2, "stroke-linejoin": "round" }, svg);
+    if (!o.noDots) s.pts.forEach(p => el("circle", { cx: X(p.x), cy: Y(p.y), r: 4, fill: s.color, stroke: "var(--panel)", "stroke-width": 2 }, svg));
+    const last = s.pts[s.pts.length - 1];
+    if (s.end) txt(svg, X(last.x) + 8, Y(last.y) + 4, s.end, "val");
+  });
+  if (o.marks) o.marks(svg, X, Y);
+  const cross = el("line", { y1: T, y2: H - B, class: "ref", opacity: 0 }, svg);
+  const hit = el("rect", { x: L, y: T, width: W - L - R, height: H - T - B, class: "hit" }, svg);
+  hit.addEventListener("pointermove", e => {
+    const r = svg.getBoundingClientRect(), vx = xmin + (xmax - xmin) * (((e.clientX - r.left) * W / r.width) - L) / (W - L - R);
+    const pts = series.map(s => s.pts.reduce((a, b) => Math.abs(b.x - vx) < Math.abs(a.x - vx) ? b : a));
+    cross.setAttribute("x1", X(pts[0].x)); cross.setAttribute("x2", X(pts[0].x)); cross.setAttribute("opacity", 1);
+    showTip(e, `<b>${(o.xfmt ?? String)(pts[0].x)}</b>` + series.map((s, i) => `<br>${s.name}: ${(o.tipfmt ?? (v => pct(v)))(pts[i].y)}`).join(""));
+  });
+  hit.addEventListener("pointerleave", () => { cross.setAttribute("opacity", 0); hideTip(); });
+}
+
+/* Scatter. pts: {x,y,r,color,label,tip,showLabel,dx,dy,anchor} */
+function scatter(svg, pts, o) {
+  const W = 620, H = o.H ?? 360, L = 46, R = 20, T = 14, B = 40;
+  svg.setAttribute("viewBox", `0 0 ${W} ${H}`);
+  const tx = v => o.xlog ? Math.log10(v) : v, [x0, x1] = o.xdom.map(tx), [y0, y1] = o.ydom;
+  const X = v => L + (W - L - R) * (tx(v) - x0) / (x1 - x0), Y = v => T + (H - T - B) * (1 - (v - y0) / (y1 - y0));
+  o.yticks.forEach(t => { el("line", { x1: L, x2: W - R, y1: Y(t), y2: Y(t), class: "gridl" }, svg); txt(svg, L - 8, Y(t) + 4, t + "%", "ax", { "text-anchor": "end" }); });
+  o.xticks.forEach(t => txt(svg, X(t), H - 22, (o.xfmt ?? (v => v + "%"))(t), "ax", { "text-anchor": "middle" }));
+  txt(svg, (L + W - R) / 2, H - 4, o.xlabel, "ax", { "text-anchor": "middle" });
+  el("line", { x1: L, x2: W - R, y1: H - B, y2: H - B, class: "base" }, svg);
+  if (o.refY != null) el("line", { x1: L, x2: W - R, y1: Y(o.refY), y2: Y(o.refY), class: "ref" }, svg);
+  if (o.refX != null) el("line", { x1: X(o.refX), x2: X(o.refX), y1: T, y2: H - B, class: "ref" }, svg);
+  [...pts].sort((a, b) => b.r - a.r).forEach(p => {
+    const c = el("circle", { cx: X(p.x), cy: Y(p.y), r: p.r, fill: p.color, "fill-opacity": 0.85, stroke: "var(--panel)", "stroke-width": 2 }, svg);
+    hover(c, p.tip);
+  });
+  pts.filter(p => p.showLabel).forEach(p => txt(svg, X(p.x) + (p.dx ?? p.r + 4), Y(p.y) + (p.dy ?? 4), p.label, "lbl", { "text-anchor": p.anchor ?? "start" }));
+}
+
+/* ---------- Fill the page ---------- */
+const C = D.cleaning, P = D.profile, M = D.models, K = D.market, T = D.targeting;
+
+const WHAT = {
+  "Kaggle": "Patients, stays, drugs and readmissions, 1999–2008",
+  "Provider & Drug": "Every prescriber's 2024 claims per diabetes drug, with specialty and state",
+  "Spending": "Spending and claims per brand, 2020–2024",
+  "Geography": "Claims per state per drug, 2024",
+  "CDC": "Adult diabetes and obesity rates per county",
+  "RxClass": "Drug → class mapping (ATC)",
+  "openFDA": "When each class was first approved",
+};
+$("#sources tbody").innerHTML = D.sources.map(s => {
+  const key = Object.keys(WHAT).find(k => s.name.includes(k));
+  return `<tr><td>${s.name}</td><td><span class="chip">${s.kind === "API" ? "My API pull" : "Downloaded"}</span></td><td class="n">${fmt(s.rows)}</td><td>${WHAT[key] ?? ""}</td></tr>`;
+}).join("");
+
+hbars($("#c-clean"), C.steps.map((s, i) => ({ label: s.step, value: s.rows, color: i === C.steps.length - 1 ? "var(--s1)" : "var(--s4)" })),
+  { labelW: 230, valFmt: v => fmt(v), tickFmt: v => fmt(v / 1000) + "K", ticks: [0, 50000, 100000], max: 115000 });
+
+$("#who-tiles").innerHTML = [
+  [pct(P.overall_readmit), "of 69,987 diabetic patients were back within 30 days"],
+  [pct(P.a1c_tested_pct, 0), "had their blood sugar (A1C) checked during the stay"],
+  [pct(100 - P.high_a1c_changed_pct, 0), "of patients with a high A1C went home on unchanged diabetes meds"],
+  [pct(P.heart_dx_pct, 0), "had a heart or circulatory diagnosis"],
+].map(([v, l]) => `<div class="tile"><span class="v">${v}</span><span class="l">${l}</span></div>`).join("");
+
+hbars($("#c-prior"), P.prior.map(r => ({ label: r.level === "0" ? "None" : r.level + " prior stay" + (r.level === "1" ? "" : "s"), value: r.readmit_pct,
+  tip: `<b>${r.level} prior stays</b><br>${pct(r.readmit_pct)} readmitted<br>${fmt(r.patients)} patients (${pct(r.pct_of_patients)})` })),
+  { labelW: 120, max: 30, ticks: [0, 10, 20, 30], tickFmt: v => v + "%", valFmt: v => pct(v), ref: P.overall_readmit });
+const dis = P.discharge.filter(r => r.level !== "Other / unknown").sort((a, b) => b.readmit_pct - a.readmit_pct);
+hbars($("#c-disch"), dis.map(r => ({ label: r.level.replace("Skilled nursing / care facility", "Nursing / care facility").replace("Left against medical advice", "Left against advice").replace("Transferred to another hospital", "Other hospital"), value: r.readmit_pct,
+  tip: `<b>${r.level}</b><br>${pct(r.readmit_pct)} readmitted<br>${fmt(r.patients)} patients` })),
+  { labelW: 170, max: 20, ticks: [0, 10, 20], tickFmt: v => v + "%", valFmt: v => pct(v), ref: P.overall_readmit });
+const p3 = P.prior.find(r => r.level === "3+"), p0 = P.prior.find(r => r.level === "0");
+const home = P.discharge.find(r => r.level === "Home"), snf = P.discharge.find(r => r.level.startsWith("Skilled"));
+$("#who-say").innerHTML = `<b>Say:</b> History and destination matter far more than diagnosis. Patients with 3+ stays in the past year come back at ${pct(p3.readmit_pct)}, versus ${pct(p0.readmit_pct)} with none. Patients sent to a nursing or care facility come back at ${pct(snf.readmit_pct)}, versus ${pct(home.readmit_pct)} sent home. Every primary-diagnosis group sits within 2 points of the ${pct(P.overall_readmit)} average. And only ${pct(P.a1c_tested_pct, 0)} had an A1C test: the gap is often whether anyone looked.`;
+
+const best = M.comparison.reduce((a, b) => b["ROC-AUC"] > a["ROC-AUC"] ? b : a);
+$("#model-tbl tbody").innerHTML = M.comparison.map(r => `<tr class="${r === best ? "best" : ""}"><td>${r.model}${r === best ? ' <span class="chip">best</span>' : ""}</td><td class="n">${fmt(r["ROC-AUC"], 3)}</td><td class="n">${fmt(r["PR-AUC"], 3)}</td><td class="n">${fmt(r["Top-decile lift"], 2)}×</td></tr>`).join("");
+hbars($("#c-dec"), M.deciles.slice().reverse().map(d => ({ label: d.decile === 10 ? "Highest risk" : d.decile === 1 ? "Lowest risk" : "Decile " + d.decile, value: d.readmit_pct,
+  color: d.decile === 10 ? "var(--s2)" : "var(--s1)", tip: `<b>Risk decile ${d.decile}</b><br>${pct(d.readmit_pct)} readmitted` })),
+  { labelW: 110, rowH: 22, max: 25, ticks: [0, 10, 20], tickFmt: v => v + "%", valFmt: v => pct(v), ref: M.base_rate });
+hbars($("#c-imp"), M.importance.slice(0, 7).map(r => ({ label: r.feature.replace("on_diabetes_meds", "On diabetes meds"), value: r.auc_drop * 100 })),
+  { labelW: 170, rowH: 26, max: 8, ticks: [0, 4, 8], tickFmt: v => v, valFmt: v => fmt(v, 1) + " pts" });
+$("#seg-tbl tbody").innerHTML = M.segments.map(s => `<tr><td>${s.rule.charAt(0).toUpperCase() + s.rule.slice(1)}</td><td class="n">${fmt(s.patients)} <span style="color:var(--muted)">(${pct(s.share_pct)})</span></td><td class="n">${pct(s.readmit_pct)}</td><td class="n">${fmt(s.x_overall, 1)}×</td><td class="n">${pct(s.heart_pct, 0)}</td></tr>`).join("");
+const nn = M.comparison.find(r => r.model.startsWith("Neural"));
+$("#model-say").innerHTML = `<b>Say:</b> All three models land between ${fmt(Math.min(...M.comparison.map(r => r["ROC-AUC"])), 2)} and ${fmt(best["ROC-AUC"], 2)} ROC-AUC, in line with published work on this data. The neural network was the weakest (${fmt(nn["ROC-AUC"], 2)}), so more flexibility doesn't buy anything here. Readmission depends on what happens after discharge, which isn't in the record. But the top 10% the ${best.model.toLowerCase()} flags come back at ${fmt(best["Top-decile lift"], 1)}× the average, enough to focus a follow-up program. The segments say the same thing in plain rules: prior stays plus a care-facility discharge.`;
+
+const SHORT = { "Biguanide (metformin)": "Metformin", "GLP-1 / GIP-GLP-1 agonist": "GLP-1 / GIP-GLP-1" };
+pairbars($("#c-mix"), K.mix.map(r => ({ label: SHORT[r.drug_class] ?? r.drug_class, a: r["1999–2008 hospital patients (%)"], b: r["2024 Medicare claims (%)"] })),
+  ["a", "b"], ["var(--s4)", "var(--s1)"], ["1999–2008", "2024"]);
+lines($("#c-share"), [
+  { name: "Share of spending", color: "var(--s2)", pts: K.by_year.map(r => ({ x: r.year, y: r.advanced_share_spend })), end: pct(K.by_year.at(-1).advanced_share_spend, 0) },
+  { name: "Share of claims", color: "var(--s1)", pts: K.by_year.map(r => ({ x: r.year, y: r.advanced_share_claims })), end: pct(K.by_year.at(-1).advanced_share_claims, 0) },
+], { H: 240 });
+const y0 = K.by_year[0], y4 = K.by_year.at(-1);
+const mixAdv = K.mix.filter(r => /GLP|SGLT2/.test(r.drug_class)).reduce((a, r) => a + r["2024 Medicare claims (%)"], 0);
+const ins = K.mix.find(r => r.drug_class === "Insulin");
+$("#now-say").innerHTML = `<b>Say:</b> In my dad's era there were no GLP-1 or SGLT2 drugs in these hospitals; insulin was ${pct(ins["1999–2008 hospital patients (%)"], 0)} of use. In 2024 those two newer classes are ${pct(mixAdv, 0)} of Medicare diabetes claims, and in five years they went from ${pct(y0.advanced_share_spend, 0)} to ${pct(y4.advanced_share_spend, 0)} of spending, but only ${pct(y0.advanced_share_claims, 0)} to ${pct(y4.advanced_share_claims, 0)} of claims. They're expensive per prescription, and most claims are still older drugs.`;
+
+const specs = K.specialties.filter(s => s.diabetes_claims >= 350000);
+// Label positions [dx, dy, anchor], set by hand so no two labels overlap
+const SPEC_LBL = { "Internal Medicine": [0, 26, "middle"], "Family Practice": [16, 4, "start"], "Nurse Practitioner": [8, -26, "start"],
+  "Physician Assistant": [0, 26, "middle"], "Endocrinology": [-4, -14, "end"], "Nephrology": [-12, 4, "end"] };
+scatter($("#c-spec"), specs.map(s => {
+  const r = 4 + Math.sqrt(s.prescribers) / 18, l = SPEC_LBL[s.specialty];
+  return { x: s.share_of_all_claims_pct, y: s.advanced_pct, r, color: s.specialty === "Endocrinology" ? "var(--s3)" : /Family|Internal|Nurse|Physician Assistant|General/.test(s.specialty) ? "var(--s2)" : "var(--s1)",
+    label: s.specialty, showLabel: true, dx: l ? l[0] : r + 4, dy: l ? l[1] : 4, anchor: l ? l[2] : "start",
+    tip: `<b>${s.specialty}</b><br>${fmt(s.prescribers)} prescribers · ${pct(s.share_of_all_claims_pct)} of claims<br>GLP-1 ${pct(s.glp1_pct)} · SGLT2 ${pct(s.sglt2_pct)}<br>Metformin + sulfonylurea ${pct(s.metformin_su_pct)}` };
+}), { xlog: true, xdom: [0.25, 45], ydom: [10, 100], xticks: [0.3, 1, 3, 10, 30], yticks: [20, 40, 60, 80, 100], xfmt: v => v + "%",
+  xlabel: "Share of all Medicare diabetes claims (log scale)", refY: K.national_advanced_pct, H: 380 });
+const st = K.states, sm = K.state_medians;
+scatter($("#c-state"), st.map(s => ({ x: s.diabetes_prev_pct, y: s.advanced_pct, r: 3 + Math.sqrt(s.adults_with_diabetes) / 120,
+  color: s.quadrant === "High burden, low adoption" ? "var(--s2)" : s.quadrant === "High burden, high adoption" ? "var(--s1)" : "var(--s4)",
+  label: s.stateabbr, showLabel: s.quadrant === "High burden, low adoption" || s.adults_with_diabetes > 2.5e6,
+  tip: `<b>${s.statedesc}</b><br>${pct(s.diabetes_prev_pct)} of adults have diabetes<br>${fmt(s.adults_with_diabetes / 1e6, 2)}M adults with diabetes<br>GLP-1 + SGLT2: ${pct(s.advanced_pct)} of claims` })),
+  { xdom: [7.5, 16.5], ydom: [29, 43], xticks: [8, 10, 12, 14, 16], yticks: [30, 34, 38, 42], xlabel: "Adults with diagnosed diabetes (CDC PLACES)", refX: sm.prev, refY: sm.adopt, H: 360 });
+const pc = K.specialties.filter(s => /Family Practice|Internal Medicine|Nurse Practitioner/.test(s.specialty));
+const pcShare = pc.reduce((a, s) => a + s.share_of_all_claims_pct, 0), endo = K.specialties.find(s => s.specialty === "Endocrinology");
+const hbla = st.filter(s => s.quadrant === "High burden, low adoption").sort((a, b) => b.adults_with_diabetes - a.adults_with_diabetes);
+$("#behind-say").innerHTML = `<b>Say:</b> Family practice, internal medicine and nurse practitioners write ${pct(pcShare, 0)} of Medicare diabetes claims, and their newer-drug share (${pc.map(s => pct(s.advanced_pct, 0)).join(", ")}) trails endocrinology (${pct(endo.advanced_pct, 0)}). Cardiology and nephrology look like leaders, but that's SGLT2 for heart failure and kidney disease. By state, burden and adoption barely move together (correlation ${fmt(sm.corr, 2)}). ${hbla.map(s => s.statedesc).join(", ")} are high-burden but below-median adoption.`;
+
+$("#pseg-tbl tbody").innerHTML = T.segments.slice().sort((a, b) => a.advanced_pct - b.advanced_pct).map(s => {
+  const h = T.segment_headroom.find(x => x.segment === s.segment);
+  return `<tr><td>${s.segment}</td><td class="n">${fmt(s.prescribers)}</td><td class="n">${pct(s.claims_share_pct)}</td><td class="n">${pct(s.advanced_pct)}</td><td class="n"><b>${pct(h.headroom_share_pct)}</b></td></tr>`;
+}).join("");
+lines($("#c-curve"), [{ name: "Share of headroom", color: "var(--s1)", pts: T.curve.map(c => ({ x: c.pct_prescribers, y: c.pct_headroom })) }],
+  { H: 250, noDots: true, diag: true, xticks: [0, 20, 40, 60, 80, 100], xfmt: v => fmt(v) + "%", tipfmt: v => pct(v, 0) + " of headroom",
+    marks: (svg, X, Y) => { el("circle", { cx: X(20), cy: Y(T.top20_share), r: 5, fill: "var(--s2)", stroke: "var(--panel)", "stroke-width": 2 }, svg);
+      txt(svg, X(20) + 10, Y(T.top20_share) + 16, `top 20% → ${pct(T.top20_share, 0)}`, "val"); } });
+hbars($("#c-hspec"), T.by_specialty.slice(0, 6).map(s => ({ label: s.specialty, value: s.headroom_share_pct,
+  color: /Family|Internal|Nurse/.test(s.specialty) ? "var(--s2)" : "var(--s1)",
+  tip: `<b>${s.specialty}</b><br>${pct(s.headroom_share_pct)} of headroom<br>${fmt(s.prescribers)} prescribers · actual ${pct(s.actual)} vs expected ${pct(s.expected)}` })),
+  { labelW: 150, rowH: 28, max: 40, ticks: [0, 20, 40], tickFmt: v => v + "%", valFmt: v => pct(v) });
+const trad = T.segment_headroom.find(s => s.segment === "Traditional orals");
+const bestP = T.model_perf.reduce((a, b) => b.R2 > a.R2 ? b : a), ridge = T.model_perf.find(m => m.model.startsWith("Ridge"));
+const pcHead = T.by_specialty.filter(s => /Family|Internal|Nurse/.test(s.specialty)).reduce((a, s) => a + s.headroom_share_pct, 0);
+$("#targets-say").innerHTML = `<b>Say:</b> The ${bestP.model.toLowerCase()} explained more of the variation than ridge (R² ${fmt(bestP.R2, 2)} vs. ${fmt(ridge.R2, 2)}), so it sets each prescriber's expected share. About ${pct(T.below_expected_pct, 0)} sit below it. The opportunity is concentrated: the top 20% of prescribers hold ${pct(T.top20_share, 0)} of the headroom, the traditional-orals segment holds ${pct(trad.headroom_share_pct, 0)}, and three primary-care specialties hold ${pct(pcHead, 0)}.`;
+
+const topStates = T.by_state.slice(0, 5).map(s => s.statedesc);
+const both = T.by_state.slice(0, 5).filter(s => s.quadrant === "High burden, low adoption").map(s => s.statedesc);
+$("#reco-list").innerHTML = [
+  ["Who", `Start with high-headroom <b>primary care prescribers in the traditional-orals segment</b>: family practice, internal medicine and nurse practitioners still writing mostly metformin and sulfonylureas. They hold ${pct(trad.headroom_share_pct, 0)} of the headroom.`],
+  ["Where", `Lead in <b>${both.join(" and ")}</b>: high diabetes burden, below-median adoption, and in the top five states for headroom (with ${topStates.filter(s => !both.includes(s)).join(", ")}).`],
+  ["What", `Lead with <b>heart and kidney outcomes</b>. ${pct(P.heart_dx_pct, 0)} of diabetic inpatients had a heart diagnosis, and the patients cycling back into hospital are exactly who those outcomes matter for.`],
+  ["Prove it", `Call on the top 20% by headroom and compare their GLP-1 + SGLT2 share against <b>matched prescribers who weren't called on</b>, so the result is causal, not a correlation.`],
+].map(([k, v], i) => `<div class="reco-item"><span class="k">${i + 1}</span><div><h3>${k}</h3><p>${v}</p></div></div>`).join("");
+</script>
