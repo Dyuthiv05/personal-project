@@ -19,9 +19,9 @@
 | # | Notebook | What it does |
 |---|---|---|
 | 01 | `01_data` | Every source: Kaggle cleaning, 4 API pulls, shared drug classifier, sample rows, privacy checks |
-| 02 | `02_part_a_patients` | SQL profiling, A1C → meds → readmission journey, three readmission models, stays per year for every patient |
+| 02 | `02_part_a_patients` | SQL profiling of who comes back, the A1C gap, three readmission models, stays per year for every patient |
 | 03 | `03_part_b_drugs` | 2013–2024 same-source trend, annual cost per patient (gross vs. negotiated) |
-| 04 | `04_part_c_value` | Time reconciliation (2026 dollars), break-even, net value, rule vs. model, GLP-1 effect needed, sensitivity |
+| 04 | `04_part_c_value` | Time reconciliation (2026 dollars), break-even, net value, rule vs. model, GLP-1 effect needed, stress tests |
 | 05 | `05_presentation` | **The presentation**: every word and chart of `docs/story.html`, previewed as Markdown |
 
 ## Data
@@ -44,7 +44,7 @@ python3 -m venv .venv && .venv/bin/pip install -r requirements.txt
 ./run_all.sh          # runs 01–05 in order; 05 writes docs/story.html
 ```
 
-About 2 minutes with cached data; the first run adds about 2 minutes of API pulls.
+About 1.5 minutes with cached data; the first run adds about 2 minutes of API pulls. Notebooks show tables only; every chart is drawn once, in the presentation.
 
 ## Limitations
 

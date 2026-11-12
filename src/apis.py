@@ -90,10 +90,6 @@ def rxclass_members(class_ids: list[str]):
     return pd.DataFrame(out)
 
 
-def save_json(obj, path: Path):
-    path.write_text(json.dumps(obj, indent=2, default=str))
-
-
 # Part D Prescribers by Geography and Drug, one dataset per year (same columns every year).
 CMS_GEO_DRUG_BY_YEAR = {
     2013: "9aec2a70-4ef2-438a-bc35-1747fe2492c9", 2014: "63099eb4-6c9e-4fec-8c9e-b6b132f1b7f4",

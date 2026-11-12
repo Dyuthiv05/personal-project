@@ -394,14 +394,6 @@
     }
   ],
   "privacy_api": {
-    "levels": {
-      "CMS Part D national": "national total per brand per year",
-      "CMS inpatient": "national total per type of stay",
-      "BLS CPI": "one national price index per month",
-      "NLM RxClass": "drug ingredients"
-    },
-    "patient_level_rows": 0,
-    "prescriber_level_rows": 0,
     "smallest_national_brand_row_patients": 11
   },
   "profile": {
@@ -526,214 +518,10 @@
           "pct_of_patients": 13.6,
           "readmit_pct": 7.3
         }
-      ],
-      "Age": [
-        {
-          "level": "<40",
-          "patients": 4500,
-          "pct_of_patients": 6.4,
-          "readmit_pct": 6.7
-        },
-        {
-          "level": "40-49",
-          "patients": 6828,
-          "pct_of_patients": 9.8,
-          "readmit_pct": 7.4
-        },
-        {
-          "level": "50-59",
-          "patients": 12351,
-          "pct_of_patients": 17.6,
-          "readmit_pct": 7.1
-        },
-        {
-          "level": "60-69",
-          "patients": 15688,
-          "pct_of_patients": 22.4,
-          "readmit_pct": 9.0
-        },
-        {
-          "level": "70-79",
-          "patients": 17749,
-          "pct_of_patients": 25.4,
-          "readmit_pct": 10.2
-        },
-        {
-          "level": "80+",
-          "patients": 12871,
-          "pct_of_patients": 18.4,
-          "readmit_pct": 10.6
-        }
-      ],
-      "Length of stay": [
-        {
-          "level": "1-2 days",
-          "patients": 22651,
-          "pct_of_patients": 32.4,
-          "readmit_pct": 7.2
-        },
-        {
-          "level": "3-4 days",
-          "patients": 21916,
-          "pct_of_patients": 31.3,
-          "readmit_pct": 8.5
-        },
-        {
-          "level": "5-7 days",
-          "patients": 15652,
-          "pct_of_patients": 22.4,
-          "readmit_pct": 10.5
-        },
-        {
-          "level": "8-14 days",
-          "patients": 9768,
-          "pct_of_patients": 14.0,
-          "readmit_pct": 11.8
-        }
-      ],
-      "A1C test": [
-        {
-          "level": "Not tested",
-          "patients": 57141,
-          "pct_of_patients": 81.6,
-          "readmit_pct": 9.1
-        },
-        {
-          "level": "Norm",
-          "patients": 3741,
-          "pct_of_patients": 5.3,
-          "readmit_pct": 8.6
-        },
-        {
-          "level": ">7",
-          "patients": 2866,
-          "pct_of_patients": 4.1,
-          "readmit_pct": 8.6
-        },
-        {
-          "level": ">8",
-          "patients": 6239,
-          "pct_of_patients": 8.9,
-          "readmit_pct": 8.2
-        }
-      ],
-      "Admitting specialty": [
-        {
-          "level": "Psychiatry",
-          "patients": 613,
-          "pct_of_patients": 0.9,
-          "readmit_pct": 11.1
-        },
-        {
-          "level": "Nephrology",
-          "patients": 797,
-          "pct_of_patients": 1.1,
-          "readmit_pct": 11.0
-        },
-        {
-          "level": "Internal medicine",
-          "patients": 10641,
-          "pct_of_patients": 15.2,
-          "readmit_pct": 9.8
-        },
-        {
-          "level": "Family / general practice",
-          "patients": 4978,
-          "pct_of_patients": 7.1,
-          "readmit_pct": 9.7
-        },
-        {
-          "level": "Pulmonology",
-          "patients": 637,
-          "pct_of_patients": 0.9,
-          "readmit_pct": 9.4
-        },
-        {
-          "level": "Unknown",
-          "patients": 33652,
-          "pct_of_patients": 48.1,
-          "readmit_pct": 9.2
-        },
-        {
-          "level": "Orthopedics",
-          "patients": 2169,
-          "pct_of_patients": 3.1,
-          "readmit_pct": 8.3
-        },
-        {
-          "level": "Other specialty",
-          "patients": 2763,
-          "pct_of_patients": 3.9,
-          "readmit_pct": 8.3
-        },
-        {
-          "level": "Surgery",
-          "patients": 3685,
-          "pct_of_patients": 5.3,
-          "readmit_pct": 8.0
-        },
-        {
-          "level": "Emergency / trauma",
-          "patients": 4393,
-          "pct_of_patients": 6.3,
-          "readmit_pct": 7.8
-        },
-        {
-          "level": "Cardiology",
-          "patients": 4207,
-          "pct_of_patients": 6.0,
-          "readmit_pct": 7.2
-        },
-        {
-          "level": "Radiology",
-          "patients": 859,
-          "pct_of_patients": 1.2,
-          "readmit_pct": 7.2
-        },
-        {
-          "level": "Obstetrics / gynecology",
-          "patients": 593,
-          "pct_of_patients": 0.8,
-          "readmit_pct": 3.7
-        }
       ]
     },
     "a1c_tested_pct": 18.4,
-    "high_a1c_changed_pct": 60.1,
-    "heart_dx_pct": 58.2,
-    "kidney_dx_pct": 10.4,
-    "classes_then": [
-      {
-        "drug_class": "Biguanide (metformin)",
-        "% of patients": 21.9,
-        "% of heart-disease patients": 20.6
-      },
-      {
-        "drug_class": "Sulfonylurea",
-        "% of patients": 29.7,
-        "% of heart-disease patients": 32.3
-      },
-      {
-        "drug_class": "Thiazolidinedione",
-        "% of patients": 14.1,
-        "% of heart-disease patients": 14.7
-      },
-      {
-        "drug_class": "Meglitinide",
-        "% of patients": 2.0,
-        "% of heart-disease patients": 2.2
-      },
-      {
-        "drug_class": "Alpha-glucosidase inhibitor",
-        "% of patients": 0.3,
-        "% of heart-disease patients": 0.3
-      },
-      {
-        "drug_class": "Insulin",
-        "% of patients": 51.0,
-        "% of heart-disease patients": 48.8
-      }
-    ]
+    "high_a1c_changed_pct": 60.1
   },
   "models": {
     "comparison": [
@@ -756,99 +544,6 @@
         "Top-decile lift": 2.005
       }
     ],
-    "cv_auc_rf": [
-      0.656,
-      0.008
-    ],
-    "base_rate": 9.0,
-    "lasso_kept": 61,
-    "lasso_total": 85,
-    "importance": [
-      {
-        "feature": "Discharged to",
-        "auc_drop": 0.074
-      },
-      {
-        "feature": "Prior hospital stays",
-        "auc_drop": 0.0226
-      },
-      {
-        "feature": "Insurance",
-        "auc_drop": 0.0073
-      },
-      {
-        "feature": "Primary diagnosis",
-        "auc_drop": 0.0066
-      },
-      {
-        "feature": "Age",
-        "auc_drop": 0.0051
-      },
-      {
-        "feature": "Number of diagnoses",
-        "auc_drop": 0.0035
-      },
-      {
-        "feature": "Lab tests",
-        "auc_drop": 0.0033
-      },
-      {
-        "feature": "Number of medications",
-        "auc_drop": 0.003
-      },
-      {
-        "feature": "on_diabetes_meds",
-        "auc_drop": 0.0026
-      },
-      {
-        "feature": "Kidney diagnosis",
-        "auc_drop": 0.0019
-      }
-    ],
-    "deciles": [
-      {
-        "decile": 1,
-        "readmit_pct": 3.1
-      },
-      {
-        "decile": 2,
-        "readmit_pct": 5.7
-      },
-      {
-        "decile": 3,
-        "readmit_pct": 5.6
-      },
-      {
-        "decile": 4,
-        "readmit_pct": 6.2
-      },
-      {
-        "decile": 5,
-        "readmit_pct": 6.9
-      },
-      {
-        "decile": 6,
-        "readmit_pct": 7.7
-      },
-      {
-        "decile": 7,
-        "readmit_pct": 9.2
-      },
-      {
-        "decile": 8,
-        "readmit_pct": 11.3
-      },
-      {
-        "decile": 9,
-        "readmit_pct": 13.3
-      },
-      {
-        "decile": 10,
-        "readmit_pct": 20.8
-      }
-    ],
-    "best_model": "Random forest",
-    "oof_auc": 0.656,
     "risk_groups": [
       {
         "risk_decile": 1,
@@ -1098,112 +793,10 @@
     "annual_cost": {
       "SGLT2 \u00b7 negotiated (2026)": 2364,
       "GLP-1 \u00b7 negotiated (2027)": 3288,
-      "SGLT2 \u00b7 gross 2024": 6481,
-      "GLP-1 \u00b7 gross 2024": 11313
+      "SGLT2 \u00b7 gross 2024": 6481
     }
   },
   "value": {
-    "assumptions": [
-      {
-        "parameter": "rrr_hospitalization",
-        "low": 0.04,
-        "base": 0.11,
-        "high": 0.18,
-        "unit": "relative reduction in all-cause hospitalization",
-        "source": "EMPA-REG OUTCOME (empagliflozin vs placebo): all-cause hospitalization HR 0.89, 95% CI 0.82-0.96 (Fitchett et al., European Heart Journal 2016)",
-        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4872285"
-      },
-      {
-        "parameter": "cost_per_admission_hcup_2018",
-        "low": "",
-        "base": 15200.0,
-        "high": "",
-        "unit": "USD per readmission in 2018 dollars (all payers)",
-        "source": "AHRQ HCUP Statistical Brief #278: average 30-day readmission cost $15,200 in 2018. Used only as a cross-check; the model uses Medicare's own 2024 payments (notebook 06)",
-        "url": "https://hcup-us.ahrq.gov/reports/statbriefs/sb278-Conditions-Frequent-Readmissions-By-Payer-2018.jsp"
-      },
-      {
-        "parameter": "price_sglt2_list_30d",
-        "low": "",
-        "base": 573.0,
-        "high": "",
-        "unit": "USD per 30-day supply",
-        "source": "Jardiance 2023 list price, CMS negotiated-price fact sheet (2026)",
-        "url": "https://cms.gov/files/document/fact-sheet-negotiated-prices-initial-price-applicability-year-2026.pdf"
-      },
-      {
-        "parameter": "price_sglt2_mfp_30d",
-        "low": "",
-        "base": 197.0,
-        "high": "",
-        "unit": "USD per 30-day supply (2026)",
-        "source": "Jardiance Medicare negotiated price effective Jan 1 2026, CMS fact sheet",
-        "url": "https://cms.gov/files/document/fact-sheet-negotiated-prices-initial-price-applicability-year-2026.pdf"
-      },
-      {
-        "parameter": "price_sglt2b_mfp_30d",
-        "low": "",
-        "base": 178.5,
-        "high": "",
-        "unit": "USD per 30-day supply (2026)",
-        "source": "Farxiga Medicare negotiated price effective Jan 1 2026 (list $556), CMS fact sheet",
-        "url": "https://cms.gov/files/document/fact-sheet-negotiated-prices-initial-price-applicability-year-2026.pdf"
-      },
-      {
-        "parameter": "price_glp1_list_30d",
-        "low": "",
-        "base": 959.0,
-        "high": "",
-        "unit": "USD per 30-day supply",
-        "source": "Ozempic/Rybelsus/Wegovy 2024 list price, CMS 2027 negotiated prices",
-        "url": "https://www.healthcaredive.com/news/medicare-price-negotiation-wegovy-ozempic-trelegy-2027/806578/"
-      },
-      {
-        "parameter": "price_glp1_mfp_30d",
-        "low": "",
-        "base": 274.0,
-        "high": "",
-        "unit": "USD per 30-day supply (2027)",
-        "source": "Semaglutide Medicare negotiated price effective Jan 1 2027 (71% below list)",
-        "url": "https://www.healthcaredive.com/news/medicare-price-negotiation-wegovy-ozempic-trelegy-2027/806578/"
-      },
-      {
-        "parameter": "future_admissions_factor",
-        "low": 0.5,
-        "base": 1.0,
-        "high": 1.0,
-        "unit": "next-year admissions as a share of past-year admissions",
-        "source": "Assumption: next year's admissions match the past 12 months (this stay + prior stays); 0.5 tests regression to the mean and lower hospital use today than in 1999-2008",
-        "url": ""
-      },
-      {
-        "parameter": "benchmark_readmission_diabetes",
-        "low": 0.16,
-        "base": 0.182,
-        "high": 0.204,
-        "unit": "30-day readmission rate of hospitalized diabetic patients (recent US studies)",
-        "source": "Rubin & Shah, Current Diabetes Reports 2021: most-inclusive rates 16.0-20.4%",
-        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8418292"
-      },
-      {
-        "parameter": "fda_first_glp1",
-        "low": "",
-        "base": 2005.0,
-        "high": "",
-        "unit": "year of first FDA approval",
-        "source": "Exenatide (Byetta), first approved 2005-04-28 (openFDA Drugs@FDA)",
-        "url": "https://api.fda.gov/drug/drugsfda.json?search=openfda.generic_name:%22exenatide%22"
-      },
-      {
-        "parameter": "fda_first_sglt2",
-        "low": "",
-        "base": 2013.0,
-        "high": "",
-        "unit": "year of first FDA approval",
-        "source": "Canagliflozin (Invokana), approved 2013-03-29 (openFDA Drugs@FDA)",
-        "url": "https://api.fda.gov/drug/drugsfda.json?search=openfda.generic_name:%22canagliflozin%22"
-      }
-    ],
     "cost": {
       "low": 12942,
       "base": 20654,
@@ -1284,8 +877,7 @@
     "first_time_net": {
       "SGLT2 \u00b7 negotiated (2026)": -92,
       "GLP-1 \u00b7 negotiated (2027)": -1016,
-      "SGLT2 \u00b7 gross 2024": -4209,
-      "GLP-1 \u00b7 gross 2024": -9041
+      "SGLT2 \u00b7 gross 2024": -4209
     },
     "rule_vs_model": [
       {
@@ -1314,14 +906,12 @@
     "annual_cost": {
       "SGLT2 \u00b7 negotiated (2026)": 2364,
       "GLP-1 \u00b7 negotiated (2027)": 3288,
-      "SGLT2 \u00b7 gross 2024": 6481,
-      "GLP-1 \u00b7 gross 2024": 11313
+      "SGLT2 \u00b7 gross 2024": 6481
     },
     "breakeven": {
       "SGLT2 \u00b7 negotiated (2026)": 1.04,
       "GLP-1 \u00b7 negotiated (2027)": 1.45,
-      "SGLT2 \u00b7 gross 2024": 2.85,
-      "GLP-1 \u00b7 gross 2024": 4.98
+      "SGLT2 \u00b7 gross 2024": 2.85
     },
     "groups": [
       {
@@ -1333,8 +923,7 @@
         "share_pct": 88.3,
         "SGLT2 \u00b7 negotiated (2026)": -92.0,
         "GLP-1 \u00b7 negotiated (2027)": -1016.0,
-        "SGLT2 \u00b7 gross 2024": -4209.0,
-        "GLP-1 \u00b7 gross 2024": -9041.0
+        "SGLT2 \u00b7 gross 2024": -4209.0
       },
       {
         "stays_group": "1 prior stay",
@@ -1345,8 +934,7 @@
         "share_pct": 8.3,
         "SGLT2 \u00b7 negotiated (2026)": 2180.0,
         "GLP-1 \u00b7 negotiated (2027)": 1256.0,
-        "SGLT2 \u00b7 gross 2024": -1937.0,
-        "GLP-1 \u00b7 gross 2024": -6769.0
+        "SGLT2 \u00b7 gross 2024": -1937.0
       },
       {
         "stays_group": "2 prior stays",
@@ -1357,8 +945,7 @@
         "share_pct": 2.1,
         "SGLT2 \u00b7 negotiated (2026)": 4452.0,
         "GLP-1 \u00b7 negotiated (2027)": 3528.0,
-        "SGLT2 \u00b7 gross 2024": 335.0,
-        "GLP-1 \u00b7 gross 2024": -4497.0
+        "SGLT2 \u00b7 gross 2024": 335.0
       },
       {
         "stays_group": "3+ prior stays",
@@ -1369,8 +956,7 @@
         "share_pct": 1.3,
         "SGLT2 \u00b7 negotiated (2026)": 8876.8,
         "GLP-1 \u00b7 negotiated (2027)": 7952.8,
-        "SGLT2 \u00b7 gross 2024": 4759.8,
-        "GLP-1 \u00b7 gross 2024": -72.2
+        "SGLT2 \u00b7 gross 2024": 4759.8
       }
     ],
     "rule": [
@@ -1400,53 +986,6 @@
         "hospital savings / yr ($)": 666530.0,
         "net / yr ($)": -92351.0,
         "cost per admission avoided ($)": 23516.0
-      },
-      {
-        "scenario": "GLP-1 \u00b7 gross 2024",
-        "qualifying per 1,000 discharges": 117.0,
-        "admissions avoided / yr": 32.0,
-        "drug cost / yr ($)": 1324675.0,
-        "hospital savings / yr ($)": 666530.0,
-        "net / yr ($)": -658145.0,
-        "cost per admission avoided ($)": 41049.0
-      }
-    ],
-    "rule_half": [
-      {
-        "scenario": "SGLT2 \u00b7 negotiated (2026)",
-        "qualifying per 1,000 discharges": 117.0,
-        "admissions avoided / yr": 16.0,
-        "drug cost / yr ($)": 276808.0,
-        "hospital savings / yr ($)": 333265.0,
-        "net / yr ($)": 56457.0,
-        "cost per admission avoided ($)": 17155.0
-      },
-      {
-        "scenario": "GLP-1 \u00b7 negotiated (2027)",
-        "qualifying per 1,000 discharges": 117.0,
-        "admissions avoided / yr": 16.0,
-        "drug cost / yr ($)": 385002.0,
-        "hospital savings / yr ($)": 333265.0,
-        "net / yr ($)": -51738.0,
-        "cost per admission avoided ($)": 23861.0
-      },
-      {
-        "scenario": "SGLT2 \u00b7 gross 2024",
-        "qualifying per 1,000 discharges": 117.0,
-        "admissions avoided / yr": 16.0,
-        "drug cost / yr ($)": 758881.0,
-        "hospital savings / yr ($)": 333265.0,
-        "net / yr ($)": -425616.0,
-        "cost per admission avoided ($)": 47032.0
-      },
-      {
-        "scenario": "GLP-1 \u00b7 gross 2024",
-        "qualifying per 1,000 discharges": 117.0,
-        "admissions avoided / yr": 16.0,
-        "drug cost / yr ($)": 1324675.0,
-        "hospital savings / yr ($)": 333265.0,
-        "net / yr ($)": -991410.0,
-        "cost per admission avoided ($)": 82098.0
       }
     ],
     "qualifying": {
@@ -1509,53 +1048,6 @@
         "future = 50% of past": 443.0,
         "gross 2024 price": -867.0
       }
-    },
-    "grid": {
-      "rrr": [
-        0.04,
-        0.08,
-        0.11,
-        0.14,
-        0.18
-      ],
-      "cost": [
-        12900,
-        16000,
-        20700,
-        25000
-      ],
-      "values": [
-        [
-          0.6,
-          1.3,
-          3.4,
-          3.4
-        ],
-        [
-          3.4,
-          11.7,
-          11.7,
-          11.7
-        ],
-        [
-          11.7,
-          11.7,
-          11.7,
-          100.0
-        ],
-        [
-          11.7,
-          11.7,
-          100.0,
-          100.0
-        ],
-        [
-          11.7,
-          100.0,
-          100.0,
-          100.0
-        ]
-      ]
     }
   }
 }

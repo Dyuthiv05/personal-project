@@ -98,14 +98,6 @@ footer { padding-top: 28px; font-size: 13px; color: var(--muted); display: grid;
 .refs { font-size: 13px; color: var(--muted); display: grid; gap: 3px; }
 .refs ol { margin: 0; padding-left: 20px; display: grid; gap: 3px; }
 
-.flow { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; align-items: stretch; }
-.node { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px; display: grid; gap: 4px; align-content: start; font-size: 13.5px; }
-.node b { font-size: 14px; }
-.node .k { font: 500 11px/1.3 var(--mono); color: var(--accent); }
-.node.dl { border-style: dashed; }
-.joins { display: grid; gap: 6px; font-size: 14px; }
-.joins div { display: grid; grid-template-columns: minmax(120px, 190px) minmax(0, 1fr); gap: 12px; }
-.joins span:first-child { font: 500 12px/1.5 var(--mono); color: var(--accent); }
 
 .tabs { display: flex; flex-wrap: wrap; gap: 6px; }
 .tabs button { font: 600 13px var(--sans); color: var(--ink2); background: var(--panel); border: 1px solid var(--line); border-radius: 999px; padding: 7px 12px; cursor: pointer; }
@@ -135,7 +127,6 @@ td.sup { color: var(--muted); font-style: italic; font-family: var(--sans) !impo
 .callout.plain p { font-family: var(--sans); font-size: 16px; }
 .verdict { font: 600 11px/1 var(--mono); padding: 4px 8px; border-radius: 999px; background: var(--accent-soft); color: var(--good); white-space: nowrap; }
 .verdict.no { color: var(--warn); }
-.appendix-head { padding-top: 56px; display: grid; gap: 6px; }
 #tip { position: fixed; pointer-events: none; z-index: 20; background: var(--ink); color: var(--bg); font-size: 12.5px; line-height: 1.4;
   padding: 7px 10px; border-radius: 6px; max-width: 260px; opacity: 0; transition: opacity .1s; }
 #tip b { font-weight: 700; }
@@ -225,20 +216,6 @@ function lines(svg, series, o) {
   });
   hit.addEventListener("pointerleave", () => { cross.setAttribute("opacity", 0); hideTip(); });
 }
-function scatter(svg, pts, o) {
-  const W = 620, H = o.H ?? 360, L = 46, R = 20, T = 14, B = 40;
-  svg.setAttribute("viewBox", `0 0 ${W} ${H}`);
-  const tx = v => o.xlog ? Math.log10(v) : v, [x0, x1] = o.xdom.map(tx), [y0, y1] = o.ydom;
-  const X = v => L + (W - L - R) * (tx(v) - x0) / (x1 - x0), Y = v => T + (H - T - B) * (1 - (v - y0) / (y1 - y0));
-  o.yticks.forEach(t => { el("line", { x1: L, x2: W - R, y1: Y(t), y2: Y(t), class: "gridl" }, svg); txt(svg, L - 8, Y(t) + 4, F(t, o.yFmt), "ax", { "text-anchor": "end" }); });
-  o.xticks.forEach(t => txt(svg, X(t), H - 22, F(t, o.xFmt), "ax", { "text-anchor": "middle" }));
-  txt(svg, (L + W - R) / 2, H - 4, o.xlabel, "ax", { "text-anchor": "middle" });
-  el("line", { x1: L, x2: W - R, y1: H - B, y2: H - B, class: "base" }, svg);
-  if (o.refY != null) el("line", { x1: L, x2: W - R, y1: Y(o.refY), y2: Y(o.refY), class: "ref" }, svg);
-  if (o.refX != null) el("line", { x1: X(o.refX), x2: X(o.refX), y1: T, y2: H - B, class: "ref" }, svg);
-  [...pts].sort((a, b) => b.r - a.r).forEach(p => hover(el("circle", { cx: X(p.x), cy: Y(p.y), r: p.r, fill: col(p.color), "fill-opacity": 0.85, stroke: "var(--panel)", "stroke-width": 2 }, svg), p.tip));
-  pts.filter(p => p.showLabel).forEach(p => txt(svg, X(p.x) + (p.dx ?? p.r + 4), Y(p.y) + (p.dy ?? 4), p.label, "lbl", { "text-anchor": p.anchor ?? "start" }));
-}
 function hgroup(svg, rows, o) {
   const W = 620, lw = o.labelW ?? 150, n = o.names.length, bh = 11, rh = n * (bh + 3) + 14, top = 4, H = top + rows.length * rh + 24;
   svg.setAttribute("viewBox", `0 0 ${W} ${H}`);
@@ -271,7 +248,7 @@ function tornado(svg, rows, o) {
     hover(el("rect", { x: 0, y, width: W, height: rh, class: "hit" }, svg), r.tip);
   });
 }
-const CHARTS = { hbars, pairbars, lines, scatter, hgroup, tornado };
+const CHARTS = { hbars, pairbars, lines, hgroup, tornado };
 
 /* ---------- blocks ---------- */
 const legend = items => items ? `<div class="legend">${items.map(i => `<span><i style="background:${col(i.color)}"></i>${i.label}</span>`).join("")}</div>` : "";
@@ -285,7 +262,6 @@ function block(b) {
     case "p": return `<p class="${b.cls ?? ""}">${b.html}</p>`;
     case "h3": return `<h3>${b.html}</h3>`;
     case "callout": return `<div class="callout ${b.plain ? "plain" : ""}">${b.title ? `<span class="t">${b.title}</span>` : ""}<p>${b.html}</p></div>`;
-    case "appendix": return "";
     case "say": return `<div class="say"><b>Say:</b> ${b.html}</div>`;
     case "list": return `<div class="how">${b.title ? `<h3>${b.title}</h3>` : ""}<ul>${b.items.map(i => `<li>${i}</li>`).join("")}</ul></div>`;
     case "text": return `<div class="how"><h3>${b.title}</h3><p>${b.html}</p></div>`;
@@ -296,8 +272,6 @@ function block(b) {
       return `<div class="chart"><h3>${b.title}</h3>${b.sub ? `<span class="sub">${b.sub}</span>` : ""}${legend(b.legend)}<svg id="${id}"></svg></div>`; }
     case "issues": return `<div class="issue">${b.items.map(q => `<div class="issue-q"><span class="k">${q.k}</span><b>${q.q}</b><span class="m">${q.how}</span><span class="m">${q.where}${q.verdict ? ` <span class="verdict ${q.ok === false ? "no" : ""}">${q.verdict}</span>` : ""}</span></div>`).join("")}</div>`;
     case "refs": return `<div class="refs"><span>Sources</span><ol>${b.items.map(r => `<li>${r}</li>`).join("")}</ol></div>`;
-    case "flow": return `<div class="flow">${b.nodes.map(n => `<div class="node ${n.downloaded ? "dl" : ""}"><span class="k">${n.k}</span><b>${n.title}</b><span>${n.text}</span></div>`).join("")}</div>
-      <div class="joins">${b.joins.map(j => `<div><span>${j.key}</span><span>${j.text}</span></div>`).join("")}</div>`;
     case "viewer": { const id = "v" + viewers.length; viewers.push([id, b]);
       return `<div class="tabs" role="tablist" id="${id}-tabs"></div><div class="viewer" id="${id}" role="tabpanel"></div>`; }
     case "privacy": return `<div class="privacy"><h3>${b.title}</h3><p>${b.html}</p>${tableHTML(b.table)}<div class="how"><ul>${b.bullets.map(x => `<li>${x}</li>`).join("")}</ul></div></div>`;
@@ -323,8 +297,7 @@ $("#page").innerHTML = `
     <p class="opener">${P.opener}<small>${P.opener_note}</small></p>
     <nav class="agenda" aria-label="Sections">${P.sections.map(s => `<a href="#${s.id}">${s.nav}</a>`).join("")}</nav>
   </header>
-  ${P.sections.map(s => (s.appendix_start ? `<div class="appendix-head"><span class="eyebrow">Appendix</span><p>${P.appendix_note}</p></div>` : "") +
-    `<section class="slide" id="${s.id}"><div class="slide-head"><h2>${s.title}</h2><span class="time">${s.time}</span></div>${s.blocks.map(block).join("")}</section>`).join("")}
+  ${P.sections.map(s => `<section class="slide" id="${s.id}"><div class="slide-head"><h2>${s.title}</h2><span class="time">${s.time}</span></div>${s.blocks.map(block).join("")}</section>`).join("")}
   <footer>${P.footer.map(f => `<span>${f}</span>`).join("")}</footer>`;
 chartQueue.forEach(([id, b]) => CHARTS[b.kind]($("#" + id), b.data, b.opts));
 viewers.forEach(([id, b]) => {
