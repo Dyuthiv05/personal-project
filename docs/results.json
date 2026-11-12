@@ -55,6 +55,11 @@
       "kind": "API"
     },
     {
+      "name": "CMS Part D Prescribers by Geography & Drug, national, 2013\u20132024",
+      "rows": 1404,
+      "kind": "API"
+    },
+    {
       "name": "openFDA Drugs@FDA (approval dates)",
       "rows": 19,
       "kind": "API"
@@ -700,385 +705,112 @@
         "avg_age": 62.0
       }
     ],
-    "best_model": "Random forest"
+    "best_model": "Random forest",
+    "oof_auc": 0.656,
+    "risk_groups": [
+      {
+        "risk_decile": 1,
+        "patients": 6999,
+        "readmit_30_pct": 3.3,
+        "any_readmit_pct": 22.1,
+        "admits_past_12m": 1.0,
+        "prior_stay_pct": 0.0,
+        "heart_pct": 35.7,
+        "kidney_pct": 0.4
+      },
+      {
+        "risk_decile": 2,
+        "patients": 6999,
+        "readmit_30_pct": 5.1,
+        "any_readmit_pct": 30.2,
+        "admits_past_12m": 1.0,
+        "prior_stay_pct": 0.2,
+        "heart_pct": 50.3,
+        "kidney_pct": 2.2
+      },
+      {
+        "risk_decile": 3,
+        "patients": 6998,
+        "readmit_30_pct": 5.7,
+        "any_readmit_pct": 34.6,
+        "admits_past_12m": 1.01,
+        "prior_stay_pct": 1.0,
+        "heart_pct": 56.7,
+        "kidney_pct": 3.7
+      },
+      {
+        "risk_decile": 4,
+        "patients": 6999,
+        "readmit_30_pct": 6.4,
+        "any_readmit_pct": 38.3,
+        "admits_past_12m": 1.02,
+        "prior_stay_pct": 2.0,
+        "heart_pct": 60.6,
+        "kidney_pct": 7.6
+      },
+      {
+        "risk_decile": 5,
+        "patients": 6999,
+        "readmit_30_pct": 6.5,
+        "any_readmit_pct": 40.0,
+        "admits_past_12m": 1.04,
+        "prior_stay_pct": 4.3,
+        "heart_pct": 64.2,
+        "kidney_pct": 10.4
+      },
+      {
+        "risk_decile": 6,
+        "patients": 6998,
+        "readmit_30_pct": 8.4,
+        "any_readmit_pct": 42.3,
+        "admits_past_12m": 1.09,
+        "prior_stay_pct": 8.4,
+        "heart_pct": 64.8,
+        "kidney_pct": 14.0
+      },
+      {
+        "risk_decile": 7,
+        "patients": 6999,
+        "readmit_30_pct": 9.6,
+        "any_readmit_pct": 46.0,
+        "admits_past_12m": 1.15,
+        "prior_stay_pct": 13.4,
+        "heart_pct": 65.5,
+        "kidney_pct": 16.8
+      },
+      {
+        "risk_decile": 8,
+        "patients": 6998,
+        "readmit_30_pct": 11.0,
+        "any_readmit_pct": 49.2,
+        "admits_past_12m": 1.24,
+        "prior_stay_pct": 20.4,
+        "heart_pct": 62.6,
+        "kidney_pct": 17.6
+      },
+      {
+        "risk_decile": 9,
+        "patients": 6999,
+        "readmit_30_pct": 13.3,
+        "any_readmit_pct": 50.1,
+        "admits_past_12m": 1.43,
+        "prior_stay_pct": 28.9,
+        "heart_pct": 57.6,
+        "kidney_pct": 17.1
+      },
+      {
+        "risk_decile": 10,
+        "patients": 6999,
+        "readmit_30_pct": 20.4,
+        "any_readmit_pct": 54.6,
+        "admits_past_12m": 1.77,
+        "prior_stay_pct": 38.4,
+        "heart_pct": 64.2,
+        "kidney_pct": 14.4
+      }
+    ]
   },
   "market": {
-    "by_year": [
-      {
-        "year": 2020,
-        "advanced_share_spend": 33.0,
-        "advanced_share_claims": 11.5,
-        "total_spend_$B": 34.0
-      },
-      {
-        "year": 2021,
-        "advanced_share_spend": 41.2,
-        "advanced_share_claims": 15.0,
-        "total_spend_$B": 39.4
-      },
-      {
-        "year": 2022,
-        "advanced_share_spend": 50.6,
-        "advanced_share_claims": 19.8,
-        "total_spend_$B": 46.6
-      },
-      {
-        "year": 2023,
-        "advanced_share_spend": 60.9,
-        "advanced_share_claims": 27.4,
-        "total_spend_$B": 60.4
-      },
-      {
-        "year": 2024,
-        "advanced_share_spend": 76.0,
-        "advanced_share_claims": 33.3,
-        "total_spend_$B": 59.9
-      }
-    ],
-    "spend_by_class": [
-      {
-        "year": 2020,
-        "drug_class": "Alpha-glucosidase inhibitor",
-        "spend": 10722866.7,
-        "claims": 185085.0
-      },
-      {
-        "year": 2020,
-        "drug_class": "Amylin analog",
-        "spend": 7885366.459999999,
-        "claims": 3877.0
-      },
-      {
-        "year": 2020,
-        "drug_class": "Biguanide (metformin)",
-        "spend": 644453318.01,
-        "claims": 31893746.0
-      },
-      {
-        "year": 2020,
-        "drug_class": "DPP-4 inhibitor",
-        "spend": 6626005596.14,
-        "claims": 8421986.0
-      },
-      {
-        "year": 2020,
-        "drug_class": "GLP-1 / GIP-GLP-1 agonist",
-        "spend": 7216574629.23,
-        "claims": 6018487.0
-      },
-      {
-        "year": 2020,
-        "drug_class": "Insulin",
-        "spend": 15167240616.74,
-        "claims": 23597538.0
-      },
-      {
-        "year": 2020,
-        "drug_class": "Meglitinide",
-        "spend": 43742060.22,
-        "claims": 521095.0
-      },
-      {
-        "year": 2020,
-        "drug_class": "SGLT2 inhibitor",
-        "spend": 3989944227.2999997,
-        "claims": 4530866.0
-      },
-      {
-        "year": 2020,
-        "drug_class": "Sulfonylurea",
-        "spend": 197169888.27,
-        "claims": 14026461.0
-      },
-      {
-        "year": 2020,
-        "drug_class": "Thiazolidinedione",
-        "spend": 72985559.72,
-        "claims": 2858790.0
-      },
-      {
-        "year": 2021,
-        "drug_class": "Alpha-glucosidase inhibitor",
-        "spend": 11096098.350000001,
-        "claims": 181292.0
-      },
-      {
-        "year": 2021,
-        "drug_class": "Amylin analog",
-        "spend": 6163899.1,
-        "claims": 3114.0
-      },
-      {
-        "year": 2021,
-        "drug_class": "Biguanide (metformin)",
-        "spend": 625120629.61,
-        "claims": 32052114.0
-      },
-      {
-        "year": 2021,
-        "drug_class": "DPP-4 inhibitor",
-        "spend": 6877932478.67,
-        "claims": 8001419.0
-      },
-      {
-        "year": 2021,
-        "drug_class": "GLP-1 / GIP-GLP-1 agonist",
-        "spend": 10194232321.660002,
-        "claims": 7885425.0
-      },
-      {
-        "year": 2021,
-        "drug_class": "Insulin",
-        "spend": 15335920697.55,
-        "claims": 22589761.0
-      },
-      {
-        "year": 2021,
-        "drug_class": "Meglitinide",
-        "spend": 35851230.650000006,
-        "claims": 505029.0
-      },
-      {
-        "year": 2021,
-        "drug_class": "SGLT2 inhibitor",
-        "spend": 6008398194.01,
-        "claims": 6277297.0
-      },
-      {
-        "year": 2021,
-        "drug_class": "Sulfonylurea",
-        "spend": 193696129.83,
-        "claims": 13834856.0
-      },
-      {
-        "year": 2021,
-        "drug_class": "Thiazolidinedione",
-        "spend": 68547347.58,
-        "claims": 2949843.0
-      },
-      {
-        "year": 2022,
-        "drug_class": "Alpha-glucosidase inhibitor",
-        "spend": 10670328.44,
-        "claims": 175847.0
-      },
-      {
-        "year": 2022,
-        "drug_class": "Amylin analog",
-        "spend": 4746984.8,
-        "claims": 2351.0
-      },
-      {
-        "year": 2022,
-        "drug_class": "Biguanide (metformin)",
-        "spend": 706393600.98,
-        "claims": 32861107.0
-      },
-      {
-        "year": 2022,
-        "drug_class": "DPP-4 inhibitor",
-        "spend": 6898568911.49,
-        "claims": 7501633.0
-      },
-      {
-        "year": 2022,
-        "drug_class": "GLP-1 / GIP-GLP-1 agonist",
-        "spend": 14206699695.33,
-        "claims": 10406887.0
-      },
-      {
-        "year": 2022,
-        "drug_class": "Insulin",
-        "spend": 15130415653.36,
-        "claims": 21894707.0
-      },
-      {
-        "year": 2022,
-        "drug_class": "Meglitinide",
-        "spend": 33262092.56,
-        "claims": 493180.0
-      },
-      {
-        "year": 2022,
-        "drug_class": "SGLT2 inhibitor",
-        "spend": 9376953502.8,
-        "claims": 9243919.0
-      },
-      {
-        "year": 2022,
-        "drug_class": "Sulfonylurea",
-        "spend": 190826984.27,
-        "claims": 13424542.0
-      },
-      {
-        "year": 2022,
-        "drug_class": "Thiazolidinedione",
-        "spend": 66079565.239999995,
-        "claims": 3052157.0
-      },
-      {
-        "year": 2023,
-        "drug_class": "Alpha-glucosidase inhibitor",
-        "spend": 10360963.58,
-        "claims": 171467.0
-      },
-      {
-        "year": 2023,
-        "drug_class": "Amylin analog",
-        "spend": 4050755.63,
-        "claims": 1978.0
-      },
-      {
-        "year": 2023,
-        "drug_class": "Biguanide (metformin)",
-        "spend": 903259892.9200001,
-        "claims": 33397893.0
-      },
-      {
-        "year": 2023,
-        "drug_class": "DPP-4 inhibitor",
-        "spend": 6799506314.36,
-        "claims": 7007956.0
-      },
-      {
-        "year": 2023,
-        "drug_class": "GLP-1 / GIP-GLP-1 agonist",
-        "spend": 22606161459.34,
-        "claims": 16553166.0
-      },
-      {
-        "year": 2023,
-        "drug_class": "Insulin",
-        "spend": 15558777626.17,
-        "claims": 22156725.0
-      },
-      {
-        "year": 2023,
-        "drug_class": "Meglitinide",
-        "spend": 33349954.35,
-        "claims": 489443.0
-      },
-      {
-        "year": 2023,
-        "drug_class": "SGLT2 inhibitor",
-        "spend": 14176734594.439999,
-        "claims": 13367836.0
-      },
-      {
-        "year": 2023,
-        "drug_class": "Sulfonylurea",
-        "spend": 211357438.66,
-        "claims": 12955908.0
-      },
-      {
-        "year": 2023,
-        "drug_class": "Thiazolidinedione",
-        "spend": 75052174.5,
-        "claims": 3125446.0
-      },
-      {
-        "year": 2024,
-        "drug_class": "Alpha-glucosidase inhibitor",
-        "spend": 6968771.75,
-        "claims": 176478.0
-      },
-      {
-        "year": 2024,
-        "drug_class": "Amylin analog",
-        "spend": 3369157.77,
-        "claims": 1579.0
-      },
-      {
-        "year": 2024,
-        "drug_class": "Biguanide (metformin)",
-        "spend": 717442090.56,
-        "claims": 34715043.0
-      },
-      {
-        "year": 2024,
-        "drug_class": "DPP-4 inhibitor",
-        "spend": 6162370045.610001,
-        "claims": 6905291.0
-      },
-      {
-        "year": 2024,
-        "drug_class": "GLP-1 / GIP-GLP-1 agonist",
-        "spend": 27603120671.09,
-        "claims": 21952543.0
-      },
-      {
-        "year": 2024,
-        "drug_class": "Insulin",
-        "spend": 7275535339.8,
-        "claims": 22183900.0
-      },
-      {
-        "year": 2024,
-        "drug_class": "Meglitinide",
-        "spend": 20179396.78,
-        "claims": 509876.0
-      },
-      {
-        "year": 2024,
-        "drug_class": "SGLT2 inhibitor",
-        "spend": 17895219534.35,
-        "claims": 18362501.0
-      },
-      {
-        "year": 2024,
-        "drug_class": "Sulfonylurea",
-        "spend": 148208905.35999998,
-        "claims": 12889333.0
-      },
-      {
-        "year": 2024,
-        "drug_class": "Thiazolidinedione",
-        "spend": 48436815.82,
-        "claims": 3270863.0
-      }
-    ],
-    "mix": [
-      {
-        "drug_class": "Biguanide (metformin)",
-        "1999\u20132008 hospital patients (%)": 18.4,
-        "2024 Medicare claims (%)": 31.9
-      },
-      {
-        "drug_class": "Sulfonylurea",
-        "1999\u20132008 hospital patients (%)": 24.9,
-        "2024 Medicare claims (%)": 10.6
-      },
-      {
-        "drug_class": "Thiazolidinedione",
-        "1999\u20132008 hospital patients (%)": 11.9,
-        "2024 Medicare claims (%)": 2.7
-      },
-      {
-        "drug_class": "Meglitinide",
-        "1999\u20132008 hospital patients (%)": 1.7,
-        "2024 Medicare claims (%)": 0.3
-      },
-      {
-        "drug_class": "Insulin",
-        "1999\u20132008 hospital patients (%)": 42.9,
-        "2024 Medicare claims (%)": 14.5
-      },
-      {
-        "drug_class": "DPP-4 inhibitor",
-        "1999\u20132008 hospital patients (%)": 0.0,
-        "2024 Medicare claims (%)": 5.2
-      },
-      {
-        "drug_class": "SGLT2 inhibitor",
-        "1999\u20132008 hospital patients (%)": 0.0,
-        "2024 Medicare claims (%)": 15.8
-      },
-      {
-        "drug_class": "GLP-1 / GIP-GLP-1 agonist",
-        "1999\u20132008 hospital patients (%)": 0.0,
-        "2024 Medicare claims (%)": 18.9
-      }
-    ],
     "specialties": [
       {
         "specialty": "Family Practice",
@@ -1203,16 +935,6 @@
     ],
     "national_advanced_pct": 34.7,
     "states": [
-      {
-        "stateabbr": "UT",
-        "statedesc": "Utah",
-        "adults_with_diabetes": 211619.11800000002,
-        "diabetes_prev_pct": 8.5,
-        "obesity_prev_pct": 31.0,
-        "diabetes_claims": 715686.0,
-        "advanced_pct": 32.9,
-        "quadrant": "Low burden, low adoption"
-      },
       {
         "stateabbr": "FL",
         "statedesc": "Florida",
@@ -1464,6 +1186,116 @@
         "quadrant": "High burden, low adoption"
       },
       {
+        "stateabbr": "UT",
+        "statedesc": "Utah",
+        "adults_with_diabetes": 211619.11800000002,
+        "diabetes_prev_pct": 8.5,
+        "obesity_prev_pct": 31.0,
+        "diabetes_claims": 715686.0,
+        "advanced_pct": 32.9,
+        "quadrant": "Low burden, low adoption"
+      },
+      {
+        "stateabbr": "AR",
+        "statedesc": "Arkansas",
+        "adults_with_diabetes": 313534.40600000013,
+        "diabetes_prev_pct": 13.3,
+        "obesity_prev_pct": 39.3,
+        "diabetes_claims": 1350358.0,
+        "advanced_pct": 34.0,
+        "quadrant": "High burden, high adoption"
+      },
+      {
+        "stateabbr": "CA",
+        "statedesc": "California",
+        "adults_with_diabetes": 3571061.071,
+        "diabetes_prev_pct": 11.7,
+        "obesity_prev_pct": 27.8,
+        "diabetes_claims": 12210639.0,
+        "advanced_pct": 31.2,
+        "quadrant": "Low burden, low adoption"
+      },
+      {
+        "stateabbr": "NH",
+        "statedesc": "New Hampshire",
+        "adults_with_diabetes": 108121.46799999998,
+        "diabetes_prev_pct": 9.4,
+        "obesity_prev_pct": 31.8,
+        "diabetes_claims": 419547.0,
+        "advanced_pct": 31.6,
+        "quadrant": "Low burden, low adoption"
+      },
+      {
+        "stateabbr": "SD",
+        "statedesc": "South Dakota",
+        "adults_with_diabetes": 81379.02100000002,
+        "diabetes_prev_pct": 11.7,
+        "obesity_prev_pct": 35.9,
+        "diabetes_claims": 310004.0,
+        "advanced_pct": 32.6,
+        "quadrant": "Low burden, low adoption"
+      },
+      {
+        "stateabbr": "HI",
+        "statedesc": "Hawaii",
+        "adults_with_diabetes": 141227.731,
+        "diabetes_prev_pct": 12.4,
+        "obesity_prev_pct": 25.6,
+        "diabetes_claims": 389426.0,
+        "advanced_pct": 35.6,
+        "quadrant": "High burden, high adoption"
+      },
+      {
+        "stateabbr": "IL",
+        "statedesc": "Illinois",
+        "adults_with_diabetes": 1146933.8730000001,
+        "diabetes_prev_pct": 11.7,
+        "obesity_prev_pct": 34.0,
+        "diabetes_claims": 4323048.0,
+        "advanced_pct": 31.2,
+        "quadrant": "Low burden, low adoption"
+      },
+      {
+        "stateabbr": "MO",
+        "statedesc": "Missouri",
+        "adults_with_diabetes": 582795.4400000001,
+        "diabetes_prev_pct": 12.1,
+        "obesity_prev_pct": 36.6,
+        "diabetes_claims": 2599130.0,
+        "advanced_pct": 34.4,
+        "quadrant": "High burden, high adoption"
+      },
+      {
+        "stateabbr": "TN",
+        "statedesc": "Tennessee",
+        "adults_with_diabetes": 756520.8249999998,
+        "diabetes_prev_pct": 13.6,
+        "obesity_prev_pct": 37.6,
+        "diabetes_claims": 2887263.0,
+        "advanced_pct": 35.4,
+        "quadrant": "High burden, high adoption"
+      },
+      {
+        "stateabbr": "VT",
+        "statedesc": "Vermont",
+        "adults_with_diabetes": 46906.11699999999,
+        "diabetes_prev_pct": 8.8,
+        "obesity_prev_pct": 28.6,
+        "diabetes_claims": 186521.0,
+        "advanced_pct": 35.4,
+        "quadrant": "Low burden, high adoption"
+      },
+      {
+        "stateabbr": "WI",
+        "statedesc": "Wisconsin",
+        "adults_with_diabetes": 532386.093,
+        "diabetes_prev_pct": 11.4,
+        "obesity_prev_pct": 37.7,
+        "diabetes_claims": 2096453.0,
+        "advanced_pct": 31.1,
+        "quadrant": "Low burden, low adoption"
+      },
+      {
         "stateabbr": "AK",
         "statedesc": "Alaska",
         "adults_with_diabetes": 52679.365,
@@ -1534,106 +1366,6 @@
         "quadrant": "Low burden, low adoption"
       },
       {
-        "stateabbr": "HI",
-        "statedesc": "Hawaii",
-        "adults_with_diabetes": 141227.731,
-        "diabetes_prev_pct": 12.4,
-        "obesity_prev_pct": 25.6,
-        "diabetes_claims": 389426.0,
-        "advanced_pct": 35.6,
-        "quadrant": "High burden, high adoption"
-      },
-      {
-        "stateabbr": "IL",
-        "statedesc": "Illinois",
-        "adults_with_diabetes": 1146933.8730000001,
-        "diabetes_prev_pct": 11.7,
-        "obesity_prev_pct": 34.0,
-        "diabetes_claims": 4323048.0,
-        "advanced_pct": 31.2,
-        "quadrant": "Low burden, low adoption"
-      },
-      {
-        "stateabbr": "MO",
-        "statedesc": "Missouri",
-        "adults_with_diabetes": 582795.4400000001,
-        "diabetes_prev_pct": 12.1,
-        "obesity_prev_pct": 36.6,
-        "diabetes_claims": 2599130.0,
-        "advanced_pct": 34.4,
-        "quadrant": "High burden, high adoption"
-      },
-      {
-        "stateabbr": "TN",
-        "statedesc": "Tennessee",
-        "adults_with_diabetes": 756520.8249999998,
-        "diabetes_prev_pct": 13.6,
-        "obesity_prev_pct": 37.6,
-        "diabetes_claims": 2887263.0,
-        "advanced_pct": 35.4,
-        "quadrant": "High burden, high adoption"
-      },
-      {
-        "stateabbr": "VT",
-        "statedesc": "Vermont",
-        "adults_with_diabetes": 46906.11699999999,
-        "diabetes_prev_pct": 8.8,
-        "obesity_prev_pct": 28.6,
-        "diabetes_claims": 186521.0,
-        "advanced_pct": 35.4,
-        "quadrant": "Low burden, high adoption"
-      },
-      {
-        "stateabbr": "WI",
-        "statedesc": "Wisconsin",
-        "adults_with_diabetes": 532386.093,
-        "diabetes_prev_pct": 11.4,
-        "obesity_prev_pct": 37.7,
-        "diabetes_claims": 2096453.0,
-        "advanced_pct": 31.1,
-        "quadrant": "Low burden, low adoption"
-      },
-      {
-        "stateabbr": "AR",
-        "statedesc": "Arkansas",
-        "adults_with_diabetes": 313534.40600000013,
-        "diabetes_prev_pct": 13.3,
-        "obesity_prev_pct": 39.3,
-        "diabetes_claims": 1350358.0,
-        "advanced_pct": 34.0,
-        "quadrant": "High burden, high adoption"
-      },
-      {
-        "stateabbr": "CA",
-        "statedesc": "California",
-        "adults_with_diabetes": 3571061.071,
-        "diabetes_prev_pct": 11.7,
-        "obesity_prev_pct": 27.8,
-        "diabetes_claims": 12210639.0,
-        "advanced_pct": 31.2,
-        "quadrant": "Low burden, low adoption"
-      },
-      {
-        "stateabbr": "NH",
-        "statedesc": "New Hampshire",
-        "adults_with_diabetes": 108121.46799999998,
-        "diabetes_prev_pct": 9.4,
-        "obesity_prev_pct": 31.8,
-        "diabetes_claims": 419547.0,
-        "advanced_pct": 31.6,
-        "quadrant": "Low burden, low adoption"
-      },
-      {
-        "stateabbr": "SD",
-        "statedesc": "South Dakota",
-        "adults_with_diabetes": 81379.02100000002,
-        "diabetes_prev_pct": 11.7,
-        "obesity_prev_pct": 35.9,
-        "diabetes_claims": 310004.0,
-        "advanced_pct": 32.6,
-        "quadrant": "Low burden, low adoption"
-      },
-      {
         "stateabbr": "IA",
         "statedesc": "Iowa",
         "adults_with_diabetes": 278124.95900000015,
@@ -1698,9 +1430,7 @@
       "prev": 11.7,
       "adopt": 33.9,
       "corr": 0.21
-    },
-    "total_prescribers": 316488,
-    "total_claims": 104161483.0
+    }
   },
   "targeting": {
     "prescribers_kept": 184034,
@@ -2029,7 +1759,7 @@
       },
       {
         "pct_prescribers": 2.0,
-        "pct_headroom": 21.30075508248214
+        "pct_headroom": 21.300755082482144
       },
       {
         "pct_prescribers": 4.0,
@@ -2045,15 +1775,15 @@
       },
       {
         "pct_prescribers": 10.0,
-        "pct_headroom": 54.4283453347411
+        "pct_headroom": 54.42834533474111
       },
       {
         "pct_prescribers": 12.0,
-        "pct_headroom": 59.82336842502168
+        "pct_headroom": 59.82336842502169
       },
       {
         "pct_prescribers": 14.0,
-        "pct_headroom": 64.62613447847698
+        "pct_headroom": 64.626134478477
       },
       {
         "pct_prescribers": 16.0,
@@ -2684,5 +2414,980 @@
     "state_min_prescribers_per_row": 1,
     "county_min_adults": 75,
     "patient_level_rows": 0
+  },
+  "trend": [
+    {
+      "year": 2013,
+      "claims_M": 75.1,
+      "cost_B": 10.4,
+      "newer_share_claims": 1.5,
+      "newer_share_cost": 5.4
+    },
+    {
+      "year": 2014,
+      "claims_M": 80.8,
+      "cost_B": 14.0,
+      "newer_share_claims": 2.1,
+      "newer_share_cost": 6.7
+    },
+    {
+      "year": 2015,
+      "claims_M": 84.2,
+      "cost_B": 17.4,
+      "newer_share_claims": 3.2,
+      "newer_share_cost": 9.3
+    },
+    {
+      "year": 2016,
+      "claims_M": 87.6,
+      "cost_B": 20.2,
+      "newer_share_claims": 4.3,
+      "newer_share_cost": 12.5
+    },
+    {
+      "year": 2017,
+      "claims_M": 89.2,
+      "cost_B": 23.1,
+      "newer_share_claims": 5.5,
+      "newer_share_cost": 16.5
+    },
+    {
+      "year": 2018,
+      "claims_M": 89.5,
+      "cost_B": 26.6,
+      "newer_share_claims": 7.0,
+      "newer_share_cost": 20.9
+    },
+    {
+      "year": 2019,
+      "claims_M": 90.9,
+      "cost_B": 30.5,
+      "newer_share_claims": 9.2,
+      "newer_share_cost": 26.6
+    },
+    {
+      "year": 2020,
+      "claims_M": 92.8,
+      "cost_B": 34.3,
+      "newer_share_claims": 11.7,
+      "newer_share_cost": 33.6
+    },
+    {
+      "year": 2021,
+      "claims_M": 94.5,
+      "cost_B": 39.4,
+      "newer_share_claims": 15.2,
+      "newer_share_cost": 41.5
+    },
+    {
+      "year": 2022,
+      "claims_M": 99.1,
+      "cost_B": 46.6,
+      "newer_share_claims": 20.0,
+      "newer_share_cost": 50.9
+    },
+    {
+      "year": 2023,
+      "claims_M": 109.2,
+      "cost_B": 60.4,
+      "newer_share_claims": 27.4,
+      "newer_share_cost": 60.9
+    },
+    {
+      "year": 2024,
+      "claims_M": 120.9,
+      "cost_B": 59.9,
+      "newer_share_claims": 33.3,
+      "newer_share_cost": 76.0
+    }
+  ],
+  "lever": {
+    "trend": [
+      {
+        "year": 2013,
+        "claims_M": 75.1,
+        "cost_B": 10.4,
+        "newer_share_claims": 1.5,
+        "newer_share_cost": 5.4
+      },
+      {
+        "year": 2014,
+        "claims_M": 80.8,
+        "cost_B": 14.0,
+        "newer_share_claims": 2.1,
+        "newer_share_cost": 6.7
+      },
+      {
+        "year": 2015,
+        "claims_M": 84.2,
+        "cost_B": 17.4,
+        "newer_share_claims": 3.2,
+        "newer_share_cost": 9.3
+      },
+      {
+        "year": 2016,
+        "claims_M": 87.6,
+        "cost_B": 20.2,
+        "newer_share_claims": 4.3,
+        "newer_share_cost": 12.5
+      },
+      {
+        "year": 2017,
+        "claims_M": 89.2,
+        "cost_B": 23.1,
+        "newer_share_claims": 5.5,
+        "newer_share_cost": 16.5
+      },
+      {
+        "year": 2018,
+        "claims_M": 89.5,
+        "cost_B": 26.6,
+        "newer_share_claims": 7.0,
+        "newer_share_cost": 20.9
+      },
+      {
+        "year": 2019,
+        "claims_M": 90.9,
+        "cost_B": 30.5,
+        "newer_share_claims": 9.2,
+        "newer_share_cost": 26.6
+      },
+      {
+        "year": 2020,
+        "claims_M": 92.8,
+        "cost_B": 34.3,
+        "newer_share_claims": 11.7,
+        "newer_share_cost": 33.6
+      },
+      {
+        "year": 2021,
+        "claims_M": 94.5,
+        "cost_B": 39.4,
+        "newer_share_claims": 15.2,
+        "newer_share_cost": 41.5
+      },
+      {
+        "year": 2022,
+        "claims_M": 99.1,
+        "cost_B": 46.6,
+        "newer_share_claims": 20.0,
+        "newer_share_cost": 50.9
+      },
+      {
+        "year": 2023,
+        "claims_M": 109.2,
+        "cost_B": 60.4,
+        "newer_share_claims": 27.4,
+        "newer_share_cost": 60.9
+      },
+      {
+        "year": 2024,
+        "claims_M": 120.9,
+        "cost_B": 59.9,
+        "newer_share_claims": 33.3,
+        "newer_share_cost": 76.0
+      }
+    ],
+    "spend_by_class": [
+      {
+        "year": 2020,
+        "drug_class": "Alpha-glucosidase inhibitor",
+        "spend": 10722866.7,
+        "claims": 185085.0
+      },
+      {
+        "year": 2020,
+        "drug_class": "Amylin analog",
+        "spend": 7885366.459999999,
+        "claims": 3877.0
+      },
+      {
+        "year": 2020,
+        "drug_class": "Biguanide (metformin)",
+        "spend": 644453318.01,
+        "claims": 31893746.0
+      },
+      {
+        "year": 2020,
+        "drug_class": "DPP-4 inhibitor",
+        "spend": 6626005596.14,
+        "claims": 8421986.0
+      },
+      {
+        "year": 2020,
+        "drug_class": "GLP-1 / GIP-GLP-1 agonist",
+        "spend": 7216574629.23,
+        "claims": 6018487.0
+      },
+      {
+        "year": 2020,
+        "drug_class": "Insulin",
+        "spend": 15167240616.74,
+        "claims": 23597538.0
+      },
+      {
+        "year": 2020,
+        "drug_class": "Meglitinide",
+        "spend": 43742060.22,
+        "claims": 521095.0
+      },
+      {
+        "year": 2020,
+        "drug_class": "SGLT2 inhibitor",
+        "spend": 3989944227.2999997,
+        "claims": 4530866.0
+      },
+      {
+        "year": 2020,
+        "drug_class": "Sulfonylurea",
+        "spend": 197169888.27,
+        "claims": 14026461.0
+      },
+      {
+        "year": 2020,
+        "drug_class": "Thiazolidinedione",
+        "spend": 72985559.72,
+        "claims": 2858790.0
+      },
+      {
+        "year": 2021,
+        "drug_class": "Alpha-glucosidase inhibitor",
+        "spend": 11096098.350000001,
+        "claims": 181292.0
+      },
+      {
+        "year": 2021,
+        "drug_class": "Amylin analog",
+        "spend": 6163899.1,
+        "claims": 3114.0
+      },
+      {
+        "year": 2021,
+        "drug_class": "Biguanide (metformin)",
+        "spend": 625120629.61,
+        "claims": 32052114.0
+      },
+      {
+        "year": 2021,
+        "drug_class": "DPP-4 inhibitor",
+        "spend": 6877932478.67,
+        "claims": 8001419.0
+      },
+      {
+        "year": 2021,
+        "drug_class": "GLP-1 / GIP-GLP-1 agonist",
+        "spend": 10194232321.660002,
+        "claims": 7885425.0
+      },
+      {
+        "year": 2021,
+        "drug_class": "Insulin",
+        "spend": 15335920697.55,
+        "claims": 22589761.0
+      },
+      {
+        "year": 2021,
+        "drug_class": "Meglitinide",
+        "spend": 35851230.650000006,
+        "claims": 505029.0
+      },
+      {
+        "year": 2021,
+        "drug_class": "SGLT2 inhibitor",
+        "spend": 6008398194.01,
+        "claims": 6277297.0
+      },
+      {
+        "year": 2021,
+        "drug_class": "Sulfonylurea",
+        "spend": 193696129.83,
+        "claims": 13834856.0
+      },
+      {
+        "year": 2021,
+        "drug_class": "Thiazolidinedione",
+        "spend": 68547347.58,
+        "claims": 2949843.0
+      },
+      {
+        "year": 2022,
+        "drug_class": "Alpha-glucosidase inhibitor",
+        "spend": 10670328.44,
+        "claims": 175847.0
+      },
+      {
+        "year": 2022,
+        "drug_class": "Amylin analog",
+        "spend": 4746984.8,
+        "claims": 2351.0
+      },
+      {
+        "year": 2022,
+        "drug_class": "Biguanide (metformin)",
+        "spend": 706393600.98,
+        "claims": 32861107.0
+      },
+      {
+        "year": 2022,
+        "drug_class": "DPP-4 inhibitor",
+        "spend": 6898568911.49,
+        "claims": 7501633.0
+      },
+      {
+        "year": 2022,
+        "drug_class": "GLP-1 / GIP-GLP-1 agonist",
+        "spend": 14206699695.33,
+        "claims": 10406887.0
+      },
+      {
+        "year": 2022,
+        "drug_class": "Insulin",
+        "spend": 15130415653.36,
+        "claims": 21894707.0
+      },
+      {
+        "year": 2022,
+        "drug_class": "Meglitinide",
+        "spend": 33262092.56,
+        "claims": 493180.0
+      },
+      {
+        "year": 2022,
+        "drug_class": "SGLT2 inhibitor",
+        "spend": 9376953502.8,
+        "claims": 9243919.0
+      },
+      {
+        "year": 2022,
+        "drug_class": "Sulfonylurea",
+        "spend": 190826984.27,
+        "claims": 13424542.0
+      },
+      {
+        "year": 2022,
+        "drug_class": "Thiazolidinedione",
+        "spend": 66079565.239999995,
+        "claims": 3052157.0
+      },
+      {
+        "year": 2023,
+        "drug_class": "Alpha-glucosidase inhibitor",
+        "spend": 10360963.58,
+        "claims": 171467.0
+      },
+      {
+        "year": 2023,
+        "drug_class": "Amylin analog",
+        "spend": 4050755.63,
+        "claims": 1978.0
+      },
+      {
+        "year": 2023,
+        "drug_class": "Biguanide (metformin)",
+        "spend": 903259892.9200001,
+        "claims": 33397893.0
+      },
+      {
+        "year": 2023,
+        "drug_class": "DPP-4 inhibitor",
+        "spend": 6799506314.36,
+        "claims": 7007956.0
+      },
+      {
+        "year": 2023,
+        "drug_class": "GLP-1 / GIP-GLP-1 agonist",
+        "spend": 22606161459.34,
+        "claims": 16553166.0
+      },
+      {
+        "year": 2023,
+        "drug_class": "Insulin",
+        "spend": 15558777626.17,
+        "claims": 22156725.0
+      },
+      {
+        "year": 2023,
+        "drug_class": "Meglitinide",
+        "spend": 33349954.35,
+        "claims": 489443.0
+      },
+      {
+        "year": 2023,
+        "drug_class": "SGLT2 inhibitor",
+        "spend": 14176734594.439999,
+        "claims": 13367836.0
+      },
+      {
+        "year": 2023,
+        "drug_class": "Sulfonylurea",
+        "spend": 211357438.66,
+        "claims": 12955908.0
+      },
+      {
+        "year": 2023,
+        "drug_class": "Thiazolidinedione",
+        "spend": 75052174.5,
+        "claims": 3125446.0
+      },
+      {
+        "year": 2024,
+        "drug_class": "Alpha-glucosidase inhibitor",
+        "spend": 6968771.75,
+        "claims": 176478.0
+      },
+      {
+        "year": 2024,
+        "drug_class": "Amylin analog",
+        "spend": 3369157.77,
+        "claims": 1579.0
+      },
+      {
+        "year": 2024,
+        "drug_class": "Biguanide (metformin)",
+        "spend": 717442090.56,
+        "claims": 34715043.0
+      },
+      {
+        "year": 2024,
+        "drug_class": "DPP-4 inhibitor",
+        "spend": 6162370045.610001,
+        "claims": 6905291.0
+      },
+      {
+        "year": 2024,
+        "drug_class": "GLP-1 / GIP-GLP-1 agonist",
+        "spend": 27603120671.09,
+        "claims": 21952543.0
+      },
+      {
+        "year": 2024,
+        "drug_class": "Insulin",
+        "spend": 7275535339.8,
+        "claims": 22183900.0
+      },
+      {
+        "year": 2024,
+        "drug_class": "Meglitinide",
+        "spend": 20179396.78,
+        "claims": 509876.0
+      },
+      {
+        "year": 2024,
+        "drug_class": "SGLT2 inhibitor",
+        "spend": 17895219534.35,
+        "claims": 18362501.0
+      },
+      {
+        "year": 2024,
+        "drug_class": "Sulfonylurea",
+        "spend": 148208905.35999998,
+        "claims": 12889333.0
+      },
+      {
+        "year": 2024,
+        "drug_class": "Thiazolidinedione",
+        "spend": 48436815.82,
+        "claims": 3270863.0
+      }
+    ],
+    "brand_costs": [
+      {
+        "Brnd_Name": "Ozempic",
+        "cls": "GLP-1",
+        "patients": 1951892.0,
+        "gross_30d": 903.0,
+        "gross_year": 10840.0,
+        "negotiated_30d": 274.0,
+        "negotiated_year": 3288.0
+      },
+      {
+        "Brnd_Name": "Jardiance",
+        "cls": "SGLT2",
+        "patients": 2542517.0,
+        "gross_30d": 541.0,
+        "gross_year": 6491.0,
+        "negotiated_30d": 197.0,
+        "negotiated_year": 2364.0
+      },
+      {
+        "Brnd_Name": "Mounjaro",
+        "cls": "GLP-1",
+        "patients": 894243.0,
+        "gross_30d": 1040.0,
+        "gross_year": 12475.0,
+        "negotiated_30d": NaN,
+        "negotiated_year": NaN
+      },
+      {
+        "Brnd_Name": "Trulicity",
+        "cls": "GLP-1",
+        "patients": 788414.0,
+        "gross_30d": 948.0,
+        "gross_year": 11381.0,
+        "negotiated_30d": NaN,
+        "negotiated_year": NaN
+      },
+      {
+        "Brnd_Name": "Farxiga",
+        "cls": "SGLT2",
+        "patients": 1268791.0,
+        "gross_30d": 538.0,
+        "gross_year": 6460.0,
+        "negotiated_30d": 178.0,
+        "negotiated_year": 2142.0
+      },
+      {
+        "Brnd_Name": "Rybelsus",
+        "cls": "GLP-1",
+        "patients": 309850.0,
+        "gross_30d": 916.0,
+        "gross_year": 10989.0,
+        "negotiated_30d": 274.0,
+        "negotiated_year": 3288.0
+      }
+    ],
+    "annual_cost": {
+      "SGLT2 \u00b7 negotiated (2026)": 2364,
+      "GLP-1 \u00b7 negotiated (2027)": 3288,
+      "SGLT2 \u00b7 gross 2024": 6481,
+      "GLP-1 \u00b7 gross 2024": 11313
+    },
+    "specialties": [
+      {
+        "specialty": "Family Practice",
+        "prescribers": 82336,
+        "diabetes_claims": 32009158.0,
+        "advanced_pct": 31.0,
+        "glp1_pct": 18.2,
+        "sglt2_pct": 12.8,
+        "metformin_su_pct": 48.6,
+        "share_of_all_claims_pct": 30.7
+      },
+      {
+        "specialty": "Internal Medicine",
+        "prescribers": 62990,
+        "diabetes_claims": 28941734.0,
+        "advanced_pct": 31.1,
+        "glp1_pct": 17.0,
+        "sglt2_pct": 14.1,
+        "metformin_su_pct": 45.6,
+        "share_of_all_claims_pct": 27.8
+      },
+      {
+        "specialty": "Nurse Practitioner",
+        "prescribers": 86027,
+        "diabetes_claims": 18997657.0,
+        "advanced_pct": 36.9,
+        "glp1_pct": 21.4,
+        "sglt2_pct": 15.5,
+        "metformin_su_pct": 41.0,
+        "share_of_all_claims_pct": 18.2
+      },
+      {
+        "specialty": "Endocrinology",
+        "prescribers": 6076,
+        "diabetes_claims": 9379129.0,
+        "advanced_pct": 40.0,
+        "glp1_pct": 27.1,
+        "sglt2_pct": 12.8,
+        "metformin_su_pct": 23.4,
+        "share_of_all_claims_pct": 9.0
+      },
+      {
+        "specialty": "Physician Assistant",
+        "prescribers": 26841,
+        "diabetes_claims": 6146304.0,
+        "advanced_pct": 38.0,
+        "glp1_pct": 22.5,
+        "sglt2_pct": 15.5,
+        "metformin_su_pct": 41.5,
+        "share_of_all_claims_pct": 5.9
+      },
+      {
+        "specialty": "General Practice",
+        "prescribers": 4723,
+        "diabetes_claims": 2387470.0,
+        "advanced_pct": 19.5,
+        "glp1_pct": 8.1,
+        "sglt2_pct": 11.4,
+        "metformin_su_pct": 53.7,
+        "share_of_all_claims_pct": 2.3
+      },
+      {
+        "specialty": "Cardiology",
+        "prescribers": 13515,
+        "diabetes_claims": 1637844.0,
+        "advanced_pct": 82.6,
+        "glp1_pct": 9.6,
+        "sglt2_pct": 73.1,
+        "metformin_su_pct": 13.4,
+        "share_of_all_claims_pct": 1.6
+      },
+      {
+        "specialty": "Nephrology",
+        "prescribers": 6784,
+        "diabetes_claims": 1052798.0,
+        "advanced_pct": 79.7,
+        "glp1_pct": 8.0,
+        "sglt2_pct": 71.8,
+        "metformin_su_pct": 11.0,
+        "share_of_all_claims_pct": 1.0
+      },
+      {
+        "specialty": "Geriatric Medicine",
+        "prescribers": 1402,
+        "diabetes_claims": 543790.0,
+        "advanced_pct": 23.3,
+        "glp1_pct": 10.1,
+        "sglt2_pct": 13.2,
+        "metformin_su_pct": 42.7,
+        "share_of_all_claims_pct": 0.5
+      },
+      {
+        "specialty": "Pharmacist",
+        "prescribers": 1344,
+        "diabetes_claims": 496923.0,
+        "advanced_pct": 37.6,
+        "glp1_pct": 23.6,
+        "sglt2_pct": 14.0,
+        "metformin_su_pct": 36.6,
+        "share_of_all_claims_pct": 0.5
+      },
+      {
+        "specialty": "Hospitalist",
+        "prescribers": 2790,
+        "diabetes_claims": 398273.0,
+        "advanced_pct": 31.0,
+        "glp1_pct": 12.7,
+        "sglt2_pct": 18.3,
+        "metformin_su_pct": 39.2,
+        "share_of_all_claims_pct": 0.4
+      },
+      {
+        "specialty": "Emergency Medicine",
+        "prescribers": 1182,
+        "diabetes_claims": 338264.0,
+        "advanced_pct": 28.8,
+        "glp1_pct": 15.5,
+        "sglt2_pct": 13.3,
+        "metformin_su_pct": 44.6,
+        "share_of_all_claims_pct": 0.3
+      }
+    ]
+  },
+  "value": {
+    "assumptions": [
+      {
+        "parameter": "rrr_hospitalization",
+        "low": 0.04,
+        "base": 0.11,
+        "high": 0.18,
+        "unit": "relative reduction in all-cause hospitalization",
+        "source": "EMPA-REG OUTCOME (empagliflozin vs placebo): all-cause hospitalization HR 0.89, 95% CI 0.82-0.96 (Fitchett et al., European Heart Journal 2016)",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4872285"
+      },
+      {
+        "parameter": "cost_per_admission",
+        "low": 10900.0,
+        "base": 15200.0,
+        "high": 24200.0,
+        "unit": "USD per hospital readmission",
+        "source": "AHRQ HCUP Statistical Brief #278: average 30-day readmission cost $15,200 in 2018 (range by payer $10,900-$16,400; $24,200 highest Medicare condition)",
+        "url": "https://hcup-us.ahrq.gov/reports/statbriefs/sb278-Conditions-Frequent-Readmissions-By-Payer-2018.jsp"
+      },
+      {
+        "parameter": "price_sglt2_list_30d",
+        "low": "",
+        "base": 573.0,
+        "high": "",
+        "unit": "USD per 30-day supply",
+        "source": "Jardiance 2023 list price, CMS negotiated-price fact sheet (2026)",
+        "url": "https://cms.gov/files/document/fact-sheet-negotiated-prices-initial-price-applicability-year-2026.pdf"
+      },
+      {
+        "parameter": "price_sglt2_mfp_30d",
+        "low": "",
+        "base": 197.0,
+        "high": "",
+        "unit": "USD per 30-day supply",
+        "source": "Jardiance Medicare negotiated price effective Jan 1 2026, CMS fact sheet",
+        "url": "https://cms.gov/files/document/fact-sheet-negotiated-prices-initial-price-applicability-year-2026.pdf"
+      },
+      {
+        "parameter": "price_sglt2b_mfp_30d",
+        "low": "",
+        "base": 178.5,
+        "high": "",
+        "unit": "USD per 30-day supply",
+        "source": "Farxiga Medicare negotiated price effective Jan 1 2026 (list $556), CMS fact sheet",
+        "url": "https://cms.gov/files/document/fact-sheet-negotiated-prices-initial-price-applicability-year-2026.pdf"
+      },
+      {
+        "parameter": "price_glp1_list_30d",
+        "low": "",
+        "base": 959.0,
+        "high": "",
+        "unit": "USD per 30-day supply",
+        "source": "Ozempic/Rybelsus/Wegovy 2024 list price, CMS 2027 negotiated prices",
+        "url": "https://www.healthcaredive.com/news/medicare-price-negotiation-wegovy-ozempic-trelegy-2027/806578/"
+      },
+      {
+        "parameter": "price_glp1_mfp_30d",
+        "low": "",
+        "base": 274.0,
+        "high": "",
+        "unit": "USD per 30-day supply",
+        "source": "Semaglutide Medicare negotiated price effective Jan 1 2027 (71% below list)",
+        "url": "https://www.healthcaredive.com/news/medicare-price-negotiation-wegovy-ozempic-trelegy-2027/806578/"
+      },
+      {
+        "parameter": "future_admissions_factor",
+        "low": 0.5,
+        "base": 1.0,
+        "high": 1.0,
+        "unit": "next-year admissions as a share of past-year admissions",
+        "source": "Assumption: next year's admissions match the past 12 months (this stay + prior stays); 0.5 tests regression to the mean",
+        "url": ""
+      }
+    ],
+    "annual_cost": {
+      "SGLT2 \u00b7 negotiated (2026)": 2364,
+      "GLP-1 \u00b7 negotiated (2027)": 3288,
+      "SGLT2 \u00b7 gross 2024": 6481,
+      "GLP-1 \u00b7 gross 2024": 11313
+    },
+    "breakeven": {
+      "SGLT2 \u00b7 negotiated (2026)": 1.41,
+      "GLP-1 \u00b7 negotiated (2027)": 1.97,
+      "SGLT2 \u00b7 gross 2024": 3.88,
+      "GLP-1 \u00b7 gross 2024": 6.77
+    },
+    "groups": [
+      {
+        "stays_group": "This stay only",
+        "patients": 61792,
+        "admits_past_12m": 1.0,
+        "readmit_30_pct": 8.1,
+        "heart_pct": 57.9,
+        "share_pct": 88.3,
+        "SGLT2 \u00b7 negotiated (2026)": -692.0,
+        "GLP-1 \u00b7 negotiated (2027)": -1616.0,
+        "SGLT2 \u00b7 gross 2024": -4809.0,
+        "GLP-1 \u00b7 gross 2024": -9641.0
+      },
+      {
+        "stays_group": "1 prior stay",
+        "patients": 5798,
+        "admits_past_12m": 2.0,
+        "readmit_30_pct": 12.9,
+        "heart_pct": 60.6,
+        "share_pct": 8.3,
+        "SGLT2 \u00b7 negotiated (2026)": 980.0,
+        "GLP-1 \u00b7 negotiated (2027)": 56.0,
+        "SGLT2 \u00b7 gross 2024": -3137.0,
+        "GLP-1 \u00b7 gross 2024": -7969.0
+      },
+      {
+        "stays_group": "2 prior stays",
+        "patients": 1501,
+        "admits_past_12m": 3.0,
+        "readmit_30_pct": 18.5,
+        "heart_pct": 62.0,
+        "share_pct": 2.1,
+        "SGLT2 \u00b7 negotiated (2026)": 2652.0,
+        "GLP-1 \u00b7 negotiated (2027)": 1728.0,
+        "SGLT2 \u00b7 gross 2024": -1465.0,
+        "GLP-1 \u00b7 gross 2024": -6297.0
+      },
+      {
+        "stays_group": "3+ prior stays",
+        "patients": 896,
+        "admits_past_12m": 4.9,
+        "readmit_30_pct": 26.5,
+        "heart_pct": 57.9,
+        "share_pct": 1.3,
+        "SGLT2 \u00b7 negotiated (2026)": 5908.3,
+        "GLP-1 \u00b7 negotiated (2027)": 4984.3,
+        "SGLT2 \u00b7 gross 2024": 1791.3,
+        "GLP-1 \u00b7 gross 2024": -3040.7
+      }
+    ],
+    "rule": [
+      {
+        "scenario": "SGLT2 \u00b7 negotiated (2026)",
+        "qualifying per 1,000 discharges": 117.0,
+        "admissions avoided / yr": 32.0,
+        "drug cost / yr ($)": 276808.0,
+        "hospital savings / yr ($)": 490513.0,
+        "net / yr ($)": 213704.0,
+        "cost per admission avoided ($)": 8578.0
+      },
+      {
+        "scenario": "GLP-1 \u00b7 negotiated (2027)",
+        "qualifying per 1,000 discharges": 117.0,
+        "admissions avoided / yr": 32.0,
+        "drug cost / yr ($)": 385002.0,
+        "hospital savings / yr ($)": 490513.0,
+        "net / yr ($)": 105510.0,
+        "cost per admission avoided ($)": 11930.0
+      },
+      {
+        "scenario": "SGLT2 \u00b7 gross 2024",
+        "qualifying per 1,000 discharges": 117.0,
+        "admissions avoided / yr": 32.0,
+        "drug cost / yr ($)": 758881.0,
+        "hospital savings / yr ($)": 490513.0,
+        "net / yr ($)": -268368.0,
+        "cost per admission avoided ($)": 23516.0
+      },
+      {
+        "scenario": "GLP-1 \u00b7 gross 2024",
+        "qualifying per 1,000 discharges": 117.0,
+        "admissions avoided / yr": 32.0,
+        "drug cost / yr ($)": 1324675.0,
+        "hospital savings / yr ($)": 490513.0,
+        "net / yr ($)": -834163.0,
+        "cost per admission avoided ($)": 41049.0
+      }
+    ],
+    "rule_half": [
+      {
+        "scenario": "SGLT2 \u00b7 negotiated (2026)",
+        "qualifying per 1,000 discharges": 117.0,
+        "admissions avoided / yr": 16.0,
+        "drug cost / yr ($)": 276808.0,
+        "hospital savings / yr ($)": 245256.0,
+        "net / yr ($)": -31552.0,
+        "cost per admission avoided ($)": 17155.0
+      },
+      {
+        "scenario": "GLP-1 \u00b7 negotiated (2027)",
+        "qualifying per 1,000 discharges": 117.0,
+        "admissions avoided / yr": 16.0,
+        "drug cost / yr ($)": 385002.0,
+        "hospital savings / yr ($)": 245256.0,
+        "net / yr ($)": -139746.0,
+        "cost per admission avoided ($)": 23861.0
+      },
+      {
+        "scenario": "SGLT2 \u00b7 gross 2024",
+        "qualifying per 1,000 discharges": 117.0,
+        "admissions avoided / yr": 16.0,
+        "drug cost / yr ($)": 758881.0,
+        "hospital savings / yr ($)": 245256.0,
+        "net / yr ($)": -513625.0,
+        "cost per admission avoided ($)": 47032.0
+      },
+      {
+        "scenario": "GLP-1 \u00b7 gross 2024",
+        "qualifying per 1,000 discharges": 117.0,
+        "admissions avoided / yr": 16.0,
+        "drug cost / yr ($)": 1324675.0,
+        "hospital savings / yr ($)": 245256.0,
+        "net / yr ($)": -1079419.0,
+        "cost per admission avoided ($)": 82098.0
+      }
+    ],
+    "qualifying": {
+      "n": 8195,
+      "pct": 11.7,
+      "readmit_30": 15.4,
+      "readmit_30_rest": 8.1,
+      "heart_pct": 60.6,
+      "kidney_pct": 15.3,
+      "share_of_readmissions": 20.1,
+      "mean_admits": 2.51,
+      "two_plus_pct": 3.4
+    },
+    "base_net": 1825,
+    "tornado": [
+      {
+        "assumption": "Hospitalization reduction (4% \u2013 18%)",
+        "low": -841.0,
+        "high": 4491.0,
+        "swing": 5332.0
+      },
+      {
+        "assumption": "Price (negotiated \u2013 gross 2024)",
+        "low": -2292.0,
+        "high": 1825.0,
+        "swing": 4117.0
+      },
+      {
+        "assumption": "Cost per admission ($10,900 \u2013 $24,200)",
+        "low": 640.0,
+        "high": 4305.0,
+        "swing": 3665.0
+      },
+      {
+        "assumption": "Future admissions (50% \u2013 100% of past year)",
+        "low": -269.0,
+        "high": 1825.0,
+        "swing": 2095.0
+      }
+    ],
+    "stress": {
+      "1+ prior stays": {
+        "base": 1825.0,
+        "effect 4%": -841.0,
+        "admission cost $10,900": 640.0,
+        "future = 50% of past": -269.0,
+        "gross 2024 price": -2292.0
+      },
+      "2+ prior stays": {
+        "base": 3869.0,
+        "effect 4%": -97.0,
+        "admission cost $10,900": 2106.0,
+        "future = 50% of past": 753.0,
+        "gross 2024 price": -248.0
+      }
+    },
+    "grid": {
+      "rrr": [
+        0.04,
+        0.08,
+        0.11,
+        0.14,
+        0.18
+      ],
+      "cost": [
+        10900,
+        15200,
+        20000,
+        24200
+      ],
+      "values": [
+        [
+          0.3,
+          1.3,
+          3.4,
+          3.4
+        ],
+        [
+          3.4,
+          11.7,
+          11.7,
+          11.7
+        ],
+        [
+          11.7,
+          11.7,
+          11.7,
+          100.0
+        ],
+        [
+          11.7,
+          11.7,
+          100.0,
+          100.0
+        ],
+        [
+          11.7,
+          100.0,
+          100.0,
+          100.0
+        ]
+      ]
+    }
   }
 }

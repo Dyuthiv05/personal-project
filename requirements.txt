@@ -10,3 +10,4 @@ kagglehub>=0.3
 jupyter
 nbformat
 nbconvert
+tabulate
