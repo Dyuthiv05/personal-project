@@ -184,19 +184,41 @@
         "model": "Penalized logistic (L1)",
         "ROC-AUC": 0.643,
         "PR-AUC": 0.156,
-        "Top-decile lift": 2.011
+        "Top-decile lift": 2.011,
+        "flagged_pct": 10.0,
+        "kind": "model"
       },
       {
         "model": "Random forest",
         "ROC-AUC": 0.656,
         "PR-AUC": 0.163,
-        "Top-decile lift": 2.317
+        "Top-decile lift": 2.317,
+        "flagged_pct": 10.0,
+        "kind": "model"
       },
       {
         "model": "Neural network (MLP)",
         "ROC-AUC": 0.635,
         "PR-AUC": 0.15,
-        "Top-decile lift": 2.005
+        "Top-decile lift": 2.005,
+        "flagged_pct": 10.0,
+        "kind": "model"
+      },
+      {
+        "model": "Simple rule: count of prior stays (flags 1+)",
+        "ROC-AUC": 0.55,
+        "PR-AUC": 0.115,
+        "Top-decile lift": 1.742,
+        "flagged_pct": 11.653,
+        "kind": "rule"
+      },
+      {
+        "model": "Simple rule: 2+ prior stays",
+        "ROC-AUC": 0.53,
+        "PR-AUC": 0.103,
+        "Top-decile lift": 2.617,
+        "flagged_pct": 3.429,
+        "kind": "rule"
       }
     ],
     "risk_groups": [
