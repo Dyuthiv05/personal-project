@@ -89,6 +89,45 @@ tr.best td { font-weight: 600; }
 .limits ul { margin: 0; padding-left: 18px; display: grid; gap: 4px; }
 footer { padding-top: 28px; font-size: 13px; color: var(--muted); display: grid; gap: 6px; }
 
+.stat-src { font-size: 11.5px; color: var(--muted); margin-top: 4px; }
+.issue { display: grid; gap: 10px; }
+.issue-q { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 14px 16px; display: grid; grid-template-columns: 34px minmax(0, 1fr); gap: 4px 12px; }
+.issue-q .k { grid-row: span 3; font: 700 22px/1.1 var(--serif); color: var(--accent); }
+.issue-q .m { font-size: 14px; color: var(--ink2); }
+.issue-q .m b { color: var(--ink); font-weight: 600; }
+.refs { font-size: 13px; color: var(--muted); display: grid; gap: 3px; }
+.refs ol { margin: 0; padding-left: 20px; display: grid; gap: 3px; }
+
+.flow { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; align-items: stretch; }
+.node { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px; display: grid; gap: 4px; align-content: start; font-size: 13.5px; }
+.node b { font-size: 14px; }
+.node .k { font: 500 11px/1.3 var(--mono); color: var(--accent); }
+.node.dl { border-style: dashed; }
+.joins { display: grid; gap: 6px; font-size: 14px; }
+.joins div { display: grid; grid-template-columns: minmax(120px, 190px) minmax(0, 1fr); gap: 12px; }
+.joins span:first-child { font: 500 12px/1.5 var(--mono); color: var(--accent); }
+
+.tabs { display: flex; flex-wrap: wrap; gap: 6px; }
+.tabs button { font: 600 13px var(--sans); color: var(--ink2); background: var(--panel); border: 1px solid var(--line); border-radius: 999px; padding: 7px 12px; cursor: pointer; }
+.tabs button[aria-selected="true"] { background: var(--accent); border-color: var(--accent); color: #fff; }
+.tabs button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.viewer { display: grid; gap: 12px; min-width: 0; }
+.kv { display: grid; grid-template-columns: max-content minmax(0, 1fr); gap: 6px 14px; font-size: 14px; }
+.kv dt { font: 500 11.5px/1.6 var(--mono); color: var(--muted); text-transform: uppercase; letter-spacing: .04em; }
+.kv dd { margin: 0; min-width: 0; }
+pre.code { margin: 0; background: var(--bg); border: 1px solid var(--line); border-radius: 8px; padding: 10px 12px; font: 500 12.5px/1.55 var(--mono); overflow-x: auto; white-space: pre; color: var(--ink); }
+table.data td, table.data th { font-size: 12.5px; padding: 7px 10px; white-space: nowrap; }
+table.data td { font-family: var(--mono); font-weight: 500; }
+td.sup { color: var(--muted); font-style: italic; font-family: var(--sans) !important; }
+.groups { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 8px; font-size: 13px; }
+.groups div { background: var(--bg); border: 1px solid var(--line); border-radius: 8px; padding: 8px 10px; }
+.groups b { display: block; font-size: 12.5px; }
+.groups span { color: var(--ink2); font-family: var(--mono); font-size: 11.5px; word-break: break-word; }
+
+.privacy { border: 1px solid var(--line); border-left: 4px solid var(--good); background: var(--panel); border-radius: 10px; padding: 16px 18px; display: grid; gap: 12px; }
+.privacy h3 { color: var(--good); }
+.ok { color: var(--good); font-weight: 700; }
+
 #tip { position: fixed; pointer-events: none; z-index: 20; background: var(--ink); color: var(--bg); font-size: 12.5px; line-height: 1.4;
   padding: 7px 10px; border-radius: 6px; max-width: 260px; opacity: 0; transition: opacity .1s; }
 #tip b { font-weight: 700; }
@@ -103,15 +142,75 @@ a { color: var(--accent); }
     <p class="lede">Which diabetic patients did the old standard of care fail, has today's market caught up for them, and which prescribers should a newer-drug brand call on first?</p>
     <p class="opener">"My dad has type 2 diabetes. When he was diagnosed, the options were mostly metformin, sulfonylureas and insulin. I wanted to know who that era of care was failing, and whether today's drugs are reaching those patients."<small>Opening, in my own words. About 30 seconds.</small></p>
     <nav class="agenda" aria-label="Sections">
-      <a href="#data">1 · Data</a><a href="#who">2 · Who comes back</a><a href="#models">3 · Models</a>
+      <a href="#why">0 · Why this problem</a><a href="#data">1 · Data</a><a href="#who">2 · Who comes back</a><a href="#models">3 · Models</a>
       <a href="#now">4 · Then vs. now</a><a href="#behind">5 · Who's behind</a><a href="#targets">6 · Targets</a><a href="#reco">7 · Recommendation</a>
     </nav>
   </header>
 
+  <section class="slide" id="why">
+    <div class="slide-head"><h2>0 · Why this problem is worth solving</h2><span class="time">0:30 – 2:30</span></div>
+    <p class="lede">Diabetes is one of the largest and most expensive chronic diseases in the US, its hospital patients come back more often than others, and the drugs that best protect them are still underused. That combination is a classic pharma market-research question.</p>
+    <div class="tiles">
+      <div class="tile"><span class="v">38.4M</span><span class="l">Americans have diabetes (11.6% of the population); 8.7M don't know it</span><span class="stat-src">CDC, 2021 data [1]</span></div>
+      <div class="tile"><span class="v">$412.9B</span><span class="l">annual US cost of diabetes, $306.6B of it direct medical care</span><span class="stat-src">ADA, 2022 [2]</span></div>
+      <div class="tile"><span class="v">16–20%</span><span class="l">of hospitalized diabetic patients are readmitted within 30 days, about $20–25B a year</span><span class="stat-src">Rubin &amp; Shah, 2021 [3]</span></div>
+      <div class="tile"><span class="v" id="why-spend"></span><span class="l">Medicare Part D spending on diabetes drugs in 2024, from my own CMS pull</span><span class="stat-src">CMS API, notebook 02</span></div>
+    </div>
+    <div class="grid2">
+      <div class="how"><h3>What changed in treatment</h3>
+        <p>In my dad's era, diabetes drugs were judged on one thing: lowering blood sugar. Two newer classes changed that. <b>GLP-1 agonists</b> (Ozempic, Trulicity, Mounjaro) and <b>SGLT2 inhibitors</b> (Jardiance, Farxiga) also cut heart attacks, heart-failure hospitalizations and kidney decline in large trials. The American Diabetes Association now recommends them for people with type 2 diabetes and heart disease, heart failure or kidney disease <b>regardless of their blood-sugar level</b> [4].</p></div>
+      <div class="how"><h3>The gap</h3>
+        <p>Uptake has lagged the guidelines. Among US adults with type 2 diabetes newly diagnosed with heart disease, only <b>17%</b> started either class within a year in 2022, up from 5.9% in 2018 [5]. The patients these drugs help most, older patients with heart and kidney disease who keep returning to hospital, are the ones a brand most needs to reach.</p></div>
+    </div>
+    <h3>How I broke the question down</h3>
+    <div class="issue">
+      <div class="issue-q"><span class="k">A</span><b>Which diabetic patients does standard care fail?</b><span class="m"><b>Data:</b> 101,766 hospital stays, 1999–2008 (Kaggle) · <b>Methods:</b> patient profiling in SQL, the A1C → medication → readmission journey, penalized regression, random forest, neural network, decision-tree segments</span><span class="m">Sections 2–3</span></div>
+      <div class="issue-q"><span class="k">B</span><b>Has today's market caught up for those patients?</b><span class="m"><b>Data:</b> Medicare Part D spending 2020–2024 and 2.2M prescriber-drug rows (CMS API), CDC disease burden, drug classes (NLM API), FDA approvals · <b>Methods:</b> market map, then-vs-now treatment mix, adoption by specialty and state</span><span class="m">Sections 4–5</span></div>
+      <div class="issue-q"><span class="k">C</span><b>Which prescribers should a GLP-1 / SGLT2 brand call on first?</b><span class="m"><b>Data:</b> 184K prescribers with 100+ diabetes claims · <b>Methods:</b> k-means prescriber segments, ridge vs. random forest "expected adoption", headroom ranking</span><span class="m">Sections 6–7</span></div>
+    </div>
+    <div class="say"><b>Say:</b> A good answer here isn't "diabetes is big." It's specific enough to act on: <b>which patients</b>, <b>which prescribers</b>, <b>which states</b>, <b>what message</b>, and <b>how we'd know it worked</b>. That's what the rest of this is built to answer.</div>
+    <div class="refs"><span>Sources</span><ol>
+      <li><a href="https://www.cdc.gov/diabetes/php/data-research/index.html">CDC, National Diabetes Statistics Report: At a glance</a></li>
+      <li><a href="https://diabetes.org/about-us/statistics/cost-diabetes">American Diabetes Association, Economic Costs of Diabetes in the U.S. in 2022</a> (Parker et al., <i>Diabetes Care</i>)</li>
+      <li><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC8418292">Rubin &amp; Shah, "Predicting and Preventing Acute Care Re-Utilization by Patients with Diabetes," <i>Current Diabetes Reports</i>, 2021</a></li>
+      <li>American Diabetes Association, Standards of Care in Diabetes, Section 9: Pharmacologic Approaches (<i>Diabetes Care</i> supplement)</li>
+      <li><a href="https://doaj.org/article/241fc9acf8aa4641a972e8d294236447">GLP-1 RA / SGLT2i use after new ASCVD diagnosis, 2018–2022, <i>BMJ Open Diabetes Research &amp; Care</i>, 2024</a></li>
+    </ol></div>
+  </section>
+
   <section class="slide" id="data">
-    <div class="slide-head"><h2>1 · Seven sources, one downloaded and six pulled by API</h2><span class="time">0:30 – 2:00</span></div>
-    <p>The hospital data shows diabetes care in 1999–2008. To see what changed, I wrote my own API pulls for today's Medicare prescribing, disease burden, drug classes and FDA approvals.</p>
+    <div class="slide-head"><h2>1 · Seven sources: one downloaded, six I pulled by API</h2><span class="time">2:30 – 4:00</span></div>
+    <p>The hospital data shows diabetes care in 1999–2008. To see what changed, I wrote my own API pulls (code in <span class="mono">src/apis.py</span>) for today's Medicare prescribing, disease burden, drug classes and FDA approvals.</p>
     <div class="tbl-wrap"><table id="sources"><thead><tr><th>Source</th><th>How I got it</th><th class="n">Rows</th><th>What it answers</th></tr></thead><tbody></tbody></table></div>
+
+    <h3>How the sources connect</h3>
+    <div class="flow">
+      <div class="node dl"><span class="k">1999–2008 · patients</span><b>Kaggle hospital stays</b><span>Who was readmitted and what they were treated with</span></div>
+      <div class="node"><span class="k">drug → class</span><b>NLM RxClass</b><span>Puts Kaggle's drug columns and CMS's drug names into the same 10 classes</span></div>
+      <div class="node"><span class="k">2024 · prescribers</span><b>CMS Part D</b><span>Spending, claims by prescriber, specialty and state</span></div>
+      <div class="node"><span class="k">by state</span><b>CDC PLACES</b><span>Where adult diabetes and obesity rates are highest</span></div>
+      <div class="node"><span class="k">by class</span><b>openFDA</b><span>When each newer class arrived</span></div>
+    </div>
+    <div class="joins">
+      <div><span>drug class</span><span>The bridge between eras: lets me compare the 1999–2008 treatment mix with 2024 claims class by class.</span></div>
+      <div><span>state</span><span>Joins CMS adoption to CDC disease burden (48 states + DC; Kentucky and Pennsylvania aren't in the 2025 CDC release).</span></div>
+      <div><span>specialty</span><span>Admitting specialty in the hospital data vs. prescriber specialty in CMS: the same doctors, two decades apart.</span></div>
+    </div>
+
+    <h3>What the data looks like</h3>
+    <p>Real rows from each source, saved by notebooks 01 and 02. Pick a source:</p>
+    <div class="tabs" role="tablist" id="data-tabs"></div>
+    <div class="viewer" id="data-view" role="tabpanel"></div>
+
+    <div class="privacy" id="privacy">
+      <h3>No patient-identifying information anywhere</h3>
+      <p>Nothing in this project can identify a patient. Every source is either de-identified research data or government open data published as totals, and everything was collected through official public APIs, not scraped.</p>
+      <div class="tbl-wrap"><table id="privacy-tbl"><thead><tr><th>Source</th><th>What one row is</th><th>Patient identifiers?</th><th>Evidence (checked in the notebooks)</th></tr></thead><tbody></tbody></table></div>
+      <div class="how"><ul>
+        <li><b>Prescribers, not patients.</b> The CMS prescriber API also offers each prescriber's name and city. I didn't request those columns, and this page only shows totals by specialty, state and segment, never an individual prescriber.</li>
+        <li><b>Raw data stays on my laptop.</b> The downloaded files are excluded from the GitHub repo. The repo holds code, notebooks and aggregated results only.</li>
+      </ul></div>
+    </div>
     <div class="chart"><h3>Cleaning the hospital file</h3><span class="sub">Each step and why it matters for the readmission rate</span><svg id="c-clean"></svg></div>
     <div class="how"><ul>
       <li><b>Removed deaths and hospice discharges.</b> Those patients can't be readmitted, so leaving them in understates the rate.</li>
@@ -121,7 +220,7 @@ a { color: var(--accent); }
   </section>
 
   <section class="slide" id="who">
-    <div class="slide-head"><h2>2 · Who comes back within 30 days</h2><span class="time">2:00 – 4:30</span></div>
+    <div class="slide-head"><h2>2 · Who comes back within 30 days</h2><span class="time">4:00 – 5:45</span></div>
     <div class="tiles" id="who-tiles"></div>
     <div class="grid2">
       <div class="chart"><h3>Prior hospital stays drive readmission</h3><span class="sub">% readmitted within 30 days · dashed line = all patients</span><svg id="c-prior"></svg></div>
@@ -131,7 +230,7 @@ a { color: var(--accent); }
   </section>
 
   <section class="slide" id="models">
-    <div class="slide-head"><h2>3 · Predicting it, and turning risk into segments</h2><span class="time">4:30 – 7:00</span></div>
+    <div class="slide-head"><h2>3 · Predicting it, and turning risk into segments</h2><span class="time">5:45 – 7:30</span></div>
     <p>Three model families on the same 75/25 split, judged on ranking (ROC-AUC), precision on the rare class (PR-AUC) and <b>top-decile lift</b>: how much more often the 10% flagged as highest risk come back.</p>
     <div class="tbl-wrap"><table id="model-tbl"><thead><tr><th>Model</th><th class="n">ROC-AUC</th><th class="n">PR-AUC</th><th class="n">Top-decile lift</th></tr></thead><tbody></tbody></table></div>
     <div class="grid2">
@@ -144,7 +243,7 @@ a { color: var(--accent); }
   </section>
 
   <section class="slide" id="now">
-    <div class="slide-head"><h2>4 · Then vs. now: the treatment mix flipped</h2><span class="time">7:00 – 9:30</span></div>
+    <div class="slide-head"><h2>4 · Then vs. now: the treatment mix flipped</h2><span class="time">7:30 – 9:15</span></div>
     <div class="chart"><h3>Share of drug-class use, 1999–2008 hospital patients vs. 2024 Medicare claims</h3>
       <div class="legend"><span><i style="background:var(--s4)"></i>1999–2008 hospital patients</span><span><i style="background:var(--s1)"></i>2024 Medicare Part D claims</span></div>
       <svg id="c-mix"></svg></div>
@@ -155,7 +254,7 @@ a { color: var(--accent); }
   </section>
 
   <section class="slide" id="behind">
-    <div class="slide-head"><h2>5 · Who's behind: specialties and states</h2><span class="time">9:30 – 11:30</span></div>
+    <div class="slide-head"><h2>5 · Who's behind: specialties and states</h2><span class="time">9:15 – 11:00</span></div>
     <div class="chart"><h3>Claim volume vs. newer-drug share, by specialty</h3><span class="sub">Bubble size = prescribers · x is log scale · dashed line = all prescribers</span><svg id="c-spec"></svg></div>
     <div class="chart"><h3>Disease burden vs. newer-drug share, by state</h3><span class="sub">CDC adult diabetes rate vs. GLP-1 + SGLT2 share of Medicare diabetes claims · lines at the medians · bubble = adults with diabetes · KY and PA missing from the CDC release</span>
       <div class="legend"><span><i style="background:var(--s2)"></i>High burden, low adoption</span><span><i style="background:var(--s1)"></i>High burden, high adoption</span><span><i style="background:var(--s4)"></i>Lower burden</span></div>
@@ -164,7 +263,7 @@ a { color: var(--accent); }
   </section>
 
   <section class="slide" id="targets">
-    <div class="slide-head"><h2>6 · Finding target prescribers</h2><span class="time">11:30 – 13:30</span></div>
+    <div class="slide-head"><h2>6 · Finding target prescribers</h2><span class="time">11:00 – 13:15</span></div>
     <div class="how"><ul>
       <li><b>Segment</b> 184K prescribers (100+ diabetes claims) by their prescription mix with k-means.</li>
       <li><b>Model expected adoption</b> from things a brand can't change (specialty, state, volume, insulin use): ridge vs. random forest, out-of-fold predictions.</li>
@@ -179,7 +278,7 @@ a { color: var(--accent); }
   </section>
 
   <section class="slide" id="reco">
-    <div class="slide-head"><h2>7 · Recommendation</h2><span class="time">13:30 – 15:00</span></div>
+    <div class="slide-head"><h2>7 · Recommendation</h2><span class="time">13:15 – 15:00</span></div>
     <div class="reco" id="reco-list"></div>
     <div class="limits">
       <div><h3>Limitations</h3><ul>
@@ -412,4 +511,65 @@ $("#reco-list").innerHTML = [
   ["What", `Lead with <b>heart and kidney outcomes</b>. ${pct(P.heart_dx_pct, 0)} of diabetic inpatients had a heart diagnosis, and the patients cycling back into hospital are exactly who those outcomes matter for.`],
   ["Prove it", `Call on the top 20% by headroom and compare their GLP-1 + SGLT2 share against <b>matched prescribers who weren't called on</b>, so the result is causal, not a correlation.`],
 ].map(([k, v], i) => `<div class="reco-item"><span class="k">${i + 1}</span><div><h3>${k}</h3><p>${v}</p></div></div>`).join("");
+
+/* ---------- Section 0: spending tile ---------- */
+$("#why-spend").textContent = "$" + fmt(K.by_year.at(-1)["total_spend_$B"], 1) + "B";
+
+/* ---------- Section 1: what the data looks like ---------- */
+const KS = D.kaggle_sample, AS = D.api_samples, PA = D.privacy_api;
+const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
+const HEAD = { Prscrbr_Type: "Specialty", Prscrbr_State_Abrvtn: "State", Brnd_Name: "Brand", Gnrc_Name: "Generic", Tot_Clms: "Claims",
+  Tot_Benes: "Patients", Tot_Drug_Cst: "Drug cost ($)", drug_class: "Class", Tot_Spndng_2024: "Spending 2024 ($)", Tot_Clms_2024: "Claims 2024",
+  Tot_Benes_2024: "Patients 2024", Prscrbr_Geo_Desc: "State", Tot_Prscrbrs: "Prescribers", statedesc: "State", locationname: "County",
+  totalpop18plus: "Adults", diabetes_pct: "Diabetes %", obesity_pct: "Obesity %", atc_id: "ATC code", atc_name: "ATC class",
+  ingredient: "Ingredient", application: "FDA application", first_approval: "First approved", brand: "Brand" };
+function cell(k, v) {
+  if (v === "nan" || v === "None") return `<td class="sup">hidden by CMS (1–10)</td>`;
+  const n = Number(v);
+  if (v !== "" && !isNaN(n) && /Clms|Benes|Cst|Spndng|Prscrbrs|pop18/.test(k)) return `<td class="n">${fmt(n, /Cst|Spndng/.test(k) && n < 1e6 ? 2 : 0)}</td>`;
+  return `<td>${esc(v)}</td>`;
+}
+function table(rows, cols) {
+  return `<div class="tbl-wrap"><table class="data"><thead><tr>${cols.map(c => `<th class="${/Clms|Benes|Cst|Spndng|Prscrbrs|pop18/.test(c) ? "n" : ""}">${HEAD[c] ?? esc(c)}</th>`).join("")}</tr></thead>
+    <tbody>${rows.map(r => `<tr>${cols.map(c => cell(c, r[c])).join("")}</tr>`).join("")}</tbody></table></div>`;
+}
+const TABS = [{ id: "kaggle", label: "Kaggle hospital stays" }].concat(AS.map((a, i) => ({ id: "api" + i,
+  label: a.name.replace("CMS Part D ", "CMS · ").replace(" (2024)", "").replace(" (2020–2024)", "").replace(" (2025 release)", "").replace(" county data", "").replace(" (ATC classes)", "") })));
+function renderTab(id) {
+  for (const b of $("#data-tabs").children) b.setAttribute("aria-selected", b.dataset.id === id);
+  const v = $("#data-view");
+  if (id === "kaggle") {
+    v.innerHTML = `<dl class="kv"><dt>Source</dt><dd>Kaggle · Diabetes 130-US Hospitals for Years 1999–2008 (Strack et al., 2014), downloaded with <span class="mono">kagglehub</span></dd>
+      <dt>One row</dt><dd>One hospital stay of a diabetic patient (1–14 days, with lab tests and medications recorded)</dd>
+      <dt>Size</dt><dd class="num">${fmt(KS.shape[0])} stays × ${KS.shape[1]} columns, from ${fmt(D.cleaning.raw_patients)} patients</dd></dl>
+      <div class="groups">${Object.entries(KS.groups).map(([g, cols]) => `<div><b>${g}</b><span>${cols.length > 6 ? cols.slice(0, 6).join(", ") + ", …" : cols.join(", ")}</span></div>`).join("")}</div>
+      ${table(KS.rows, KS.columns_shown)}
+      <p class="stat-src">6 random rows (seed 7), 13 of 50 columns. "?" = missing in the original file. Age comes only in 10-year bands. diag_1 is an ICD-9 code (996 = complications of a device or implant). readmitted: "&lt;30" = within 30 days, "&gt;30" = later, "NO" = not readmitted.</p>`;
+  } else {
+    const a = AS[+id.slice(3)];
+    const cols = Object.keys(a.rows[0]);
+    v.innerHTML = `<dl class="kv"><dt>Host</dt><dd class="mono">${a.host}</dd>
+      <dt>Request</dt><dd><pre class="code">${esc(a.request)}</pre></dd>
+      <dt>How I pulled it</dt><dd>${esc(a.loop)}</dd>
+      <dt>One row</dt><dd>${esc(a.one_row)}</dd>
+      <dt>Rows kept</dt><dd class="num">${fmt(a.total)}</dd></dl>
+      ${table(a.rows, cols)}
+      ${a.raw_json ? `<p class="stat-src">The same Ozempic record as the API returns it (selected fields; every value arrives as text, so the notebook converts types):</p><pre class="code">${esc(JSON.stringify(a.raw_json, null, 2))}</pre>` : ""}
+      ${a.name.includes("Provider") ? `<p class="stat-src">Random rows, not top prescribers. The prescriber ID (NPI) is kept in the notebooks for counting prescribers but never shown. "Hidden by CMS" = fewer than 11 patients, which CMS blanks to protect privacy.</p>` : ""}`;
+  }
+}
+$("#data-tabs").innerHTML = TABS.map(t => `<button type="button" role="tab" data-id="${t.id}" aria-selected="false">${t.label}</button>`).join("");
+for (const b of $("#data-tabs").children) b.addEventListener("click", () => renderTab(b.dataset.id));
+renderTab("kaggle");
+
+/* ---------- Section 1: privacy evidence ---------- */
+const KP = KS.privacy, leftOut = PA.prescriber_columns_offered.filter(c => !PA.prescriber_columns_pulled.includes(c));
+$("#privacy-tbl tbody").innerHTML = [
+  ["Kaggle hospital stays", "One de-identified hospital stay", `No names, dates, addresses or ZIP codes (${KP.date_columns.length} date columns, ${KP.name_address_zip_columns.length} name/address columns found). Age only in ${KP.age_values.length} ten-year bands. Patient numbers are codes assigned during de-identification.`],
+  ["CMS prescribers by drug", "One prescriber's total claims for one drug", `No patient rows. Smallest row: ${PA.prescriber_min_claims_per_row} claims (CMS drops anything under 11). Patient counts of 1–10 are blanked (${pct(PA.prescriber_benes_suppressed_pct, 0)} of rows). Prescriber name and city not pulled (${leftOut.filter(c => /Name|City/.test(c) && !/Brnd|Gnrc/.test(c)).length} of ${leftOut.length} unused columns).`],
+  ["CMS spending by drug", "One brand, national totals", "National totals per brand; no people at all."],
+  ["CMS claims by state", "One state × one brand", "Totals across every prescriber in the state."],
+  ["CDC PLACES", "One county", "Survey-based percentages for a whole county, not records of people."],
+  ["NLM RxClass, openFDA", "One drug ingredient", "Drug classes and approval dates; no people at all."],
+].map(([s, row, ev]) => `<tr><td><b>${s}</b></td><td>${row}</td><td class="ok">None</td><td>${ev}</td></tr>`).join("");
 </script>

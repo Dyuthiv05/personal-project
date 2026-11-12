@@ -2228,5 +2228,461 @@
         "pct_headroom": 100.0
       }
     ]
+  },
+  "kaggle_sample": {
+    "rows": [
+      {
+        "race": "AfricanAmerican",
+        "gender": "Female",
+        "age": "[50-60)",
+        "admission_type_id": "3",
+        "time_in_hospital": "1",
+        "num_medications": "12",
+        "number_inpatient": "0",
+        "diag_1": "996",
+        "A1Cresult": "?",
+        "metformin": "No",
+        "insulin": "No",
+        "change": "No",
+        "readmitted": "NO"
+      },
+      {
+        "race": "Caucasian",
+        "gender": "Male",
+        "age": "[80-90)",
+        "admission_type_id": "2",
+        "time_in_hospital": "4",
+        "num_medications": "23",
+        "number_inpatient": "1",
+        "diag_1": "428",
+        "A1Cresult": ">7",
+        "metformin": "No",
+        "insulin": "Up",
+        "change": "Ch",
+        "readmitted": "NO"
+      },
+      {
+        "race": "Caucasian",
+        "gender": "Male",
+        "age": "[60-70)",
+        "admission_type_id": "1",
+        "time_in_hospital": "6",
+        "num_medications": "13",
+        "number_inpatient": "0",
+        "diag_1": "250.02",
+        "A1Cresult": ">8",
+        "metformin": "No",
+        "insulin": "No",
+        "change": "Ch",
+        "readmitted": ">30"
+      },
+      {
+        "race": "Caucasian",
+        "gender": "Female",
+        "age": "[30-40)",
+        "admission_type_id": "2",
+        "time_in_hospital": "4",
+        "num_medications": "14",
+        "number_inpatient": "0",
+        "diag_1": "641",
+        "A1Cresult": "?",
+        "metformin": "Steady",
+        "insulin": "Steady",
+        "change": "Ch",
+        "readmitted": ">30"
+      },
+      {
+        "race": "AfricanAmerican",
+        "gender": "Female",
+        "age": "[50-60)",
+        "admission_type_id": "2",
+        "time_in_hospital": "7",
+        "num_medications": "28",
+        "number_inpatient": "0",
+        "diag_1": "250.7",
+        "A1Cresult": "?",
+        "metformin": "Steady",
+        "insulin": "Up",
+        "change": "Ch",
+        "readmitted": "NO"
+      },
+      {
+        "race": "Caucasian",
+        "gender": "Female",
+        "age": "[90-100)",
+        "admission_type_id": "1",
+        "time_in_hospital": "2",
+        "num_medications": "11",
+        "number_inpatient": "0",
+        "diag_1": "250.8",
+        "A1Cresult": "?",
+        "metformin": "No",
+        "insulin": "No",
+        "change": "No",
+        "readmitted": ">30"
+      }
+    ],
+    "columns_shown": [
+      "race",
+      "gender",
+      "age",
+      "admission_type_id",
+      "time_in_hospital",
+      "num_medications",
+      "number_inpatient",
+      "diag_1",
+      "A1Cresult",
+      "metformin",
+      "insulin",
+      "change",
+      "readmitted"
+    ],
+    "groups": {
+      "Record codes": [
+        "encounter_id",
+        "patient_nbr"
+      ],
+      "Demographics": [
+        "race",
+        "gender",
+        "age",
+        "weight"
+      ],
+      "The stay": [
+        "admission_type_id",
+        "discharge_disposition_id",
+        "admission_source_id",
+        "time_in_hospital",
+        "payer_code",
+        "medical_specialty",
+        "num_lab_procedures",
+        "num_procedures",
+        "num_medications"
+      ],
+      "Prior year": [
+        "number_outpatient",
+        "number_emergency",
+        "number_inpatient"
+      ],
+      "Diagnoses": [
+        "diag_1",
+        "diag_2",
+        "diag_3",
+        "number_diagnoses"
+      ],
+      "Lab results": [
+        "max_glu_serum",
+        "A1Cresult"
+      ],
+      "Diabetes medications (23)": [
+        "metformin",
+        "repaglinide",
+        "nateglinide",
+        "chlorpropamide",
+        "glimepiride",
+        "acetohexamide",
+        "glipizide",
+        "glyburide",
+        "tolbutamide",
+        "pioglitazone",
+        "rosiglitazone",
+        "acarbose",
+        "miglitol",
+        "troglitazone",
+        "tolazamide",
+        "examide",
+        "citoglipton",
+        "insulin",
+        "glyburide-metformin",
+        "glipizide-metformin",
+        "glimepiride-pioglitazone",
+        "metformin-rosiglitazone",
+        "metformin-pioglitazone"
+      ],
+      "Medication summary": [
+        "change",
+        "diabetesMed"
+      ],
+      "Outcome": [
+        "readmitted"
+      ]
+    },
+    "shape": [
+      101766,
+      50
+    ],
+    "privacy": {
+      "columns": 50,
+      "date_columns": [],
+      "free_text_columns": [],
+      "age_values": [
+        "[0-10)",
+        "[10-20)",
+        "[20-30)",
+        "[30-40)",
+        "[40-50)",
+        "[50-60)",
+        "[60-70)",
+        "[70-80)",
+        "[80-90)",
+        "[90-100)"
+      ],
+      "name_address_zip_columns": [],
+      "patient_code_note": "patient_nbr is a de-identified code assigned by the data provider, not a medical record number"
+    }
+  },
+  "api_samples": [
+    {
+      "name": "CMS Part D Prescribers by Provider & Drug (2024)",
+      "host": "data.cms.gov",
+      "request": "GET /data-api/v1/dataset/9552739e\u2026/data?filter[Gnrc_Name]=Semaglutide&column=Prscrbr_Type,Prscrbr_State_Abrvtn,Brnd_Name,\u2026&size=5000&offset=0",
+      "loop": "Paged 5,000 rows at a time for each of 62 diabetes generic names, 8 requests in parallel",
+      "one_row": "One prescriber \u00d7 one drug: that prescriber's 2024 Medicare claims for it",
+      "rows": [
+        {
+          "Prscrbr_Type": "Nurse Practitioner",
+          "Prscrbr_State_Abrvtn": "SC",
+          "Brnd_Name": "Ozempic",
+          "Gnrc_Name": "Semaglutide",
+          "Tot_Clms": "88",
+          "Tot_Benes": "22.0",
+          "Tot_Drug_Cst": "111745.29"
+        },
+        {
+          "Prscrbr_Type": "Family Practice",
+          "Prscrbr_State_Abrvtn": "FL",
+          "Brnd_Name": "Rybelsus",
+          "Gnrc_Name": "Semaglutide",
+          "Tot_Clms": "15",
+          "Tot_Benes": "nan",
+          "Tot_Drug_Cst": "25917.85"
+        },
+        {
+          "Prscrbr_Type": "Physician Assistant",
+          "Prscrbr_State_Abrvtn": "IL",
+          "Brnd_Name": "Rybelsus",
+          "Gnrc_Name": "Semaglutide",
+          "Tot_Clms": "30",
+          "Tot_Benes": "nan",
+          "Tot_Drug_Cst": "36023.45"
+        }
+      ],
+      "total": 2231207
+    },
+    {
+      "name": "CMS Part D Spending by Drug (2020\u20132024)",
+      "host": "data.cms.gov",
+      "request": "GET /data-api/v1/dataset/7e0b4365\u2026/data?filter[Mftr_Name]=Overall&size=5000",
+      "loop": "One paged pull of all 3,625 brands, then kept the 142 diabetes brands",
+      "one_row": "One brand: national Medicare spending, claims and patients for each year 2020\u20132024",
+      "rows": [
+        {
+          "Brnd_Name": "Ozempic",
+          "Gnrc_Name": "Semaglutide",
+          "drug_class": "GLP-1 / GIP-GLP-1 agonist",
+          "Tot_Spndng_2024": "12970296347.0",
+          "Tot_Clms_2024": "10417182",
+          "Tot_Benes_2024": "1952637"
+        },
+        {
+          "Brnd_Name": "Jardiance",
+          "Gnrc_Name": "Empagliflozin",
+          "drug_class": "SGLT2 inhibitor",
+          "Tot_Spndng_2024": "11435997421.0",
+          "Tot_Clms_2024": "11368280",
+          "Tot_Benes_2024": "2543331"
+        },
+        {
+          "Brnd_Name": "Mounjaro",
+          "Gnrc_Name": "Tirzepatide",
+          "drug_class": "GLP-1 / GIP-GLP-1 agonist",
+          "Tot_Spndng_2024": "6336942640.7",
+          "Tot_Clms_2024": "5105397",
+          "Tot_Benes_2024": "894581"
+        }
+      ],
+      "raw_json": {
+        "Brnd_Name": "Ozempic",
+        "Gnrc_Name": "Semaglutide",
+        "Mftr_Name": "Overall",
+        "Tot_Spndng_2023": "9194048435.1",
+        "Tot_Spndng_2024": "12970296347",
+        "Tot_Clms_2024": "10417182",
+        "Tot_Benes_2024": "1952637",
+        "Avg_Spnd_Per_Clm_2024": "1245.0868524"
+      },
+      "total": 142
+    },
+    {
+      "name": "CMS Part D Prescribers by Geography & Drug (2024)",
+      "host": "data.cms.gov",
+      "request": "GET /data-api/v1/dataset/c8ea3f8e\u2026/data?filter[Prscrbr_Geo_Lvl]=State&filter[Gnrc_Name]=Empagliflozin",
+      "loop": "One request per diabetes generic name (62)",
+      "one_row": "One state \u00d7 one brand: total prescribers, claims and cost",
+      "rows": [
+        {
+          "Prscrbr_Geo_Desc": "California",
+          "Brnd_Name": "Jardiance",
+          "Tot_Prscrbrs": "39955",
+          "Tot_Clms": "1288267",
+          "Tot_Drug_Cst": "1207210915.4"
+        },
+        {
+          "Prscrbr_Geo_Desc": "New York",
+          "Brnd_Name": "Jardiance",
+          "Tot_Prscrbrs": "27371",
+          "Tot_Clms": "863737",
+          "Tot_Drug_Cst": "875790692.33"
+        },
+        {
+          "Prscrbr_Geo_Desc": "Texas",
+          "Brnd_Name": "Jardiance",
+          "Tot_Prscrbrs": "25493",
+          "Tot_Clms": "720759",
+          "Tot_Drug_Cst": "788491523.88"
+        }
+      ],
+      "total": 6615
+    },
+    {
+      "name": "CDC PLACES county data (2025 release)",
+      "host": "data.cdc.gov",
+      "request": "GET /resource/swc5-untb.json?$where=datavaluetypeid='CrdPrv' AND measureid in('DIABETES','OBESITY')&$limit=50000",
+      "loop": "One request; Socrata query language does the filtering server-side",
+      "one_row": "One county: % of adults with diagnosed diabetes and obesity (survey-based model estimates)",
+      "rows": [
+        {
+          "statedesc": "California",
+          "locationname": "Los Angeles",
+          "totalpop18plus": "7710575",
+          "diabetes_pct": "12.6",
+          "obesity_pct": "26.5"
+        },
+        {
+          "statedesc": "Illinois",
+          "locationname": "Cook",
+          "totalpop18plus": "4031580",
+          "diabetes_pct": "11.8",
+          "obesity_pct": "31.0"
+        },
+        {
+          "statedesc": "Texas",
+          "locationname": "Harris",
+          "totalpop18plus": "3595915",
+          "diabetes_pct": "13.2",
+          "obesity_pct": "37.3"
+        }
+      ],
+      "total": 2956
+    },
+    {
+      "name": "NLM RxClass (ATC classes)",
+      "host": "rxnav.nlm.nih.gov",
+      "request": "GET /REST/rxclass/classMembers.json?classId=A10BK&relaSource=ATC&ttys=IN",
+      "loop": "One request per ATC class (9)",
+      "one_row": "One ingredient and the drug class it belongs to",
+      "rows": [
+        {
+          "atc_id": "A10BJ",
+          "atc_name": "Glucagon-like peptide-1 (GLP-1) analogues",
+          "ingredient": "lixisenatide",
+          "drug_class": "GLP-1 / GIP-GLP-1 agonist"
+        },
+        {
+          "atc_id": "A10BJ",
+          "atc_name": "Glucagon-like peptide-1 (GLP-1) analogues",
+          "ingredient": "albiglutide",
+          "drug_class": "GLP-1 / GIP-GLP-1 agonist"
+        },
+        {
+          "atc_id": "A10BJ",
+          "atc_name": "Glucagon-like peptide-1 (GLP-1) analogues",
+          "ingredient": "dulaglutide",
+          "drug_class": "GLP-1 / GIP-GLP-1 agonist"
+        },
+        {
+          "atc_id": "A10BJ",
+          "atc_name": "Glucagon-like peptide-1 (GLP-1) analogues",
+          "ingredient": "semaglutide",
+          "drug_class": "GLP-1 / GIP-GLP-1 agonist"
+        }
+      ],
+      "total": 48
+    },
+    {
+      "name": "openFDA Drugs@FDA",
+      "host": "api.fda.gov",
+      "request": "GET /drug/drugsfda.json?search=openfda.generic_name:\"empagliflozin\"&limit=100",
+      "loop": "One request per ingredient (24), keeping the earliest original NDA/BLA approval",
+      "one_row": "One ingredient: first approval date and application number",
+      "rows": [
+        {
+          "ingredient": "tirzepatide",
+          "brand": "MOUNJARO, MOUNJARO KWIKPEN",
+          "application": "NDA215866",
+          "first_approval": "2022-05-13"
+        },
+        {
+          "ingredient": "semaglutide",
+          "brand": "OZEMPIC, RYBELSUS",
+          "application": "NDA213051",
+          "first_approval": "2019-09-20"
+        },
+        {
+          "ingredient": "ertugliflozin",
+          "brand": "STEGLATRO",
+          "application": "NDA209803",
+          "first_approval": "2017-12-19"
+        },
+        {
+          "ingredient": "dulaglutide",
+          "brand": "TRULICITY",
+          "application": "BLA125469",
+          "first_approval": "2014-09-18"
+        }
+      ],
+      "total": 19
+    }
+  ],
+  "privacy_api": {
+    "prescriber_columns_offered": [
+      "Prscrbr_NPI",
+      "Prscrbr_Last_Org_Name",
+      "Prscrbr_First_Name",
+      "Prscrbr_City",
+      "Prscrbr_State_Abrvtn",
+      "Prscrbr_State_FIPS",
+      "Prscrbr_Type",
+      "Prscrbr_Type_Src",
+      "Brnd_Name",
+      "Gnrc_Name",
+      "Tot_Clms",
+      "Tot_30day_Fills",
+      "Tot_Day_Suply",
+      "Tot_Drug_Cst",
+      "Tot_Benes",
+      "GE65_Sprsn_Flag",
+      "GE65_Tot_Clms",
+      "GE65_Tot_30day_Fills",
+      "GE65_Tot_Drug_Cst",
+      "GE65_Tot_Day_Suply",
+      "GE65_Bene_Sprsn_Flag",
+      "GE65_Tot_Benes"
+    ],
+    "prescriber_columns_pulled": [
+      "Prscrbr_NPI",
+      "Prscrbr_Type",
+      "Prscrbr_State_Abrvtn",
+      "Brnd_Name",
+      "Gnrc_Name",
+      "Tot_Clms",
+      "Tot_Benes",
+      "Tot_Drug_Cst"
+    ],
+    "prescriber_min_claims_per_row": 11,
+    "prescriber_benes_suppressed_pct": 64.4,
+    "state_min_prescribers_per_row": 1,
+    "county_min_adults": 75,
+    "patient_level_rows": 0
   }
 }

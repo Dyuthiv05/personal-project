@@ -22,6 +22,9 @@ data = {
     "market": {k: m[k] for k in ["by_year", "spend_by_class", "mix", "specialties", "national_advanced_pct",
                                  "states", "state_medians", "total_prescribers", "total_claims"]},
     "targeting": t,
+    "kaggle_sample": results["kaggle_sample"],
+    "api_samples": results["api_samples"],
+    "privacy_api": results["privacy_api"],
 }
 html = (Path(__file__).parent / "story_template.html").read_text()
 out = ROOT / "docs" / "story.html"
