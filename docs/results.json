@@ -550,7 +550,7 @@
         "patients": 6999,
         "readmit_30_pct": 3.3,
         "any_readmit_pct": 22.1,
-        "admits_past_12m": 1.0,
+        "prior_stays": 0.0,
         "prior_stay_pct": 0.0,
         "heart_pct": 35.7,
         "kidney_pct": 0.4
@@ -560,7 +560,7 @@
         "patients": 6999,
         "readmit_30_pct": 5.1,
         "any_readmit_pct": 30.2,
-        "admits_past_12m": 1.0,
+        "prior_stays": 0.0,
         "prior_stay_pct": 0.2,
         "heart_pct": 50.3,
         "kidney_pct": 2.2
@@ -570,7 +570,7 @@
         "patients": 6998,
         "readmit_30_pct": 5.7,
         "any_readmit_pct": 34.6,
-        "admits_past_12m": 1.01,
+        "prior_stays": 0.01,
         "prior_stay_pct": 1.0,
         "heart_pct": 56.7,
         "kidney_pct": 3.7
@@ -580,7 +580,7 @@
         "patients": 6999,
         "readmit_30_pct": 6.4,
         "any_readmit_pct": 38.3,
-        "admits_past_12m": 1.02,
+        "prior_stays": 0.02,
         "prior_stay_pct": 2.0,
         "heart_pct": 60.6,
         "kidney_pct": 7.6
@@ -590,7 +590,7 @@
         "patients": 6999,
         "readmit_30_pct": 6.5,
         "any_readmit_pct": 40.0,
-        "admits_past_12m": 1.04,
+        "prior_stays": 0.04,
         "prior_stay_pct": 4.3,
         "heart_pct": 64.2,
         "kidney_pct": 10.4
@@ -600,7 +600,7 @@
         "patients": 6998,
         "readmit_30_pct": 8.4,
         "any_readmit_pct": 42.3,
-        "admits_past_12m": 1.09,
+        "prior_stays": 0.09,
         "prior_stay_pct": 8.4,
         "heart_pct": 64.8,
         "kidney_pct": 14.0
@@ -610,7 +610,7 @@
         "patients": 6999,
         "readmit_30_pct": 9.6,
         "any_readmit_pct": 46.0,
-        "admits_past_12m": 1.15,
+        "prior_stays": 0.15,
         "prior_stay_pct": 13.4,
         "heart_pct": 65.5,
         "kidney_pct": 16.8
@@ -620,7 +620,7 @@
         "patients": 6998,
         "readmit_30_pct": 11.0,
         "any_readmit_pct": 49.2,
-        "admits_past_12m": 1.24,
+        "prior_stays": 0.24,
         "prior_stay_pct": 20.4,
         "heart_pct": 62.6,
         "kidney_pct": 17.6
@@ -630,7 +630,7 @@
         "patients": 6999,
         "readmit_30_pct": 13.3,
         "any_readmit_pct": 50.1,
-        "admits_past_12m": 1.43,
+        "prior_stays": 0.43,
         "prior_stay_pct": 28.9,
         "heart_pct": 57.6,
         "kidney_pct": 17.1
@@ -640,7 +640,7 @@
         "patients": 6999,
         "readmit_30_pct": 20.4,
         "any_readmit_pct": 54.6,
-        "admits_past_12m": 1.77,
+        "prior_stays": 0.77,
         "prior_stay_pct": 38.4,
         "heart_pct": 64.2,
         "kidney_pct": 14.4
@@ -793,261 +793,326 @@
     "annual_cost": {
       "SGLT2 \u00b7 negotiated (2026)": 2364,
       "GLP-1 \u00b7 negotiated (2027)": 3288,
-      "SGLT2 \u00b7 gross 2024": 6481
+      "SGLT2 \u00b7 gross 2024": 6491
     }
   },
   "value": {
     "cost": {
-      "low": 12942,
-      "base": 20654,
-      "high": 20930
+      "low": 9664,
+      "base": 17094,
+      "high": 20654
     },
-    "reconcile": [
+    "recon": [
       {
-        "measure": "Medicare payment per admission, all stays",
-        "source": "CMS inpatient 2024",
-        "original_year": 2024,
-        "original_$": 18728.28,
-        "factor_to_2026": 1.1,
-        "in_2026_$": 20654.42
+        "measure": "Medicare's share per stay, all stays (base)",
+        "2024_$": 15500.0,
+        "2026_$": 17094.0
       },
       {
-        "measure": "Medicare payment per admission, diabetes + heart-failure stays",
-        "source": "CMS inpatient 2024",
-        "original_year": 2024,
-        "original_$": 11734.7,
-        "factor_to_2026": 1.1,
-        "in_2026_$": 12941.57
+        "measure": "Medicare's share, diabetes + heart-failure stays (low, not inflated)",
+        "2024_$": 9664.0,
+        "2026_$": 9664.0
       },
       {
-        "measure": "Average readmission cost, all payers (cross-check)",
-        "source": "AHRQ HCUP 2018",
-        "original_year": 2018,
-        "original_$": 15200.0,
-        "factor_to_2026": 1.38,
-        "in_2026_$": 20929.66
+        "measure": "Total payment per stay, all stays (high)",
+        "2024_$": 18728.0,
+        "2026_$": 20654.0
+      },
+      {
+        "measure": "AHRQ HCUP 2018 all-payer readmission cost (cross-check)",
+        "2024_$": "",
+        "2026_$": 20930.0
       }
     ],
     "time_table": [
       {
-        "input": "Hospital stays per patient",
+        "input": "Prior hospital stays per patient",
         "data_year": "1999\u20132008",
-        "how_aligned": "Kept as a pattern; checked against recent readmission rates; 50% scenario",
-        "effect_on_result": "Likely understates value: readmissions in this data run below recent rates"
+        "how_aligned": "Checked against what happened after discharge (section 3) and recent readmission rates; 50% scenario",
+        "effect_on_result": "Likely understates value: 30-day readmission here (11.4% of stays) is below recent studies (16\u201320%)"
       },
       {
         "input": "Drug effect (11%)",
         "data_year": "2015 trial",
-        "how_aligned": "Biological effect, not a price; range 4\u201318%",
-        "effect_on_result": "Neutral; real-world adherence could lower it"
+        "how_aligned": "Range 4\u201318%; heart-disease subgroup tested",
+        "effect_on_result": "Could overstate: the trial measured first hospitalization in outpatients with heart disease"
       },
       {
-        "input": "Cost of an admission",
-        "data_year": "2024 (CMS), 2018 (HCUP)",
-        "how_aligned": "Converted to 2026 $ with the BLS inpatient-hospital price index",
-        "effect_on_result": "Fixed: was understated by mixing 2018 costs with 2026 prices"
+        "input": "Cost of a stay",
+        "data_year": "2024 (CMS); 2018 (HCUP check)",
+        "how_aligned": "Medicare's share, moved to 2026 with the BLS hospital price index",
+        "effect_on_result": "CPI may run above Medicare's own rate updates; low case uses no inflation"
       },
       {
-        "input": "Negotiated drug prices",
-        "data_year": "2026 / 2027",
-        "how_aligned": "Already the decision year",
-        "effect_on_result": "Neutral (GLP-1 price is one year later)"
-      },
-      {
-        "input": "Gross drug cost",
-        "data_year": "2024",
-        "how_aligned": "Left in 2024 $, used only as a comparison scenario",
-        "effect_on_result": "Slightly understates gross cost if list prices rose"
-      },
-      {
-        "input": "Use trend",
-        "data_year": "2013\u20132024",
-        "how_aligned": "One consistent CMS file every year",
-        "effect_on_result": "Context only"
+        "input": "Drug prices",
+        "data_year": "2024 gross; 2026/27 negotiated",
+        "how_aligned": "Negotiated prices are already the decision years",
+        "effect_on_result": "Gross is before confidential rebates, so it overstates the net price"
       }
     ],
     "cpi_2018_2026": 0.377,
     "cpi_2024_2026": 0.103,
-    "benchmark": {
-      "all_stays": 11.4,
-      "first_stay": 9.0,
-      "recent_low": 16.0,
-      "recent_high": 20.4
-    },
-    "first_time_net": {
-      "SGLT2 \u00b7 negotiated (2026)": -92,
-      "GLP-1 \u00b7 negotiated (2027)": -1016,
-      "SGLT2 \u00b7 gross 2024": -4209
-    },
-    "rule_vs_model": [
-      {
-        "selection": "Rule: another stay in the past year",
-        "patients": 8195,
-        "stays_per_year": 2.51,
-        "readmit_30_pct": 15.4,
-        "share_of_30d_readmissions_pct": 20.08,
-        "net_per_patient_year": 3328.3
-      },
-      {
-        "selection": "Model: top 11.7% predicted risk",
-        "patients": 8195,
-        "stays_per_year": 1.74,
-        "readmit_30_pct": 19.63,
-        "share_of_30d_readmissions_pct": 25.6,
-        "net_per_patient_year": 1582.52
-      }
-    ],
-    "rule_model_overlap": 37.2,
-    "glp1_needed": {
-      "1+ prior stays": 6.4,
-      "2+ prior stays": 4.3,
-      "First-time patients": 15.9
-    },
     "annual_cost": {
       "SGLT2 \u00b7 negotiated (2026)": 2364,
       "GLP-1 \u00b7 negotiated (2027)": 3288,
-      "SGLT2 \u00b7 gross 2024": 6481
+      "SGLT2 \u00b7 gross 2024": 6491
     },
     "breakeven": {
-      "SGLT2 \u00b7 negotiated (2026)": 1.04,
-      "GLP-1 \u00b7 negotiated (2027)": 1.45,
-      "SGLT2 \u00b7 gross 2024": 2.85
+      "SGLT2 \u00b7 negotiated (2026)": 1.26,
+      "GLP-1 \u00b7 negotiated (2027)": 1.75,
+      "SGLT2 \u00b7 gross 2024": 3.45
     },
     "groups": [
       {
-        "stays_group": "This stay only",
+        "stays_group": "No prior stay",
         "patients": 61792,
-        "admits_past_12m": 1.0,
+        "prior_stays": 0.0,
         "readmit_30_pct": 8.1,
+        "later_readmit_pct": 38.1,
         "heart_pct": 57.9,
         "share_pct": 88.3,
-        "SGLT2 \u00b7 negotiated (2026)": -92.0,
-        "GLP-1 \u00b7 negotiated (2027)": -1016.0,
-        "SGLT2 \u00b7 gross 2024": -4209.0
+        "SGLT2 \u00b7 negotiated (2026)": -2364.0,
+        "GLP-1 \u00b7 negotiated (2027)": -3288.0,
+        "SGLT2 \u00b7 gross 2024": -6491.0
       },
       {
         "stays_group": "1 prior stay",
         "patients": 5798,
-        "admits_past_12m": 2.0,
+        "prior_stays": 1.0,
         "readmit_30_pct": 12.9,
+        "later_readmit_pct": 55.8,
         "heart_pct": 60.6,
         "share_pct": 8.3,
-        "SGLT2 \u00b7 negotiated (2026)": 2180.0,
-        "GLP-1 \u00b7 negotiated (2027)": 1256.0,
-        "SGLT2 \u00b7 gross 2024": -1937.0
+        "SGLT2 \u00b7 negotiated (2026)": -483.6,
+        "GLP-1 \u00b7 negotiated (2027)": -1407.6,
+        "SGLT2 \u00b7 gross 2024": -4610.6
       },
       {
         "stays_group": "2 prior stays",
         "patients": 1501,
-        "admits_past_12m": 3.0,
+        "prior_stays": 2.0,
         "readmit_30_pct": 18.5,
+        "later_readmit_pct": 67.4,
         "heart_pct": 62.0,
         "share_pct": 2.1,
-        "SGLT2 \u00b7 negotiated (2026)": 4452.0,
-        "GLP-1 \u00b7 negotiated (2027)": 3528.0,
-        "SGLT2 \u00b7 gross 2024": 335.0
+        "SGLT2 \u00b7 negotiated (2026)": 1396.7,
+        "GLP-1 \u00b7 negotiated (2027)": 472.7,
+        "SGLT2 \u00b7 gross 2024": -2730.3
       },
       {
         "stays_group": "3+ prior stays",
         "patients": 896,
-        "admits_past_12m": 4.9,
+        "prior_stays": 3.9,
         "readmit_30_pct": 26.5,
+        "later_readmit_pct": 77.3,
         "heart_pct": 57.9,
         "share_pct": 1.3,
-        "SGLT2 \u00b7 negotiated (2026)": 8876.8,
-        "GLP-1 \u00b7 negotiated (2027)": 7952.8,
-        "SGLT2 \u00b7 gross 2024": 4759.8
+        "SGLT2 \u00b7 negotiated (2026)": 5058.8,
+        "GLP-1 \u00b7 negotiated (2027)": 4134.8,
+        "SGLT2 \u00b7 gross 2024": 931.8
       }
     ],
     "rule": [
       {
         "scenario": "SGLT2 \u00b7 negotiated (2026)",
-        "qualifying per 1,000 discharges": 117.0,
-        "admissions avoided / yr": 32.0,
-        "drug cost / yr ($)": 276808.0,
-        "hospital savings / yr ($)": 666530.0,
-        "net / yr ($)": 389721.0,
-        "cost per admission avoided ($)": 8578.0
+        "qualifying per 1,000 discharges": 34.0,
+        "admissions avoided / yr": 10.0,
+        "drug cost / yr ($)": 80965.0,
+        "hospital savings / yr ($)": 175685.0,
+        "net / yr ($)": 94720.0
       },
       {
         "scenario": "GLP-1 \u00b7 negotiated (2027)",
-        "qualifying per 1,000 discharges": 117.0,
-        "admissions avoided / yr": 32.0,
-        "drug cost / yr ($)": 385002.0,
-        "hospital savings / yr ($)": 666530.0,
-        "net / yr ($)": 281527.0,
-        "cost per admission avoided ($)": 11930.0
+        "qualifying per 1,000 discharges": 34.0,
+        "admissions avoided / yr": 10.0,
+        "drug cost / yr ($)": 112611.0,
+        "hospital savings / yr ($)": 175685.0,
+        "net / yr ($)": 63074.0
       },
       {
         "scenario": "SGLT2 \u00b7 gross 2024",
-        "qualifying per 1,000 discharges": 117.0,
-        "admissions avoided / yr": 32.0,
-        "drug cost / yr ($)": 758881.0,
-        "hospital savings / yr ($)": 666530.0,
-        "net / yr ($)": -92351.0,
-        "cost per admission avoided ($)": 23516.0
+        "qualifying per 1,000 discharges": 34.0,
+        "admissions avoided / yr": 10.0,
+        "drug cost / yr ($)": 222312.0,
+        "hospital savings / yr ($)": 175685.0,
+        "net / yr ($)": -46626.0
       }
     ],
-    "qualifying": {
-      "n": 8195,
-      "pct": 11.7,
-      "readmit_30": 15.4,
-      "readmit_30_rest": 8.1,
-      "heart_pct": 60.6,
-      "kidney_pct": 15.3,
-      "share_of_readmissions": 20.1,
-      "mean_admits": 2.51,
-      "two_plus_pct": 3.4
+    "target": {
+      "n": 2397,
+      "pct": 3.4,
+      "readmit_30": 21.5,
+      "readmit_30_rest": 8.5,
+      "later_readmit": 71.1,
+      "share_of_readmissions": 8.2,
+      "heart_pct": 60.5,
+      "mean_prior": 2.73,
+      "one_prior_net": -484,
+      "medicare_n": 532
     },
-    "base_net": 3328,
+    "stress": {
+      "2+ prior stays": {
+        "base": 2766.0,
+        "effect 4% (trial low end)": -499.0,
+        "future stays = 50% of past": 201.0,
+        "cost of a stay: diabetes/heart-failure, 2024 $": 536.0,
+        "2024 gross price": -1361.0,
+        "combined downside (50% future + low cost)": -914.0
+      },
+      "2+ prior stays, Medicare-insured only": {
+        "base": 2715.0,
+        "effect 4% (trial low end)": -517.0,
+        "future stays = 50% of past": 176.0,
+        "cost of a stay: diabetes/heart-failure, 2024 $": 507.0,
+        "2024 gross price": -1412.0,
+        "combined downside (50% future + low cost)": -928.0
+      },
+      "2+ prior stays, heart diagnosis only": {
+        "base": 2694.0,
+        "effect 4% (trial low end)": -525.0,
+        "future stays = 50% of past": 165.0,
+        "cost of a stay: diabetes/heart-failure, 2024 $": 496.0,
+        "2024 gross price": -1433.0,
+        "combined downside (50% future + low cost)": -934.0
+      },
+      "1+ prior stays": {
+        "base": 467.0,
+        "effect 4% (trial low end)": -1335.0,
+        "future stays = 50% of past": -949.0,
+        "cost of a stay: diabetes/heart-failure, 2024 $": -764.0,
+        "2024 gross price": -3660.0,
+        "combined downside (50% future + low cost)": -1564.0
+      }
+    },
     "tornado": [
       {
         "assumption": "Hospitalization reduction (4% \u2013 18%)",
-        "low": -294.0,
-        "high": 6951.0,
-        "swing": 7245.0
+        "low": -499.0,
+        "high": 6030.0,
+        "swing": 6529.0
       },
       {
-        "assumption": "Price (negotiated \u2013 gross 2024)",
-        "low": -789.0,
-        "high": 3328.0,
-        "swing": 4117.0
+        "assumption": "Price (negotiated \u2013 2024 gross)",
+        "low": -1361.0,
+        "high": 2766.0,
+        "swing": 4127.0
       },
       {
-        "assumption": "Future admissions (50% \u2013 100% of past year)",
-        "low": 482.0,
-        "high": 3328.0,
-        "swing": 2846.0
+        "assumption": "Cost of a stay ($9,664 \u2013 $20,654)",
+        "low": 536.0,
+        "high": 3834.0,
+        "swing": 3298.0
       },
       {
-        "assumption": "Cost per admission ($12,942 \u2013 $20,930)",
-        "low": 1203.0,
-        "high": 3404.0,
-        "swing": 2201.0
+        "assumption": "Future stays (50% \u2013 100% of past)",
+        "low": 201.0,
+        "high": 2766.0,
+        "swing": 2565.0
       }
     ],
-    "stress": {
-      "1+ prior stays": {
-        "base": 3328.0,
-        "effect 4%": -294.0,
-        "admission cost (diabetes/HF stays)": 1203.0,
-        "future = 50% of past": 482.0,
-        "gross 2024 price": -789.0
+    "base_net": 2766.0,
+    "rule_vs_model": [
+      {
+        "selection": "Rule: 2+ prior stays",
+        "patients": 2397,
+        "later_readmit_pct": 71.1,
+        "readmit_30_pct": 21.5,
+        "share_of_30d_readmissions_pct": 8.2
       },
-      "2+ prior stays": {
-        "base": 6106.0,
-        "effect 4%": 716.0,
-        "admission cost (diabetes/HF stays)": 2943.0,
-        "future = 50% of past": 1871.0,
-        "gross 2024 price": 1989.0
-      },
-      "1+ prior stays, Medicare age (70+)": {
-        "base": 3250.0,
-        "effect 4%": -323.0,
-        "admission cost (diabetes/HF stays)": 1154.0,
-        "future = 50% of past": 443.0,
-        "gross 2024 price": -867.0
+      {
+        "selection": "Model: top 3.4% predicted risk",
+        "patients": 2397,
+        "later_readmit_pct": 57.7,
+        "readmit_30_pct": 25.4,
+        "share_of_30d_readmissions_pct": 9.7
       }
-    }
+    ],
+    "rule_model_overlap": 27.0,
+    "glp1_needed": {
+      "2+ prior stays": 7.1,
+      "1 prior stay": 19.2
+    },
+    "tiers": [
+      {
+        "stays_group": "No prior stay",
+        "patients": 61792,
+        "prior_stays": 0.0,
+        "later_readmit_pct": 38.1,
+        "share_pct": 88.3,
+        "breakeven_price_month": 0.0,
+        "at the negotiated SGLT2 price": "costs more than it saves"
+      },
+      {
+        "stays_group": "1 prior stay",
+        "patients": 5798,
+        "prior_stays": 1.0,
+        "later_readmit_pct": 55.8,
+        "share_pct": 8.3,
+        "breakeven_price_month": 156.7,
+        "at the negotiated SGLT2 price": "costs more than it saves"
+      },
+      {
+        "stays_group": "2 prior stays",
+        "patients": 1501,
+        "prior_stays": 2.0,
+        "later_readmit_pct": 67.4,
+        "share_pct": 2.1,
+        "breakeven_price_month": 313.4,
+        "at the negotiated SGLT2 price": "pays for itself"
+      },
+      {
+        "stays_group": "3+ prior stays",
+        "patients": 896,
+        "prior_stays": 3.9,
+        "later_readmit_pct": 77.3,
+        "share_pct": 1.3,
+        "breakeven_price_month": 618.6,
+        "at the negotiated SGLT2 price": "pays for itself"
+      }
+    ],
+    "refine": [
+      {
+        "group": "2+ prior stays",
+        "patients": 2397,
+        "share_pct": 3.4,
+        "later_readmit_pct": 71.1,
+        "readmit_30_pct": 21.5
+      },
+      {
+        "group": "2+ prior stays, heart or kidney diagnosis",
+        "patients": 1527,
+        "share_pct": 2.2,
+        "later_readmit_pct": 71.8,
+        "readmit_30_pct": 20.8
+      },
+      {
+        "group": "2+ prior stays, no heart or kidney diagnosis",
+        "patients": 870,
+        "share_pct": 1.2,
+        "later_readmit_pct": 69.9,
+        "readmit_30_pct": 22.6
+      },
+      {
+        "group": "1 prior stay",
+        "patients": 5798,
+        "share_pct": 8.3,
+        "later_readmit_pct": 55.8,
+        "readmit_30_pct": 12.9
+      },
+      {
+        "group": "1 prior stay, model's top 20% risk",
+        "patients": 2629,
+        "share_pct": 3.8,
+        "later_readmit_pct": 59.2,
+        "readmit_30_pct": 16.9
+      },
+      {
+        "group": "1 prior stay, rest",
+        "patients": 3169,
+        "share_pct": 4.5,
+        "later_readmit_pct": 53.1,
+        "readmit_30_pct": 9.5
+      }
+    ]
   }
 }
